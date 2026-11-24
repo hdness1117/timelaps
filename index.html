@@ -107,6 +107,43 @@ table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px
 .claim{font-size:23px!important}
 .dlg{display:flex;gap:10px;align-items:flex-start;margin:8px 0}.dlg.new{animation:popin .3s}.dlg .sp{font-size:34px;text-align:center;min-width:54px;line-height:1}.dlg .sp small{display:block;font-size:11px;color:var(--mut)}.dlg .bub{font-family:var(--f-voice);flex:1;background:#fff;border:2px solid var(--line);border-radius:14px;padding:9px 12px;font-size:17px}.dlg.jp .bub{border-color:#b8402f}
 .guide{font-family:var(--f-ui);background:#fff6d8;border:3px dashed #c08a1e;border-radius:14px;padding:12px 14px;margin:10px 0;font-size:16px;line-height:1.6}
+/* ===== v22 · 깔끔한 노트(Notion) 톤: 색은 그대로, 정보는 덜어내고 반응은 또렷하게 ===== */
+:root{--paper:#fffdf8;--line2:#ebe0c6;--soft:#f6efdc;--shadow:0 1px 2px rgba(70,52,20,.07),0 6px 18px rgba(70,52,20,.05)}
+body{background:linear-gradient(#e6f0f4,#f7efdc 58%) fixed;font-size:16px;line-height:1.65}
+.ridge{opacity:.55}
+#app{max-width:520px;padding:52px 16px 120px}
+#app.wide{max-width:960px}
+.card{background:var(--paper);border:1px solid var(--line2);border-radius:16px;padding:20px 18px;margin:14px 0;box-shadow:var(--shadow)}
+h2{font-size:22px;line-height:1.35}h3{font-size:18px}
+.title{padding:18px 0 2px}.title .sub{color:var(--mut);font-size:14px;margin:4px 0 0}
+.logo{font-size:38px;letter-spacing:4px}
+.btn{border-radius:12px;padding:15px;font-size:17px;box-shadow:none;margin-top:14px;transition:transform .08s,filter .15s}
+.btn:hover{filter:brightness(1.07)}.btn:active{transform:scale(.98);box-shadow:none}
+.btn:disabled,.btn:disabled:hover{opacity:1;background:#ddd3bd;color:#fff;filter:none;transform:none;box-shadow:none}
+.btn.ghost{background:transparent;color:var(--mut);border:1px solid var(--line2);box-shadow:none;font-size:14px;padding:11px}
+.btn.link{background:none;border:0;color:var(--mut);font-size:13px;text-decoration:underline;padding:6px;margin-top:2px}
+.btn.sm{box-shadow:none;border-radius:10px}
+.opt{border:1px solid var(--line2);background:var(--paper);border-radius:12px;padding:13px 14px;margin:8px 0;font-size:16px;transition:background .12s,border-color .12s,transform .08s}
+.opt:hover{background:var(--soft)}.opt:active{transform:scale(.99)}
+.opt.sel{border-color:var(--red);background:#fbeee8;box-shadow:inset 3px 0 0 var(--red)}
+.opt.ok{border-color:var(--ok);background:#e8f5ee;animation:okp .35s}
+.opt.no{border-color:#e3b3aa;background:#fbefec;opacity:.75;animation:shk .35s}
+@keyframes okp{0%{transform:scale(.97)}60%{transform:scale(1.02)}100%{transform:none}}
+@keyframes shk{0%,100%{transform:none}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+input,select,textarea{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:12px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 3px rgba(184,64,47,.13)}
+label{font-size:13px;color:var(--mut);margin:14px 0 5px}
+.track{margin:0 0 4px}.node{width:26px;height:26px;font-size:12px;border-width:1px}
+.node.cur{transform:scale(1.18);box-shadow:0 0 0 4px rgba(184,64,47,.16)}.seg{height:3px;border-radius:2px}.yrs{display:none}
+.tag{background:var(--soft);font-size:12px;padding:3px 10px}
+.who{border:1px solid var(--line2);background:var(--paper);font-size:13px;padding:3px 11px}
+.quote,.stake{background:var(--soft);border-radius:8px}
+.toast{border-radius:10px}
+.fb{border-radius:12px}
+.cnt{font-size:13px;color:var(--mut);text-align:right;margin-top:6px;min-height:20px}.cnt.ok{color:var(--ok);font-weight:700}
+#snd,#nbtn{top:10px;bottom:auto;width:34px;height:34px;font-size:16px;opacity:.75;background:rgba(255,253,248,.9);border:1px solid var(--line2);box-shadow:none}
+#snd{right:10px}
+.ask{font-family:var(--f-title);font-size:20px;line-height:1.5;margin:16px 0 10px}#nbtn{right:52px}#nmenu{top:52px;bottom:auto;right:10px}
 </style>
 </head>
 <body>
@@ -324,16 +361,26 @@ function nextPop() {
   const done = () => { clearTimeout(el._t); el.style.display = 'none'; setTimeout(nextPop, window.__FAST ? 0 : 150); };
   el._t = setTimeout(done, window.__FAST ? 40 : (o.ms || 2300)); el.onclick = done;
 }
+/* 질문 단계별 담당 신분: 표면적=왕자·양반, 의미 파악=상인·농민, 의미 분석=노비(6명 모둠이면 농민②도) */
+const LV_ROLES = { '표면적 질문': ['prince', 'yangban'], '의미 파악 질문': ['merchant', 'farmer1'], '의미 분석 질문': ['slave', 'farmer2'] };
+function askerFor(level, cell, qi) {
+  const M = S.members, farmers = M.filter(m => m.key === 'farmer'), keys = LV_ROLES[level];
+  if (!keys) return M[(cell + qi) % M.length];
+  const pool = keys.map(k => k === 'farmer1' ? farmers[0] : k === 'farmer2' ? farmers[1] : M.find(m => m.key === k)).filter(Boolean);
+  return pool.length ? pool[cell % pool.length] : M[(cell + qi) % M.length];
+}
+const trialLevel = R => R.type === 'text' ? '의미 분석 질문' : R.type === 'evidence' ? '의미 파악 질문' : '표면적 질문';
+function miningWho(taps) { const pool = S.members.filter(m => m.key === 'prince' || m.key === 'yangban'); const l = pool.length ? pool : S.members; return l[taps % l.length]; }
 function leadPop() {
   if (MODE === 'teacher' || !S || S.phase !== 'board') { AUD.key = ''; return; }
   const c = CELLS[S.cell], N = S.members.length; let key = S.step + '|' + S.cell, m = null, what = '';
   if (S.step === 'stance') { m = S.members[S.mi]; key += '|' + S.mi; what = '입장을 말해 주세요!'; }
-  else if (S.step === 'q' && c.qs && c.qs[S.qi]) { m = S.members[(S.cell + S.qi) % N]; key += '|' + S.qi; what = '이번 질문을 맡아 주세요!'; }
+  else if (S.step === 'q' && c.qs && c.qs[S.qi]) { m = askerFor(c.qs[S.qi].level, S.cell, S.qi); key += '|' + S.qi; what = '이번 질문을 맡아 주세요!'; }
   else if (S.step === 'dice' && !S.dice[S.cell]) { m = S.members[S.cell % N]; what = '주사위를 굴려 주세요!'; }
-  else if (S.step === 'mine') { m = S.members.find(x => x.key === 'slave') || S.members[0]; what = '미천한 일은 제가…'; }
+  else if (S.step === 'mine') { m = miningWho(S.cell); what = '사료를 캐 볼까요?'; }
   else if (S.step === 'trial' && c.trial && c.trial.rounds[S.qi] && !(S.tmp && S.tmp.solved)) {
     key += '|' + S.qi; const R = c.trial.rounds[S.qi];
-    if (key !== AUD.key) { AUD.key = key; const am = S.members[(S.cell + S.qi) % N]; popup({ em: '👆', tx: '이의 있음!', cls: 'obj', sfx: 'obj', ms: 1500 }); if (R.type === 'text') { m = am; popup({ em: ROLES[m.key].em, tx: m.label + ' 차례!', sub: '이번 변론을 맡아 주세요!', say: m.label + ' 차례입니다. 변론해 주세요.' }); } }
+    if (key !== AUD.key) { AUD.key = key; const am = askerFor(trialLevel(R), S.cell, S.qi); popup({ em: '👆', tx: '이의 있음!', cls: 'obj', sfx: 'obj', ms: 1500 }); if (R.type === 'text') { m = am; popup({ em: ROLES[m.key].em, tx: m.label + ' 차례!', sub: '이번 변론을 맡아 주세요!', say: m.label + ' 차례입니다. 변론해 주세요.' }); } }
     return;
   } else { AUD.key = ''; return; }
   if (!m || key === AUD.key) return; AUD.key = key;
@@ -432,19 +479,19 @@ function render() {
   else if (!S) h = MODE === 'resume' ? vResume() : vStart();
   else h = { cards: vCards, roles: vRoles, team: vTeam, board: vBoard, sentence: vSentence, wait: vWait }[S.phase]();
   $app.className = MODE === 'teacher' && TEACH.ok ? 'wide' : '';
-  $app.innerHTML = h; window.scrollTo({ top: 0 }); try { stepSound(); leadPop(); introVoice(); } catch (e) {}
+  $app.innerHTML = h; window.scrollTo({ top: 0 }); try { stepSound(); leadPop(); introVoice(); } catch (e) {} document.querySelectorAll('textarea[data-min]').forEach(updCnt);
   if (MODE === 'teacher' && TEACH.ok) tickTimers();
 }
 
 function vStart() {
-  return `<div class="title"><div class="logo">TIMELAP</div><p class="muted">${LESSON.no}차시 · ${esc(LESSON.title)} (${LESSON.years})</p><p>다섯 개의 신분으로 시대를 건너는 모험</p></div>
+  return `<div class="title"><div class="logo">TIMELAP</div><p class="sub">${LESSON.no}차시 · ${esc(LESSON.title)}</p></div>
   <div class="card"><div class="row"><div><label>반</label><select id="f-cls">${CLASSES.map(c => `<option value="${c}">${c}반</option>`).join('')}<option value="99">교사 테스트</option></select></div>
   <div id="w-team"><label>모둠</label><select id="f-team">${Array.from({ length: MAX_TEAMS }, (_, i) => `<option value="${i + 1}">${i + 1}모둠</option>`).join('')}</select></div>
   <div id="w-size"><label>인원</label><select id="f-size"><option value="5">5명</option><option value="6">6명</option></select></div></div>
   <div id="f-err" class="toast" style="display:none"></div>
   <button class="btn" data-act="start">입장 ▶</button></div>
-  <p class="muted" style="text-align:center">모둠에 기기 1대만 사용해요. 기록(모둠 번호·답변·문장)이 선생님께 전달돼요.</p>
-  <button class="btn ghost" data-act="tlogin">교사용 화면</button>`;
+  <p class="muted" style="text-align:center;font-size:13px">모둠에 기기 1대 · 기록은 선생님께 전달돼요</p>
+  <div style="text-align:center"><button class="btn link" data-act="tlogin">교사용 화면</button></div>`;
 }
 function vResume() {
   const t = TV.resume;
@@ -518,7 +565,7 @@ function vBoard() {
     const m = S.members[S.mi];
     const prev = S.log.filter(l => l.cell === S.cell && l.k === 'stance').map(l => `<li>${ROLES[l.key].em} <b>${esc(l.who)}</b> — ${esc(l.opt)}<br><span class="muted">“${esc(l.a)}”</span></li>`).join('');
     return `${head}<div class="card"><h3>🗣️ 입장 표명 (${S.mi + 1}/${N})</h3>${who(m)}
-    <div class="muted">말투: ${ROLES[m.key].voice}</div><div class="stake">💬 ${esc(stakeOf(m))}</div><p><b>${esc(c.stance.q)}</b></p>
+    <div class="muted">말투: ${ROLES[m.key].voice}</div><div class="stake">💬 ${esc(stakeOf(m))}</div><p class="ask">${esc(c.stance.q)}</p>
     ${c.stance.opts.map((o, i) => `<button class="opt" data-act="opt" data-i="${i}">${esc(o)}</button>`).join('')}
     <label>이 신분의 말투로, 이유를 한 줄로 (${SCORE.minLen}자 이상)</label><textarea id="ta" data-min="${SCORE.minLen}" placeholder="${ROLES[m.key].voice} 말투로 이유를 써 보세요"></textarea>
     <button id="sub" class="btn" data-act="stancesub" disabled>입장 표명 ✔️</button>
@@ -530,7 +577,7 @@ function vBoard() {
   }
   if (S.step === 'source') return `${head}<div class="card"><h3>📜 사료 읽기</h3>${srcHtml(c)}<p class="muted">천천히 읽고, 다음 화면에서 질문에 답해요.</p><button class="btn" data-act="toq">질문 풀기 ▶</button></div>`;
   if (S.step === 'q') {
-    const q = c.qs[S.qi], asker = S.members[(S.cell + S.qi) % N], ty = qType(q);
+    const q = c.qs[S.qi], asker = askerFor(q.level, S.cell, S.qi), ty = qType(q);
     if (!S.tmp) S.tmp = initTmp(q, ty);
     const T = S.tmp;
     let body;
@@ -550,7 +597,7 @@ function vBoard() {
       body = `<textarea id="ta" data-min="${mn}" placeholder="${q.short ? '짧게 써도 좋아요' : `모둠이 의견을 모아 ${mn}자 이상 써 보세요`}"></textarea><button id="sub" class="btn" data-act="qsub" disabled>답변 제출 ✔️</button>`;
     }
     return `${head}<div class="card"><span class="tag red">${esc(q.level)} · ${S.qi + 1}/${c.qs.length}</span><div style="margin:8px 0">이번 질문 담당: ${who(asker)}</div>
-    <div class="muted">📜 사료</div>${srcHtml(c)}<p style="font-size:18px;font-weight:800">${esc(q.q)}</p>${body}</div>`;
+    <div class="muted">📜 사료</div>${srcHtml(c)}<p class="ask">${esc(q.q)}</p>${body}</div>`;
   }
   if (S.step === 'dice') {
     const roller = S.members[S.cell % N], ev = S.dice[S.cell];
@@ -577,7 +624,7 @@ function vMine2D(c) {
     pos.forEach((p, k) => { grid[p] = k; });
     S.tmp = { grid, broken: Array(M.total).fill(false), got: M.slots.map(() => false), taps: 0, last: -1 };
   }
-  const T = S.tmp, done = T.got.every(Boolean), miner = S.members[T.taps % N], have = T.got.filter(Boolean).length;
+  const T = S.tmp, done = T.got.every(Boolean), miner = miningWho(T.taps), have = T.got.filter(Boolean).length;
   const cell = (h, k) => `<div class="mcell ${T.got[k] ? 'on' : ''}" data-slot="${k}">${T.got[k] ? h : ''}</div>`;
   const mon = `<div class="mon ${done ? 'glow' : ''}" id="mon"><div class="mcol">${[...'洋夷侵犯'].map(h => `<div class="mcell carved">${h}</div>`).join('')}</div>
     <div class="mcol">${M.slots.slice(0, 4).map((h, k) => cell(h, k)).join('')}</div><div class="mcol">${M.slots.slice(4).map((h, k) => cell(h, k + 4)).join('')}</div></div>`;
@@ -594,7 +641,7 @@ function vMine2D(c) {
 }
 let MINE3D_FAIL = false, G3 = null, MINE_HOLD = false;
 const THREE_URL = 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
-const minerOf = () => S.members.find(m => m.key === 'slave') || S.members[0];
+const minerOf = () => miningWho(S.cell);
 const MINE_INTRO = [['👑', '이런 천한 일은 노비의 아들이 하거라. 소자는 구경이나 하겠소.'], ['📜', '허허, 곡괭이질은 미천한 일이로다. 노비야, 네가 하거라!'], ['💰', '노비님~ 한 돌에 한 푼! 열심히 캐시면 남는 장사입니다!'], ['🌾', '지는 허리가 아파서 못 혀유… 노비가 해야 허지 않것슈?'], ['🏚️', '헐… 또 저예요? 에이~ 설마요… 아, 진짜였어?!'], ['🏚️', '이런 건 미천한 제가 해야죠!']];
 const MINE_FOUND = [['👑', '오오, 장하구나! 노비 따위가 제법이오!'], ['📜', '허허, 천한 것이 제법이로고… 계속 캐거라!'], ['💰', '대박! 이 한 자에 한 푼 더 쳐 주지! 다음 돌!'], ['🌾', '징헌 일 허느라 고생이구먼유. 근디 잘 허네유!'], ['🏚️', '헐, 저 대박 아니에요?! 근데 월급은요?']];
 const MINE_MISS = [['👑', '돌뿐이오? 노비야, 다음 돌을 캐거라!'], ['📜', '쯧쯧, 천한 것이 돌만 캐는구나! 어서 다음!'], ['💰', '이건 꽝이네요, 사장…아니 노비님! 다음 돌!'], ['🌾', '돌만 나왔구먼유… 허리야…'], ['🏚️', '에이~ 설마요, 또 돌이에요? 곡괭이 아파요~'], ['🏚️', '어, 형님~ 또 돌인데요?!']];
@@ -772,7 +819,7 @@ function mineAct(k) {
   setTimeout(() => {
     rock.classList.add('gone'); rock.disabled = true; mineBusy = false;
     if (T.got.every(Boolean)) { setTimeout(() => { burst(); render(); }, 500 * f); return; }
-    const nm = S.members[T.taps % N], w = document.getElementById('mwho'), em = document.getElementById('hem');
+    const nm = miningWho(T.taps), w = document.getElementById('mwho'), em = document.getElementById('hem');
     if (w) w.innerHTML = '지금 캐는 사람: ' + who(nm); if (em) em.textContent = ROLES[nm.key].em;
   }, 1600 * f);
 }
@@ -925,7 +972,7 @@ const JUDGE_NO = ['판사: 이의를 기각하오! 다시 생각해 보시오.',
 const JAPAN_LOSE = ['일본 대표: 으윽…! 그, 그건…!', '일본 대표: 크윽, 땀이 나는군…', '일본 대표: 이럴 리가 없는데…!'];
 const evCard = (id, e, cls = '', act = '') => `<${act ? 'button' : 'div'} class="ev ${cls}" ${act ? `data-act="${act}" data-id="${id}"` : ''}><b>${esc(e.who)}</b><br>${esc(e.text)}</${act ? 'button' : 'div'}>`;
 function vTrial(c) {
-  const TR = c.trial, R = TR.rounds[S.qi], N = S.members.length, asker = S.members[(S.cell + S.qi) % N], ty = R.type;
+  const TR = c.trial, R = TR.rounds[S.qi], N = S.members.length, asker = askerFor(trialLevel(R), S.cell, S.qi), ty = R.type;
   if (!S.tmp) S.tmp = ty === 'match' ? { pick: R.pairs.map(() => -1), solved: false, msg: '' } : ty === 'evidence' ? { sel: [], solved: false, msg: '' } : { solved: false, msg: '' };
   const T = S.tmp, hp = Math.max(0, 3 - (S.tw || 0)), conf = Math.round((1 - S.qi / TR.rounds.length) * 100);
   let body;
@@ -946,7 +993,7 @@ function vTrial(c) {
   <div class="hpbar"><span>조선 신뢰도 ${'❤️'.repeat(hp)}${'🖤'.repeat(3 - hp)}</span><span>일본 대표 자신감 <i class="jconf"><b style="width:${conf}%"></b></i></span></div>
   <div class="duel"><div class="npc">🎩<small>일본 대표</small></div><div class="claim">${esc(R.claim)}</div></div>
   ${shown}<div style="margin:8px 0">이번 변론 담당: ${who(asker)}</div>
-  <p style="font-size:18px;font-weight:800;margin:6px 0">${esc(R.q)}</p>${body}${fb}</div>`;
+  <p class="ask">${esc(R.q)}</p>${body}${fb}</div>`;
 }
 function vVerdict(c) {
   const hp = Math.max(0, 3 - (S.tw || 0));
@@ -1035,8 +1082,13 @@ function roll() {
 function afterText(len) { S.texts.push(len); }
 
 $app.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.id === 'pin') { const bt = document.querySelector('[data-act=tpin]'); if (bt) bt.click(); } });
+function updCnt(ta) {
+  if (!ta || !ta.dataset.min) return; const m = +ta.dataset.min, n = ta.value.trim().length; let c = document.getElementById('cnt');
+  if (!c) { c = document.createElement('div'); c.id = 'cnt'; ta.insertAdjacentElement('afterend', c); }
+  c.className = 'cnt' + (n >= m ? ' ok' : ''); c.textContent = n >= m ? '✓ 좋아요! 제출할 수 있어요' : n + ' / ' + m + '자 · ' + (m - n) + '자만 더 써 볼까요?';
+}
 $app.addEventListener('input', e => {
-  const ta = e.target.closest('textarea[data-min],input[data-min]');
+  const ta = e.target.closest('textarea[data-min],input[data-min]'); if (ta) updCnt(ta);
   if (ta) { if (S && S.phase === 'board' && S.step === 'stance') checkStanceReady(); else { const b = document.getElementById('sub'); if (b) b.disabled = ta.value.trim().length < +ta.dataset.min; } }
   const tv = e.target.closest('[data-tv]'); if (tv) TV[tv.dataset.tv] = tv.value;
 });
@@ -1102,7 +1154,7 @@ $app.addEventListener('click', async e => {
     persist(); return render();
   }
   if (a === 'tr_text') {
-    const R = CELLS[S.cell].trial.rounds[S.qi], asker = S.members[(S.cell + S.qi) % S.members.length], txt = document.getElementById('ta').value.trim();
+    const R = CELLS[S.cell].trial.rounds[S.qi], asker = askerFor(trialLevel(R), S.cell, S.qi), txt = document.getElementById('ta').value.trim();
     S.log.push({ cell: S.cell, k: 'q', level: '변론 ' + (S.qi + 1), who: asker.label, a: txt }); afterText(txt.length);
     S.tmp.solved = true; S.tmp.judge = R.judge || ''; persist(); return render();
   }
@@ -1130,7 +1182,7 @@ $app.addEventListener('click', async e => {
   if (a === 'pm') { S.tmp.pick[+el.dataset.r] = +el.dataset.k; S.tmp.msg = ''; persist(); return render(); }
   if (a === 'pcheck') { const q = CELLS[S.cell].qs[S.qi], T = S.tmp; if (q.pairs.every((pr, r) => q.choices[T.pick[r]] === pr[1])) { T.solved = true; S.mcTotal++; } else { S.wrong++; T.pick = q.pairs.map(() => -1); T.msg = '앗, 다시 생각해 봐요!'; } persist(); return render(); }
   if (a === 'qsub' || a === 'qnext') {
-    const c = CELLS[S.cell], q = c.qs[S.qi], asker = S.members[(S.cell + S.qi) % S.members.length];
+    const c = CELLS[S.cell], q = c.qs[S.qi], asker = askerFor(q.level, S.cell, S.qi);
     if (a === 'qsub') { const txt = document.getElementById('ta').value.trim(); S.log.push({ cell: S.cell, k: 'q', level: q.level, who: asker.label, a: txt }); if (!q.short) afterText(txt.length); }
     S.qi++; if (S.qi >= c.qs.length) go('dice'); else { S.tmp = null; persist(); } return render();
   }
