@@ -181,6 +181,8 @@ label{font-size:13px;color:var(--mut);margin:14px 0 5px}
   .m3 .stage3d{width:100%;aspect-ratio:auto;height:max(420px,calc(100vh - 190px));margin:0}
 }
 @media (min-width:1600px) and (min-height:900px){ .m3 .stage3d{height:calc(100vh / 1.4 - 190px)} #app:has(.m3){max-width:1400px} }
+.namerow{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin:10px 0}.namebtn{margin:0!important;text-align:center!important;font-size:18px!important}
+@media (min-width:900px){.cards{grid-template-columns:repeat(auto-fill,minmax(110px,150px));justify-content:start}.pcard{font-size:34px}}
 </style>
 </head>
 <body>
@@ -203,7 +205,24 @@ const FB_CONFIG = {
 const COL = "practice_timelap_teams";   // 모둠 기록 컬렉션 (기존 glyp 등과 섞이지 않음)
 const TEACHER_PIN = "1117";             // ★ 교사용 화면 비밀번호 — 수업 전에 바꾸세요
 const CLASSES = [1,2,3,4,5,6,7,8,9,10]; // 반 목록
-const MAX_TEAMS = 9;                    // 반마다 모둠 번호 1~9
+const MAX_TEAMS = 9;
+/* 반별 모둠 인원수 (사람 이름 아님·인원 숫자만). 아직 없는 반은 시작 화면에서 인원을 직접 고르게 해요. */
+const GROUP_SIZES = { 1: [5,4,4,5,5,4,4], 2: [4,4,4,5,4,5,5], 6: [5,4,5,4,5,5,4], 3: [4,5,5,4,5,4,5], 4: [4,4,4,5,4,5,5], 7: [5,5,5,5,5,5], 8: [6,5,5,5,5,5], 9: [5,5,4,4,5,4,4], 10: [5,5,5,5,6,5] };
+/* 반별 이름표(암호화) — 열쇠가 든 링크(#반=열쇠)로 들어온 기기에서만 열려요. 열쇠는 이 파일에 없어요. */
+const ROSTER_ENC = {"1":{"s":"4qD8k1Xmlg4AIe6lty3gzA==","i":"j+bNhe8UfP5HVOcT","c":"plq8Uk/nDp24hNtLE225a/EQov/lFRVvK9qSiNyRvI82NGYxTqHF2SEMl2XgQV7H/gNlJNH5CFGIqiD4UHF0P0PIyKzYZllBmmfF8w+Qjv8AaPYQVd0Ckb/kH49f1V9MbgLFodaBqEjAG3Xn/dFjMDwuOHLmuGxHl8zEs0lYNJCvljA0LGCF2D7u2FYPKsbfUToRtagatYUKuowlsvnnskFj91JBavFWI/YHTT/Zq8EszVANxD3CPOgqljWd5lksRSfKb0wrOAJJcAYFlp6VvQJCqH5fauJkYeob9KscvHoHrR4mVdFT7PPMf5bhyjbzH8qsrJiaqh5JVNaNs2ffY+tAjzLkwLBr+Zn2rWnWqkt1kni+id3lbSqJjgW5mNvNRz6z2JwzCWkcLbNW9UupIGMTLabB+XUo7YVw9TCUYH71dneoBwGthTQ5/HnLgwUMr/noiKErgg1oJJoZDcy+Wkd6jYhuycXwZ8YJiKdH9MRMY24JWgcNybxSyCJccqE3mgH9D/t4f7uyfvxyRfikV9HE7g=="},"2":{"s":"LMaQZ2J6sM85YzX8oeLZmg==","i":"33iZj1bVAz57aJsj","c":"+2TbvtMVPT2ngAD3KYRmhdJLVsWqGySEQFFbfgIo3f0Sx56XRgdIdr836DUHJDURoF5DkPq0MCDgQmMPPAVm70HiXFQYOOzdE8vYjKoVWODIJL0AYA6gB5UyMnPTm8GWcL1o+dzIU+tPa3TUmF+uJqPltd+t/8YOloISpDCYRNEyk+c8jyJJXXQgh+1alFpJku336oaD0mqfMSsMLEY9iYwhrBHMPJG01bzOTlP3JiurVOotum+T1CiEj02aymVctHZ19B9lNSsdO2W1D4/jcAyv1Vq7GPGduo7+gR2cD+kW12n/yz3lVWjMsUJj26QPFT8mf27JCUY9ppZOnLq5DauW2Y9wWbCSC23iHK7EnGqRATSiFlFpRK9FCiF8A/z43liL1cmZJxmPZkjfSutsYuCWrpgEB3q4VcnFnN8DyrCnODGf4c2kmXQta2JXFjHL8STMM0QOWy0quw2wI7CVzpi90koAN4CU26lF6UwmxWY5lZwu+2XY8wc/iDdN/iTzg2jd9EzORVzAa21U9jTxV9hlgA=="},"3":{"s":"ZqmTQcFddPiGmb73+zHNUg==","i":"s0lWeKy5x8o6piek","c":"Jv8iIrR2uhX7dPaMObSwURO4DPPDsbHLI4GXfL4Zfs9j0GLZqyjcwkwidCJcmfLS7qxPkdXFIiIdnfZOwTqhvHH5oOfsfvXAq6HoUP9Vrx7cAjXHYQw9DUFY0sZ4fMrSjBP/Al0xu55nQf7z6YyBTxhoGptkhHBMFVkU4dR+Ir81LqzbJMLaN176WTy4O6akW5dqJqdqm4ntgJBDOXOSrrzeUcj3iPrMCU/8AOEiEKzYDN8L75QiRyteeY8YSjNeN53hSo8nRHm/ExPpXO7mUf4eUAJ5gMj9fY/wvruFxdkF44iM6IAOpUoQPhuu0ZhXvxnxK/IwbYv4UnqVniKSwMWEdWtZ2nWm3Cna8TP6mjlBPnDaIgKaGc+2S2G2hRrbyzZ/8FOAUei15ADEu8FKIOdVgeDtv1qC5Bl++62H1UjWePk1tG/uCWn1E57eoTDqP95yxV97c6Nw9sqUOJvXHvyXvSAdtXvr3lWYyCSLve2Q5Z9Abuz57RGYjFZjRjYaaXCIto9Wa+1tD0dSQomr26HBKpo+A2AXg8rqVG1cvg=="},"4":{"s":"fcIEyoQAplr6/6MQdGsHvw==","i":"QKhL/inKb1HhDIHX","c":"NjXznc89U9gqkHTE6/1fG7K7rHaGIdBaCwN2h9xP8wyGLyk3OUfTHV/9VCBNWmb80mIReQm3jWVrwscHudNiz1nUIrRaB5sN+vHU1dDUmPdG9QI3xzzc0FvyQh+iuyqupkYgsBmXsPFsN3LS/ctgs5o4t3PexEc1XayR8n5bo0kgvpcuEfc66H/kALjka2YLlr/tWIsIIUh6jY26XLN0/EgfmyIt9PuJx74dPZse4IefyXfkkfUPT9lHyWLZGUkkLxdl8goIY+YTDjezPpveSj/OZv02Wvadmr1c1jFISkoCUkl7BKkpltgcVeae/EZ+TZxsqgeX6GvBFXz0YQPPMJgeN5+PcnZBN4APfar8ie6TffaB99Y8/iX9bUijZVgvPpd9ZvXebv5Ey5VR9B0zk9cGhlP1+EagABl9mB3J4oBFF5s8jayM9rTBLQBDAMYwqdDaZugEO/1umcnmngXfd5AZOHGyYCtL6UJLe/AueZhC7SkWHtrgMrZY+gAftfmh4UneJmMOAWi/e3JKEylPc25WvCGItA=="},"6":{"s":"lpE2N0cGH2n5Ui44M8h4AQ==","i":"ozq+22XFH649O3y8","c":"ACPD864eof6efm4OEblvwFcyukdn3MB7wI30m45iRs4r3oUX9Dxk1ZZGe1dChMVj11NEicMHrR7Xbi45Ty8iRMBU+1p65w0ykn83MTMB3cBz1B94jlGPbMkWNanvq6HQUjVdl8yzZNNfYQI4LrRQle5B+X+M4S6Fguu3ha2tucEPIpwk7a/xwCcMBXGkkZzHyH8Aa6Kch4DLOoaqz566XF1Rm6lpfraKO6BM36rRGa7AfUQ87zjDQ0lZr0l/TXUr3lXwQD9LO8HCkWBBiG6RQoAwd5Maf9IDXfrkJzMucI0esePuBXB6BXCsSh8WSGjpimrO/U113c2ovgWU89ySW98Utg4eWrce+1Zx5Ks2IGvY24uvPNWhNvGar3FBczHsJmGO+tGkUsEw9lecovVC2u0Plzg0GgV+mLmeZda77RMxPwX1GJZCMJFXN3XaEHqqfXjY+QhngWYV8ZxjHFWNeWTrleqrM/9uZzMob34caKsuYtDGxOb15KNYI5D2wflxz++mC4jnc3mWZwNWmAqdEeCZ2MrBbPj9PEJb6ntxYA=="},"7":{"s":"OzJ7sJ2lsxgogkcOLnaxTw==","i":"J92Wbs26IkMb9GIE","c":"jXR7xKTfprxTD7Ysqsa+QNnj/NCIqwLjpZ8D2V+eg+G5X5UOnBpHXkx5Ml3QupFGqkB5+/tizVX0DtMbNUdwuixnn7RSYXLEkWzLnK6VkIje3MAoNFHFFPuMF47XNc/mpVU/nOIUCOuhCQzB18dDVEDKQCkxWlrqljJY5yllXF5BhAJt0W0uY0b5eZsHYRMWpWO/5fi/qTPPOx3F89Gm5nsiQA5VN+9Aaq0ZwHPSKwDceorXJRpza8x4D7Zh4DpOnucDoZYpvkaVyg0HvVUtBJVVIluQKNH2fxj6Osmx+hpmAU52eqELex7cN8sKFqXdeCcnDUtA9+sv7Ph688DEFP3qbZ3EfteK3pEVRhYISn0aQFJAgzlx7yBFMTFc+I0PrV+bgacRvc7AALCf+l6Ny5mT5cD7uiTVXyYvhwAPGn28Brpz6tHaqTE5Czu/g1Mp9ulbgLJuBGMghu708rjpK8F917N0zdKHRkAkQH0s4ppWKxpR55w/4KegvhrsAUC90XuGUiM="},"8":{"s":"uF6eM+TrFSPqQNpSpNsxIQ==","i":"TrHKb9k3fCeBuQiy","c":"Cz/aH4XR3k5dl6UR9YuKjXVYnBGRf2MnBQZ4QWK2yJ9O+naneFLl6sWV0ZIE/oMLeOhtb74xyEVYjZPZ7AzYo2kr6J1Ok/HLBK+gi1XxVHpC5KlYL2FTacnyiP7N4lf3SUOEWSQnBbHi+69lB+utunvC6WYASmYeMe/Rh9EY9fFgt0kCI+1fl5StLW1x+iGBEI7Wx5cYTB0AlMxc6bngEPfsr5+JkKV21qazBD/Y9M/FNtvvbM23dRg8oVHuir9tcfjQ78FK4PRXADilhdq86kwZ5dQRyGLhPPVlYRtbqkBJ+U1SCGtH7ejt2bYn9rI2IjPVR6CiWVuuYsO5qBUhzNWOW++eFa2WwRNfbCmJHCgzfkadT/fmrcA3f7dLsc5eYMyt/wnTFybXrKgkWTY5VQ3V34SSazUG1gPO8RM9L3HFcckA7hds2nEf98Se3TNjwxx6dZ52fBctRVHVh4X28Du2DGtwc4mAfmDXzsgp3KacKilJJ3VjvTPz7LDnT13udcVLy8zTvC4hAnKkvPg="},"9":{"s":"nYvNoTci6X9VhbGFeWszoQ==","i":"9wqDx2dcysv5EJf+","c":"eFkUJtWo6jKi8C+fA68jHi+gf3mIMxiPoc8Vo3eCK42aensYed7xK61q5BGtuyN2OkdQL8URppKiS2B5uyz3BTV2Y160oby0gGPHpdn9RX4A+ZA8Vf0d3JlljzcvwRHB8r4JrZ731M9RGR9IF2Kr/XzR3DBSIa/POXvsCOalpkHZb+htWNj8dLCFT98bayv3DVaOl8T64huPpe4JjZvdHoU/pfhDazqyzNItoHnHV39Q6ifHxEBqGYnAzqtQbW9XmcB3S3YlnAtO30KSTU1HKkW2tPHlgjrKrFIosQd7m+XQUM9Zak/Vmehk3LAIiLjJ71KfFWjxUTZGya+43kb71VeLbkRMu7RrlwYknD0Y9zTGjyYi8T/H6Q44IHdEGnMNwPO+eZqPJFBj23ONoFIREc3wG4bM/0RwFrI5+KCj+3keN1dpoUGHZciB8ztFa0yjOveHQh3QYDMcgl/w8TSVgEDmNDxe0/ue+csZkqYDvN6UHLqEayDMX6DHPF7PQOsR2hFSHlDaDNuoNmKNXvqTCIBI1w=="},"10":{"s":"4RWvZwKfgxoA2xO9+k6O9w==","i":"kUIKB+09H5wucs0A","c":"woPDaa9X55OOymp/POW5cHcjAOyFkHmA/1DaYOrkXPTqCo8YDZAbZDeFip5aTcjyuUWlPjUH7VLGsSZ7IZ+9hz/weUuF56X1PL1MYln3B65V2c4Ss5rrVIf/iqhXq9Es8XR/SYAFE7COREEdJ+oRN4aIjEjrGY6bUQL918IfEhaJ30Raw7dySkF6JK1qmvtPxIv3d/x903IWSqQxB/r+qKglk+/nsTDQ3T4suQummUufBzorVrXCDRjQMz3ofd4EIrusI6v4gbrbQtPNzEhLc7A1imnbS0vtnr5B8zYla7Nz0u5LzDno/Pc1UbrbQ7/hXuuGD7e1duAO2QNbyHMm04wfWRGxEasE1z4IFOXwfiNcxywPPMzD+C/UtSmFN9Dy0xd5gYVVNHv+JYzMj7kaPJk1XDI1thMKE4bWK9afLYb351/6bPhu/Q4F9oi4BCKm7BHEMqqDUAj4gIhMT+ZmOnZWpkaeOUdGDT0RghiubGuwnpeJ/eKMZtetOHc+qaAx6lGEk063SmOfBQVMeygbcas="}};
+const b2u = b => Uint8Array.from(atob(b), ch => ch.charCodeAt(0));
+function readKeysFromHash() { try { (location.hash || '').replace(/^#/, '').split('&').forEach(kv => { const m = kv.match(/^(\d+)=([a-z0-9]+)$/i); if (m) localStorage.setItem('timelap_k_' + m[1], m[2]); }); } catch (e) {} }
+readKeysFromHash();
+async function loadRoster(cls) {
+  const e = ROSTER_ENC[cls]; let k = null; try { k = localStorage.getItem('timelap_k_' + cls); } catch (x) {}
+  if (!e || !k || !(window.crypto && crypto.subtle)) return null;
+  try {
+    const km = await crypto.subtle.importKey('raw', new TextEncoder().encode(k), 'PBKDF2', false, ['deriveKey']);
+    const key = await crypto.subtle.deriveKey({ name: 'PBKDF2', salt: b2u(e.s), iterations: 150000, hash: 'SHA-256' }, km, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+    return JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b2u(e.i) }, key, b2u(e.c))));
+  } catch (x) { return null; }
+}
+const sizeOf = (cls, team) => (GROUP_SIZES[cls] || [])[+team - 1] || 0;                    // 반마다 모둠 번호 1~9
 
 /* ---- 자동 점수(70점) 설정 ---- */
 const SCORE = {
@@ -520,11 +539,12 @@ function render() {
   if (MODE === 'teacher' && TEACH.ok) tickTimers();
 }
 
+function teamOpts(cls) { const n = GROUP_SIZES[cls] ? GROUP_SIZES[cls].length : MAX_TEAMS; return Array.from({ length: n }, (_, i) => `<option value="${i + 1}">${i + 1}모둠${GROUP_SIZES[cls] ? ' · ' + GROUP_SIZES[cls][i] + '명' : ''}</option>`).join(''); }
 function vStart() {
   return `<div class="title"><div class="logo">TIMELAP</div><p class="sub">${LESSON.no}차시 · ${esc(LESSON.title)}</p></div>
   <div class="card"><div class="row"><div><label>반</label><select id="f-cls">${CLASSES.map(c => `<option value="${c}">${c}반</option>`).join('')}<option value="99">교사 테스트</option></select></div>
-  <div id="w-team"><label>모둠</label><select id="f-team">${Array.from({ length: MAX_TEAMS }, (_, i) => `<option value="${i + 1}">${i + 1}모둠</option>`).join('')}</select></div>
-  <div id="w-size"><label>인원</label><select id="f-size"><option value="5">5명</option><option value="6">6명</option></select></div></div>
+  <div id="w-team"><label>모둠</label><select id="f-team">${teamOpts(CLASSES[0])}</select></div>
+  <div id="w-size" style="${GROUP_SIZES[CLASSES[0]] ? 'display:none' : ''}"><label>인원</label><select id="f-size"><option value="4">4명</option><option value="5" selected>5명</option><option value="6">6명</option></select></div></div>
   <div id="f-err" class="toast" style="display:none"></div>
   <button class="btn" data-act="start">입장 ▶</button></div>
   <p class="muted" style="text-align:center;font-size:13px">모둠에 기기 1대 · 기록은 선생님께 전달돼요</p>
@@ -541,13 +561,16 @@ function vCards() {
   const n = S.size, drawn = S.flipped.length, done = drawn >= n;
   const best = Math.max(...S.deck);
   const cards = S.deck.map((num, i) => { const up = S.flipped.includes(i); return `<div class="pcard ${up ? 'up' : ''} ${done && num === best ? 'best' : ''}" data-act="flip" data-i="${i}">${up ? num : '?'}</div>`; }).join('');
+  const R = S.roster, left = R ? R.filter(nm => !Object.values(S.cardName || {}).includes(nm)) : [], needName = !!R && !done && !S.curName;
+  const head = done ? '카드를 모두 뽑았어요! <b>가장 큰 숫자</b>를 뽑은 친구부터 신분을 고릅니다.' : needName ? '<b>내 이름</b>을 눌러 주세요. 그다음 카드를 한 장 뽑아요.' : S.curName ? `<b>${esc(S.curName)}</b> 님, 카드를 한 장 뽑으세요!` : `<b>${drawn + 1}번째</b> 학생이 카드 한 장을 뽑으세요. (기기를 돌려가며 한 명씩!)`;
+  const names = needName ? `<div class="namerow">${left.map(nm => `<button class="opt namebtn" data-act="pickname" data-n="${esc(nm)}">${esc(nm)}</button>`).join('')}</div>` : '';
   return `<div class="title"><h2>🎴 누가 먼저 신분을 고를까?</h2></div>
-  <div class="card"><p>${done ? '카드를 모두 뽑았어요! <b>가장 큰 숫자</b>를 뽑은 친구부터 신분을 고릅니다.' : `<b>${drawn + 1}번째</b> 학생이 카드 한 장을 뽑으세요. (기기를 돌려가며 한 명씩!)`}</p>
-  <div class="cards">${cards}</div><div class="muted">뽑은 카드: ${S.flipped.map(i => S.deck[i]).join(' · ') || '아직 없어요'}</div>
+  <div class="card"><p>${head}</p>${names}
+  <div class="cards" style="${needName ? 'opacity:.35;pointer-events:none' : ''}">${cards}</div><div class="muted">뽑은 카드: ${S.flipped.map(i => S.deck[i]).join(' · ') || '아직 없어요'}</div>
   ${done ? '<button class="btn" data-act="toroles">신분 고르러 가기 ▶</button>' : ''}</div>`;
 }
 function rolePool() {
-  const keys = ['prince', 'yangban', 'merchant', 'farmer', 'slave'];
+  const keys = S.size === 4 ? ['prince', 'yangban', 'farmer', 'slave'] : ['prince', 'yangban', 'merchant', 'farmer', 'slave'];
   if (S.size === 6) keys.push('farmer');
   return keys.map((k, i) => ({ key: k, idx: i }));
 }
@@ -555,10 +578,10 @@ function vRoles() {
   const order = S.deck.map((n, i) => ({ n, i })).sort((a, b) => b.n - a.n);
   const pool = rolePool().filter(r => !S.taken.includes(r.idx));
   const cur = order[S.pickIdx];
-  const rows = S.members.map(m => `<li>카드 <b>${m.card}</b> → ${ROLES[m.key].em} ${m.label}</li>`).join('');
+  const rows = S.members.map(m => `<li>${m.name ? esc(m.name) + ' · ' : ''}카드 <b>${m.card}</b> → ${ROLES[m.key].em} ${m.label}</li>`).join('');
   const lbl = r => ROLES[r.key].label + (S.size === 6 && r.key === 'farmer' ? (r.idx === 3 ? ' ①' : ' ②') : '');
   return `<div class="title"><h2>🧑‍🤝‍🧑 신분 고르기</h2></div><div class="card">
-  <p>카드 <b style="font-size:24px;color:var(--red)">${cur.n}</b>번을 뽑은 학생이 고를 차례예요. (${S.pickIdx + 1}/${S.size})</p>
+  <p>${(S.cardName || {})[cur.i] ? '<b>' + esc(S.cardName[cur.i]) + '</b> 님, ' : ''}카드 <b style="font-size:24px;color:var(--red)">${cur.n}</b>번을 뽑은 학생이 고를 차례예요. (${S.pickIdx + 1}/${S.size})</p>
   ${pool.map(r => `<button class="opt rolebtn" data-act="role" data-idx="${r.idx}"><span class="em">${ROLES[r.key].em}</span><span>${lbl(r)}<br><small class="muted">말투: ${ROLES[r.key].voice}</small></span></button>`).join('')}
   <ul class="list">${rows}</ul></div>`;
 }
@@ -566,11 +589,11 @@ function pickRole(idx) {
   const order = S.deck.map((n, i) => ({ n, i })).sort((a, b) => b.n - a.n);
   const r = rolePool().find(x => x.idx === idx); if (!r || S.taken.includes(idx)) return;
   const label = ROLES[r.key].label + (S.size === 6 && r.key === 'farmer' ? (idx === 3 ? ' ①' : ' ②') : '');
-  S.members.push({ card: order[S.pickIdx].n, key: r.key, label }); S.taken.push(idx); S.pickIdx++;
+  S.members.push({ card: order[S.pickIdx].n, key: r.key, label, name: (S.cardName || {})[order[S.pickIdx].i] || '' }); S.taken.push(idx); S.pickIdx++;
   if (S.pickIdx === S.size - 1) { // 남은 신분은 마지막 학생에게 자동 배정
     const last = rolePool().find(x => !S.taken.includes(x.idx));
     const lab = ROLES[last.key].label + (S.size === 6 && last.key === 'farmer' ? (last.idx === 3 ? ' ①' : ' ②') : '');
-    S.members.push({ card: order[S.pickIdx].n, key: last.key, label: lab }); S.taken.push(last.idx); S.pickIdx++;
+    S.members.push({ card: order[S.pickIdx].n, key: last.key, label: lab, name: (S.cardName || {})[order[S.pickIdx].i] || '' }); S.taken.push(last.idx); S.pickIdx++;
   }
   if (S.pickIdx >= S.size) {
     S.members.sort((a, b) => ROLES[a.key].order - ROLES[b.key].order || a.label.localeCompare(b.label));
@@ -585,7 +608,7 @@ function track() {
   const parts = nodes.map((n, i) => `<div class="node ${i < cur ? 'done' : ''} ${i === cur ? 'cur' : ''}">${n}</div>${i < nodes.length - 1 ? `<div class="seg ${i < cur ? 'done' : ''}"></div>` : ''}`).join('');
   return `<div class="track">${parts}</div><div class="yrs"><span>출발</span>${CELLS.map(c => `<span>${esc(c.year)}</span>`).join('')}<span>도착</span></div>`;
 }
-const who = m => `<span class="who">${ROLES[m.key].em} ${m.label} <small class="muted">(카드 ${m.card})</small></span>`;
+const who = m => `<span class="who">${ROLES[m.key].em} ${m.name ? esc(m.name) + ' · ' : ''}${m.label}${m.name ? '' : ` <small class="muted">(카드 ${m.card})</small>`}</span>`;
 
 function vBoard() {
   const c = CELLS[S.cell], N = S.members.length;
@@ -1136,7 +1159,8 @@ function checkStanceReady() {
   if (ta && b && S && S.step === 'stance') b.disabled = !(window.__opt != null && ta.value.trim().length >= SCORE.minLen);
 }
 $app.addEventListener('change', e => {
-  if (e.target.id === 'f-cls') { const t = e.target.value === '99'; ['w-team', 'w-size'].forEach(id => { const w = document.getElementById(id); if (w) w.style.display = t ? 'none' : ''; }); }
+  if (e.target.id === 'f-cls') { const v = e.target.value, t = v === '99'; const ft = document.getElementById('f-team'); if (ft && !t) ft.innerHTML = teamOpts(v);
+    const wt = document.getElementById('w-team'), ws = document.getElementById('w-size'); if (wt) wt.style.display = t ? 'none' : ''; if (ws) ws.style.display = (t || GROUP_SIZES[v]) ? 'none' : ''; }
   if (e.target.id === 't-cls') { TEACH.cls = e.target.value; listenClass(TEACH.cls, render); CLASSDOCS = []; render(); }
 });
 
@@ -1145,14 +1169,15 @@ $app.addEventListener('click', async e => {
   const a = el.dataset.act, i = +el.dataset.i;
   /* 시작/교사 */
   if (a === 'start') {
-    const cls = document.getElementById('f-cls').value, team = document.getElementById('f-team').value, size = document.getElementById('f-size').value;
+    const cls = document.getElementById('f-cls').value, team = document.getElementById('f-team').value, size = sizeOf(cls, team) || document.getElementById('f-size').value;
     if (cls === '99') { startTeam('99', '1', 5); S.members = ['prince', 'yangban', 'merchant', 'farmer', 'slave'].map((k, n) => ({ card: 13 - n, key: k, label: ROLES[k].label })); S.phase = 'team'; persist(); MODE = 'student'; return render(); }
     let saved = null; try { saved = JSON.parse(localStorage.getItem('timelap2_' + tid(cls, team))); } catch (er) {}
     if (saved && saved.phase) { TV.resume = saved; TV.pending = { cls, team, size }; MODE = 'resume'; return render(); }
-    startTeam(cls, team, size); return render();
+    const ros = await loadRoster(cls);
+    startTeam(cls, team, size); S.roster = ros && ros[+team - 1] ? ros[+team - 1] : null; S.cardName = {}; return render();
   }
   if (a === 'resume') { S = TV.resume; MODE = 'student'; if (S.phase === 'wait') listenClass(S.cls, render); return render(); }
-  if (a === 'restart') { const p = TV.pending; MODE = 'student'; startTeam(p.cls, p.team, p.size); return render(); }
+  if (a === 'restart') { const p = TV.pending; MODE = 'student'; const ros = await loadRoster(p.cls); startTeam(p.cls, p.team, p.size); S.roster = ros && ros[+p.team - 1] ? ros[+p.team - 1] : null; S.cardName = {}; return render(); }
   if (a === 'home') { MODE = 'start'; S = null; return render(); }
   if (a === 'tlogin') { MODE = 'teacher'; TEACH.ok = false; return render(); }
   if (a === 'tpin') { if (document.getElementById('pin').value === TEACHER_PIN) { TEACH.ok = true; listenClass(TEACH.cls, render); return render(); } document.getElementById('f-err').style.display = 'block'; return; }
@@ -1165,7 +1190,8 @@ $app.addEventListener('click', async e => {
   }
   if (!S) return;
   /* 카드·신분 */
-  if (a === 'flip') { if (S.flipped.includes(i) || S.flipped.length >= S.size) return; S.flipped.push(i); persist(); return render(); }
+  if (a === 'pickname') { S.curName = el.dataset.n; persist(); return render(); }
+  if (a === 'flip') { if (S.flipped.includes(i) || S.flipped.length >= S.size) return; if (S.roster && !S.curName) return; if (S.curName) { S.cardName = S.cardName || {}; S.cardName[i] = S.curName; S.curName = null; } S.flipped.push(i); persist(); return render(); }
   if (a === 'toroles') { S.phase = 'roles'; persist(); return render(); }
   if (a === 'role') { pickRole(+el.dataset.idx); persist(); return render(); }
   if (a === 'startgame') { S.phase = 'board'; S.startedAtMs = Date.now(); S.step = 'situation'; persist(true); return render(); }
@@ -1240,7 +1266,7 @@ function vTeam() {
 }
 /* 열린 주소에 ?teacher 가 있으면 교사용 화면 */
 if (/[?&]teacher/.test(location.search)) { MODE = 'teacher'; }
-window.__tl = { get S() { return S; }, set S(v) { S = v; }, render };
+window.__tl = { get S() { return S; }, set S(v) { S = v; }, render, askerFor };
 render();
 </script>
 </body>
