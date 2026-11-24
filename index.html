@@ -432,7 +432,7 @@ function render() {
   else if (!S) h = MODE === 'resume' ? vResume() : vStart();
   else h = { cards: vCards, roles: vRoles, team: vTeam, board: vBoard, sentence: vSentence, wait: vWait }[S.phase]();
   $app.className = MODE === 'teacher' && TEACH.ok ? 'wide' : '';
-  $app.innerHTML = h; window.scrollTo({ top: 0 }); try { stepSound(); leadPop(); } catch (e) {}
+  $app.innerHTML = h; window.scrollTo({ top: 0 }); try { stepSound(); leadPop(); introVoice(); } catch (e) {}
   if (MODE === 'teacher' && TEACH.ok) tickTimers();
 }
 
@@ -807,6 +807,17 @@ const RUN_TALK = [
   ['🧑‍💼', '개화파 김옥균', '맞네. 우리가 정변을 일으켜 보세나. 다만 우리 힘만으로는 병력이 모자라는데…', 0],
   ['🎩', '일본 공사 다케조에', '어, 그럼 우리가 도와줄까요? 일본군 150명이면 청군 1,500명도 문제없소이다! (※ 이 약속이 지켜질까요?)', 1],
   ['🧑‍🔧', '개화파 홍영식', '내가 총판을 맡은 우정총국의 개국 축하연이 12월 4일이오. 그날 밤 거사합시다!', 0]];
+/* 3칸 도입 대사 음성: voice/run1.mp3 ~ run5.mp3 파일이 있으면 그 녹음을, 없으면 합성음(TTS)으로 읽어요 */
+let VAUD = null;
+function introVoice() {
+  if (!S || MODE === 'teacher' || S.step !== 'runintro') { AUD.vk = ''; try { if (VAUD) VAUD.pause(); } catch (e) {} return; }
+  const i = Math.min(S.ri || 0, RUN_TALK.length - 1), k = 'ri' + i; if (AUD.vk === k) return; AUD.vk = k;
+  if (!AUD.on || window.__NOSPEAK) return;
+  const txt = RUN_TALK[i][2].replace(/\(※[^)]*\)/g, '').replace(/…/g, ',').trim();
+  try { if (VAUD) VAUD.pause(); speechSynthesis.cancel(); } catch (e) {}
+  let used = false; const fb = () => { if (used) return; used = true; speak(txt, 1, 1); };
+  try { VAUD = new Audio('voice/run' + (i + 1) + '.mp3'); VAUD.addEventListener('error', fb); const pr = VAUD.play(); if (pr && pr.catch) pr.catch(fb); } catch (e) { fb(); }
+}
 function vRunIntro(c) {
   const i = Math.min(S.ri || 0, RUN_TALK.length - 1), last = i >= RUN_TALK.length - 1;
   const lines = RUN_TALK.slice(0, i + 1).map((l, n) => `<div class="dlg ${l[3] ? 'jp' : ''} ${n === i ? 'new' : ''}"><div class="sp">${l[0]}<small>${esc(l[1])}</small></div><div class="bub">${esc(l[2])}</div></div>`).join('');
@@ -972,7 +983,7 @@ function vWait() {
 
 /* ---------------- 교사용 ---------------- */
 function vTeacherLogin() {
-  return `<div class="title"><h2>교사용 화면</h2></div><div class="card"><label>비밀번호</label><input id="pin" type="password" inputmode="numeric"><div id="f-err" class="toast" style="display:none">비밀번호가 달라요</div>
+  return `<div class="title"><h2>교사용 화면</h2></div><div class="card"><label>비밀번호</label><input id="pin" type="tel" inputmode="numeric" autocomplete="off" maxlength="12" style="-webkit-text-security:disc;font-family:Arial,sans-serif;font-size:22px;letter-spacing:6px;text-align:center"><div id="f-err" class="toast" style="display:none">비밀번호가 달라요</div>
   <button class="btn" data-act="tpin">들어가기</button><button class="btn ghost" data-act="home">학생 화면으로</button></div>`;
 }
 function vTeacher() {
@@ -1023,6 +1034,7 @@ function roll() {
 }
 function afterText(len) { S.texts.push(len); }
 
+$app.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.id === 'pin') { const bt = document.querySelector('[data-act=tpin]'); if (bt) bt.click(); } });
 $app.addEventListener('input', e => {
   const ta = e.target.closest('textarea[data-min],input[data-min]');
   if (ta) { if (S && S.phase === 'board' && S.step === 'stance') checkStanceReady(); else { const b = document.getElementById('sub'); if (b) b.disabled = ta.value.trim().length < +ta.dataset.min; } }
