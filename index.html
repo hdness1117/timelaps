@@ -144,6 +144,43 @@ label{font-size:13px;color:var(--mut);margin:14px 0 5px}
 #snd,#nbtn{top:10px;bottom:auto;width:34px;height:34px;font-size:16px;opacity:.75;background:rgba(255,253,248,.9);border:1px solid var(--line2);box-shadow:none}
 #snd{right:10px}
 .ask{font-family:var(--f-title);font-size:20px;line-height:1.5;margin:16px 0 10px}#nbtn{right:52px}#nmenu{top:52px;bottom:auto;right:10px}
+/* 노트북(가로 화면): 두 단으로 나눠 한눈에 */
+.split{display:flex;flex-direction:column}.split.rev>.pane:first-child{order:2}.split.rev>.pane:last-child{order:1}
+@media (min-width:900px){
+  body{font-size:17px}
+  #app{max-width:1120px;padding:56px 28px 80px}
+  .track{max-width:640px;margin-left:auto;margin-right:auto}
+  .card{max-width:760px;margin-left:auto;margin-right:auto;padding:26px 30px}
+  .card.sp{max-width:none}
+  .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:36px;align-items:start}
+  .split.rev>.pane:first-child{order:0}.split.rev>.pane:last-child{order:0}
+  .split>.pane+.pane{border-left:1px solid var(--line2);padding-left:36px}
+  .ask{font-size:22px;margin-top:4px}
+  .stage3d{width:min(100%,calc((100vh - 230px) * .8));margin:0 auto}
+  .stage{max-width:calc((100vh - 260px) * .75);margin-left:auto;margin-right:auto}
+  .runwrap,.lanes{max-width:min(420px,calc((100vh - 260px) * .69))}
+}
+/* 1920×1080 같은 넓은 노트북: 전체를 키워서 글자·카드를 또렷하게 */
+@media (min-width:1600px) and (min-height:900px){
+  #app{zoom:1.4;max-width:1180px}
+  .stage3d{width:min(100%,calc((100vh / 1.4 - 420px) * .8))}
+  .stage{max-width:calc((100vh / 1.4 - 440px) * .75)}
+  .runwrap,.lanes{max-width:min(420px,calc((100vh / 1.4 - 340px) * .69))}
+}
+
+/* 3D 광산: 버튼은 왼쪽 좁은 칸, 화면은 최대한 크게 */
+.mside{display:flex;flex-direction:column}.mside .ctrl{order:-1;margin:0 0 10px}
+@media (min-width:900px){
+  .split.m3{grid-template-columns:260px minmax(0,1fr);gap:24px}
+  .split.m3>.pane+.pane{border-left:0;padding-left:0}
+  #app:has(.m3){max-width:1400px;padding-top:40px}
+  .card.sp:has(.m3){max-width:none;padding:18px 22px}
+  .m3 .mside .ctrl{order:0;flex-direction:column;align-items:flex-start;gap:14px;margin-top:16px}
+  .m3 .mdig{flex:none;width:100%;height:64px;font-size:17px}
+  .m3 .dp{width:52px;height:52px}
+  .m3 .stage3d{width:100%;aspect-ratio:auto;height:max(420px,calc(100vh - 190px));margin:0}
+}
+@media (min-width:1600px) and (min-height:900px){ .m3 .stage3d{height:calc(100vh / 1.4 - 190px)} #app:has(.m3){max-width:1400px} }
 </style>
 </head>
 <body>
@@ -553,8 +590,10 @@ const who = m => `<span class="who">${ROLES[m.key].em} ${m.label} <small class="
 function vBoard() {
   const c = CELLS[S.cell], N = S.members.length;
   const head = `${track()}<div class="muted" style="text-align:center">${S.cell + 1}/${CELLS.length}칸 · ${esc(c.title)}</div>`;
-  if (S.step === 'situation') return `${head}<div class="card"><span class="tag">${esc(c.year)}</span><h2 style="margin-top:8px">${esc(c.title)}</h2>${videoHtml(c.video)}<p>${nl(c.situation)}</p>
-    ${c.run ? '<button class="btn" data-act="torun">🏃 거사 현장으로 달려가기</button>' : c.trial ? '<button class="btn" data-act="totrial">⚖️ 재판 시작!</button>' : c.mine ? '<button class="btn" data-act="tomine">⛏️ 척화비 돌 캐러 가기</button>' : '<button class="btn" data-act="tostance">각자 입장 정하기 ▶</button>'}</div>`;
+  if (S.step === 'situation') {
+    const vh = videoHtml(c.video), go = c.run ? '<button class="btn" data-act="torun">🏃 거사 현장으로 달려가기</button>' : c.trial ? '<button class="btn" data-act="totrial">⚖️ 재판 시작!</button>' : c.mine ? '<button class="btn" data-act="tomine">⛏️ 척화비 돌 캐러 가기</button>' : '<button class="btn" data-act="tostance">각자 입장 정하기 ▶</button>';
+    return `${head}<div class="card ${vh ? 'sp' : ''}"><div class="${vh ? 'split' : ''}"><div class="pane"><span class="tag">${esc(c.year)}</span><h2 style="margin-top:8px">${esc(c.title)}</h2>${vh}</div><div class="pane"><p>${nl(c.situation)}</p>${go}</div></div></div>`;
+  }
   if (S.step === 'mine') return `${head}${vMine(c)}`;
   if (S.step === 'runintro') return `${head}${vRunIntro(c)}`;
   if (S.step === 'run') return `${head}${vRun(c)}`;
@@ -564,12 +603,12 @@ function vBoard() {
   if (S.step === 'stance') {
     const m = S.members[S.mi];
     const prev = S.log.filter(l => l.cell === S.cell && l.k === 'stance').map(l => `<li>${ROLES[l.key].em} <b>${esc(l.who)}</b> — ${esc(l.opt)}<br><span class="muted">“${esc(l.a)}”</span></li>`).join('');
-    return `${head}<div class="card"><h3>🗣️ 입장 표명 (${S.mi + 1}/${N})</h3>${who(m)}
-    <div class="muted">말투: ${ROLES[m.key].voice}</div><div class="stake">💬 ${esc(stakeOf(m))}</div><p class="ask">${esc(c.stance.q)}</p>
+    return `${head}<div class="card sp"><div class="split"><div class="pane"><h3>🗣️ 입장 표명 (${S.mi + 1}/${N})</h3>${who(m)}
+    <div class="muted">말투: ${ROLES[m.key].voice}</div><div class="stake">💬 ${esc(stakeOf(m))}</div><p class="ask">${esc(c.stance.q)}</p></div><div class="pane">
     ${c.stance.opts.map((o, i) => `<button class="opt" data-act="opt" data-i="${i}">${esc(o)}</button>`).join('')}
     <label>이 신분의 말투로, 이유를 한 줄로 (${SCORE.minLen}자 이상)</label><textarea id="ta" data-min="${SCORE.minLen}" placeholder="${ROLES[m.key].voice} 말투로 이유를 써 보세요"></textarea>
     <button id="sub" class="btn" data-act="stancesub" disabled>입장 표명 ✔️</button>
-    ${prev ? `<ul class="list">${prev}</ul>` : ''}</div>`;
+    ${prev ? `<ul class="list">${prev}</ul>` : ''}</div></div></div>`;
   }
   if (S.step === 'stancesum') {
     const rows = S.log.filter(l => l.cell === S.cell && l.k === 'stance').map(l => `<li>${ROLES[l.key].em} <b>${esc(l.who)}</b> — ${esc(l.opt)}<br><span class="muted">“${esc(l.a)}”</span></li>`).join('');
@@ -596,8 +635,8 @@ function vBoard() {
       const mn = q.min || SCORE.minLen;
       body = `<textarea id="ta" data-min="${mn}" placeholder="${q.short ? '짧게 써도 좋아요' : `모둠이 의견을 모아 ${mn}자 이상 써 보세요`}"></textarea><button id="sub" class="btn" data-act="qsub" disabled>답변 제출 ✔️</button>`;
     }
-    return `${head}<div class="card"><span class="tag red">${esc(q.level)} · ${S.qi + 1}/${c.qs.length}</span><div style="margin:8px 0">이번 질문 담당: ${who(asker)}</div>
-    <div class="muted">📜 사료</div>${srcHtml(c)}<p class="ask">${esc(q.q)}</p>${body}</div>`;
+    return `${head}<div class="card sp"><div class="split"><div class="pane"><span class="tag red">${esc(q.level)} · ${S.qi + 1}/${c.qs.length}</span><div style="margin:8px 0">이번 질문 담당: ${who(asker)}</div>
+    <div class="muted">📜 사료</div>${srcHtml(c)}</div><div class="pane"><p class="ask">${esc(q.q)}</p>${body}</div></div></div>`;
   }
   if (S.step === 'dice') {
     const roller = S.members[S.cell % N], ev = S.dice[S.cell];
@@ -655,12 +694,12 @@ function vMine(c) {
   }
   const T = S.tmp, done = T.got.every(Boolean), have = T.got.filter(Boolean).length;
   setTimeout(mine3dStart, 0);
-  return `<div class="card"><h3>⛏️ 척화비의 글자를 캐내자!</h3>
+  return `<div class="card sp"><div class="split rev m3"><div class="pane mside"><h3>⛏️ 척화비의 글자를 캐내자!</h3>
   <div style="margin-bottom:6px">오늘의 광부: ${who(minerOf())}</div>
   <p class="muted">방향키(WASD) 또는 화면 버튼으로 걸어가 광석 앞에 서서 <b>스페이스를 꾹</b> 누르면 캐요. 나오는 한자 ${M.slots.length}개를 비석에 모아요. (<b id="mcnt">${have}</b>/${M.slots.length})</p>
-  <div class="stage3d" id="stage3d"><div class="loading">⛏️ 광산 여는 중…</div><div class="mbub" id="mbub"></div><div class="mbar" id="mbar"><i></i></div></div>
   ${done ? '' : `<div class="ctrl" id="mctrl"><div class="dpad"><button class="dp u" data-dir="u">▲</button><button class="dp l" data-dir="l">◀</button><button class="dp d" data-dir="d">▼</button><button class="dp r" data-dir="r">▶</button></div>
-    <button class="btn mdig" id="mhold">⛏️ 꾹 눌러 캐기</button></div>`}
+    <button class="btn mdig" id="mhold">⛏️ 꾹 눌러 캐기</button></div>`}</div><div class="pane">
+  <div class="stage3d" id="stage3d"><div class="loading">⛏️ 광산 여는 중…</div><div class="mbub" id="mbub"></div><div class="mbar" id="mbar"><i></i></div></div></div></div>
   <div id="mine-reveal"></div></div>`;
 }
 const revealHtml = M => `<div class="toast">✨ 비석이 빛난다! ✨</div>${M.meaning.map(m => `<div class="quote"><b style="font-size:22px">${esc(m[0])}</b><br>${esc(m[1])}</div>`).join('')}<p class="muted">이 비문은 서양과 화친(교류)하자는 것은 곧 나라를 파는 일이라는 뜻이에요.</p><button class="btn" data-act="minedone">질문 풀기 ▶</button>`;
@@ -989,11 +1028,11 @@ function vTrial(c) {
   }
   const shown = ty === 'evidence' ? '' : `<div class="evgrid">${(R.show || []).map(id => evCard(id, TR.evidence[id])).join('')}</div>`;
   const fb = T.solved ? `<div class="stamp">${ty === 'text' ? '변론 완료!' : '이의 있음!'}</div><div class="fb ok">${esc(T.judge || '')}<br>${esc(R.ex || '')}</div><button class="btn" data-act="tr_next">${S.qi + 1 >= TR.rounds.length ? '판결 듣기 ▶' : '다음 변론 ▶'}</button>` : (T.msg ? `<div class="fb no">${esc(T.msg)}</div>` : '');
-  return `<div class="card court"><div class="bench">⚖️ 구월 법정 · 강화도 조약 재판 <small>(${S.qi + 1}/${TR.rounds.length})</small></div>
+  return `<div class="card court sp"><div class="split"><div class="pane"><div class="bench">⚖️ 구월 법정 · 강화도 조약 재판 <small>(${S.qi + 1}/${TR.rounds.length})</small></div>
   <div class="hpbar"><span>조선 신뢰도 ${'❤️'.repeat(hp)}${'🖤'.repeat(3 - hp)}</span><span>일본 대표 자신감 <i class="jconf"><b style="width:${conf}%"></b></i></span></div>
   <div class="duel"><div class="npc">🎩<small>일본 대표</small></div><div class="claim">${esc(R.claim)}</div></div>
-  ${shown}<div style="margin:8px 0">이번 변론 담당: ${who(asker)}</div>
-  <p class="ask">${esc(R.q)}</p>${body}${fb}</div>`;
+  ${shown}</div><div class="pane"><div style="margin:8px 0">이번 변론 담당: ${who(asker)}</div>
+  <p class="ask">${esc(R.q)}</p>${body}${fb}</div></div></div>`;
 }
 function vVerdict(c) {
   const hp = Math.max(0, 3 - (S.tw || 0));
