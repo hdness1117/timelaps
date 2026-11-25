@@ -183,6 +183,8 @@ label{font-size:13px;color:var(--mut);margin:14px 0 5px}
 @media (min-width:1600px) and (min-height:900px){ .m3 .stage3d{height:calc(100vh / 1.4 - 190px)} #app:has(.m3){max-width:1400px} }
 .namerow{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin:10px 0}.namebtn{margin:0!important;text-align:center!important;font-size:18px!important}
 @media (min-width:900px){.cards{grid-template-columns:repeat(auto-fill,minmax(110px,150px));justify-content:start}.pcard{font-size:34px}}
+.dq{list-style:none;padding:0;margin:0 0 8px}.dq li{background:#fffdf7;border:2px solid var(--line);border-radius:10px;padding:6px 10px;margin:4px 0;font-size:14px}.dq li.ok{background:#fff3cf;border-color:var(--gold)}.stage3d.dg{aspect-ratio:16/10}@media (min-width:900px){.m3 .stage3d.dg{aspect-ratio:auto;height:max(420px,calc(100vh - 230px))}}@media (min-width:1600px) and (min-height:900px){.m3 .stage3d.dg{height:calc(100vh / 1.4 - 230px)}}
+select{height:48px;line-height:1.2;padding:0 12px;font-family:var(--f-body);font-size:16px;overflow:visible}
 </style>
 </head>
 <body>
@@ -292,6 +294,8 @@ const LESSON = {
         { who: '강화도 조약 (1876)의 주요 조항', text: '제1조 조선은 자주적인 나라로 일본과 평등한 권리를 가진다\n제5조 조선은 부산 이외에 두 항구를 개항하여 통상을 해야 한다\n제7조 조선은 연안 항해의 안전을 위해 일본 항해자로 하여금 해안 측량을 허용한다\n제10조 개항장에서 일어난 양국인 사이의 범죄 사건은 속인주의에 입각하여 자국의 법에 의하여 처리한다' },
         { who: '위정척사파 최익현의 주장', text: '저들이 일본인이라고는 하나 실은 서양 도적입니다. 저들과 교류가 이루어지면 사악한 학문이 온 나라 안에 퍼지게 될 것입니다.' },
         { who: '개화파 김옥균의 주장', text: '널리 서양 각국과 친하게 지내며, 안으로 정치를 개혁하여 어리석은 백성을 문명의 도(서양의 문물과 제도)로 교육해야 합니다.' }],
+      dig: { next: 'trial', quests: [{ q: '일본은 조선을 어떤 나라라고 적었을까?', hint: '제1조' }, { q: '최익현은 일본과 교류하면 어떻게 된다고 했을까?', hint: '최익현' }, { q: '김옥균은 어떻게 하자고 했을까?', hint: '김옥균' }],
+        text: '강화도 조약 (1876)\n제1조 조선은 [자주적인 나라|0]로 일본과 평등한 권리를 가진다\n제5조 조선은 부산 이외에 두 항구를 개항하여 통상을 해야 한다\n제7조 조선은 연안 항해의 안전을 위해 일본 항해자로 하여금 해안 측량을 허용한다\n제10조 개항장에서 일어난 양국인 사이의 범죄 사건은 속인주의에 입각하여 자국의 법에 의하여 처리한다\n위정척사파 최익현의 주장\n저들이 일본인이라고는 하나 실은 서양 도적입니다. 저들과 교류가 이루어지면 [사악한 학문이 온 나라 안에 퍼지게|1] 될 것입니다.\n개화파 김옥균의 주장\n널리 [서양 각국과 친하게 지내며|2], 안으로 정치를 개혁하여 어리석은 백성을 문명의 도(서양의 문물과 제도)로 교육해야 합니다.' },
       qs: [],
       trial: {
         evidence: {
@@ -333,6 +337,8 @@ const LESSON = {
         farmer: "탐관오리 등쌀에 허리가 휘었는디, 동학 접주님이 오셨구먼유. 같이 일어나자 하시는디 어쩐대유?",
         slave: "'사람이 곧 하늘'이래요! 헐, 노비도 하늘이라고요? 이거 실화예요? 나도 따라가 볼까?!" },
       src: [{ who: '동학 농민군이 제시한 폐정 개혁안 (정교, 『대한계년사』)', text: '- 탐관오리의 못된 버릇을 징계하고 쫓아낼 것\n- 각종 항목의 결세액은 돈으로 걷되, 부담을 균등하게 나누고 마구 거두지 말 것\n- 각 읍에서 아전들에게 일을 맡길 때 뇌물을 바치지 못하게 하고, 쓸 만한 사람을 골라 일을 맡길 것\n- 간신이 권력을 농간하여 국사가 잘못되니 관직 매매를 처벌할 것' }],
+      dig: { next: 'q', quests: [{ q: '농민군은 못된 관리들을 어떻게 하라고 했을까?', hint: '탐관오리' }, { q: '세금은 어떻게 걷자고 했을까?', hint: '결세액' }, { q: '관직에 대해서는 무엇을 요구했을까?', hint: '관직' }],
+        text: '동학 농민군이 제시한 폐정 개혁안\n- [탐관오리의 못된 버릇을 징계하고 쫓아낼 것|0]\n- 각종 항목의 결세액은 돈으로 걷되, [부담을 균등하게 나누고|1] 마구 거두지 말 것\n- 각 읍에서 아전들에게 일을 맡길 때 뇌물을 바치지 못하게 하고, 쓸 만한 사람을 골라 일을 맡길 것\n- 간신이 권력을 농간하여 국사가 잘못되니 [관직 매매를 처벌할 것|2]' },
       qs: [
         { level: '표면적 질문', q: '다음 중 동학 농민군의 폐정 개혁안에 들어 있지 않은 것은 무엇일까요?', o: ['과거제를 폐지한다', '탐관오리를 징계하고 쫓아낸다', '관직을 사고파는 것을 처벌한다', '세금을 균등하게 걷고 마구 거두지 않는다'], ex: '과거제 폐지는 농민군의 요구가 아니라 갑오개혁 때 이루어졌어요.' },
         { level: '의미 파악 질문', q: '농민군은 왜 탐관오리를 쫓아내고 세금을 균등하게 걷으라고 요구했을까요? 당시 농민의 처지와 관련해서 생각해봅시다.' },
@@ -347,6 +353,8 @@ const LESSON = {
         farmer: "신분제를 없앴다는디, 그래도 우리는 여전히 농사를 지어야 허지 않것슈? 그래서 뭐가 달라지는 건지 모르겠구먼유.",
         slave: "노비 제도가 법으로 없어졌대요! 헐, 대박 사건! 근데... 사람들 생각은 그대로면 어쩌죠? 에이~ 일단 좋아하고 보자!" },
       src: [{ who: '홍범 14조 (갑오개혁 때 고종이 종묘에서 선포한 개혁 강령)', text: '제1조 청나라에 의존하는 생각을 끊어 버리고 자주독립하는 기초를 확립한다\n제6조 인민이 내는 세금은 모두 법으로 정한 비율에 따르고 함부로 명목을 더하여 징수할 수 없다\n제8조 왕실 비용을 솔선하여 절감함으로써 각 아문과 지방관의 모범이 되게 한다\n제14조 사람을 쓰되 신분에 관계없이 널리 구함으로써 인재 등용의 길을 넓힌다' }],
+      dig: { next: 'q', quests: [{ q: '제1조: 청나라와의 관계는 어떻게 하라고 했을까?', hint: '제1조' }, { q: '제6조: 세금은 어떻게 걷으라고 했을까?', hint: '제6조' }, { q: '제14조: 인재는 어떻게 뽑으라고 했을까?', hint: '제14조' }],
+        text: '홍범 14조 (1894)\n제1조 [청나라에 의존하는 생각을 끊어 버리고|0] 자주독립하는 기초를 확립한다\n제6조 인민이 내는 세금은 모두 [법으로 정한 비율에 따르고|1] 함부로 명목을 더하여 징수할 수 없다\n제8조 왕실 비용을 솔선하여 절감함으로써 각 아문과 지방관의 모범이 되게 한다\n제14조 사람을 쓰되 [신분에 관계없이 널리 구함으로써|2] 인재 등용의 길을 넓힌다' },
       qs: [
         { level: '표면적 질문', q: '홍범 14조 제1조의 내용으로 알맞은 것은 무엇일까요?', o: ['청나라에 의존하는 생각을 끊고 자주독립의 기초를 확립한다', '일본의 도움을 받아 군대를 키운다', '왕실 비용을 늘려 왕의 위엄을 높인다', '신분에 따라 관리를 등용한다'], ex: '제1조는 청에 의존하는 생각을 끊고 자주독립의 기초를 세우겠다는 내용이에요.' },
         { level: '의미 파악 질문', q: '제14조는 신분에 관계없이 인재를 널리 구한다고 했어요. 이것은 기존의 신분 질서와 어떻게 다른가요?' },
@@ -433,7 +441,7 @@ function leadPop() {
   if (S.step === 'stance') { m = S.members[S.mi]; key += '|' + S.mi; what = '입장을 말해 주세요!'; }
   else if (S.step === 'q' && c.qs && c.qs[S.qi]) { m = askerFor(c.qs[S.qi].level, S.cell, S.qi); key += '|' + S.qi; what = '이번 질문을 맡아 주세요!'; }
   else if (S.step === 'dice' && !S.dice[S.cell]) { m = S.members[S.cell % N]; what = '주사위를 굴려 주세요!'; }
-  else if (S.step === 'mine') { m = miningWho(S.cell); what = '사료를 캐 볼까요?'; }
+  else if (S.step === 'mine' || S.step === 'dig') { m = miningWho(S.cell); what = '사료를 캐 볼까요?'; }
   else if (S.step === 'trial' && c.trial && c.trial.rounds[S.qi] && !(S.tmp && S.tmp.solved)) {
     key += '|' + S.qi; const R = c.trial.rounds[S.qi];
     if (key !== AUD.key) { AUD.key = key; const am = askerFor(trialLevel(R), S.cell, S.qi); popup({ em: '👆', tx: '이의 있음!', cls: 'obj', sfx: 'obj', ms: 1500 }); if (R.type === 'text') { m = am; popup({ em: ROLES[m.key].em, tx: m.label + ' 차례!', sub: '이번 변론을 맡아 주세요!', say: m.label + ' 차례입니다. 변론해 주세요.' }); } }
@@ -614,10 +622,11 @@ function vBoard() {
   const c = CELLS[S.cell], N = S.members.length;
   const head = `${track()}<div class="muted" style="text-align:center">${S.cell + 1}/${CELLS.length}칸 · ${esc(c.title)}</div>`;
   if (S.step === 'situation') {
-    const vh = videoHtml(c.video), go = c.run ? '<button class="btn" data-act="torun">🏃 거사 현장으로 달려가기</button>' : c.trial ? '<button class="btn" data-act="totrial">⚖️ 재판 시작!</button>' : c.mine ? '<button class="btn" data-act="tomine">⛏️ 척화비 돌 캐러 가기</button>' : '<button class="btn" data-act="tostance">각자 입장 정하기 ▶</button>';
+    const vh = videoHtml(c.video), go = c.run ? '<button class="btn" data-act="torun">🏃 거사 현장으로 달려가기</button>' : c.trial && c.dig ? '<button class="btn" data-act="todig">⛏️ 사료 캐러 가기</button>' : c.trial ? '<button class="btn" data-act="totrial">⚖️ 재판 시작!</button>' : c.mine ? '<button class="btn" data-act="tomine">⛏️ 척화비 돌 캐러 가기</button>' : '<button class="btn" data-act="tostance">각자 입장 정하기 ▶</button>';
     return `${head}<div class="card ${vh ? 'sp' : ''}"><div class="${vh ? 'split' : ''}"><div class="pane"><span class="tag">${esc(c.year)}</span><h2 style="margin-top:8px">${esc(c.title)}</h2>${vh}</div><div class="pane"><p>${nl(c.situation)}</p>${go}</div></div></div>`;
   }
   if (S.step === 'mine') return `${head}${vMine(c)}`;
+  if (S.step === 'dig') return `${head}${vDig(c)}`;
   if (S.step === 'runintro') return `${head}${vRunIntro(c)}`;
   if (S.step === 'run') return `${head}${vRun(c)}`;
   if (S.step === 'runend') return `${head}${vRunEnd(c)}`;
@@ -635,7 +644,7 @@ function vBoard() {
   }
   if (S.step === 'stancesum') {
     const rows = S.log.filter(l => l.cell === S.cell && l.k === 'stance').map(l => `<li>${ROLES[l.key].em} <b>${esc(l.who)}</b> — ${esc(l.opt)}<br><span class="muted">“${esc(l.a)}”</span></li>`).join('');
-    return `${head}<div class="card"><h3>📣 우리 모둠의 입장들</h3><p class="muted">같은 사건, 다른 입장! 이제 사료를 읽고 시대 속 목소리를 살펴봐요.</p><ul class="list">${rows}</ul><button class="btn" data-act="tosource">사료 읽기 ▶</button></div>`;
+    return `${head}<div class="card"><h3>📣 우리 모둠의 입장들</h3><p class="muted">같은 사건, 다른 입장! 이제 사료를 읽고 시대 속 목소리를 살펴봐요.</p><ul class="list">${rows}</ul><button class="btn" data-act="tosource">${c.dig ? '⛏️ 사료 캐러 가기 ▶' : '사료 읽기 ▶'}</button></div>`;
   }
   if (S.step === 'source') return `${head}<div class="card"><h3>📜 사료 읽기</h3>${srcHtml(c)}<p class="muted">천천히 읽고, 다음 화면에서 질문에 답해요.</p><button class="btn" data-act="toq">질문 풀기 ▶</button></div>`;
   if (S.step === 'q') {
@@ -717,13 +726,13 @@ function vMine(c) {
   }
   const T = S.tmp, done = T.got.every(Boolean), have = T.got.filter(Boolean).length;
   setTimeout(mine3dStart, 0);
-  return `<div class="card sp"><div class="split rev m3"><div class="pane mside"><h3>⛏️ 척화비의 글자를 캐내자!</h3>
+  return `<div class="card sp"><div class="split rev m3"><div class="pane mside"><h3>⛏️ 척화비의 글자를 캐내자!</h3><div id="mine-reveal"></div>
   <div style="margin-bottom:6px">오늘의 광부: ${who(minerOf())}</div>
   <p class="muted">방향키(WASD) 또는 화면 버튼으로 걸어가 광석 앞에 서서 <b>스페이스를 꾹</b> 누르면 캐요. 나오는 한자 ${M.slots.length}개를 비석에 모아요. (<b id="mcnt">${have}</b>/${M.slots.length})</p>
   ${done ? '' : `<div class="ctrl" id="mctrl"><div class="dpad"><button class="dp u" data-dir="u">▲</button><button class="dp l" data-dir="l">◀</button><button class="dp d" data-dir="d">▼</button><button class="dp r" data-dir="r">▶</button></div>
     <button class="btn mdig" id="mhold">⛏️ 꾹 눌러 캐기</button></div>`}</div><div class="pane">
   <div class="stage3d" id="stage3d"><div class="loading">⛏️ 광산 여는 중…</div><div class="mbub" id="mbub"></div><div class="mbar" id="mbar"><i></i></div></div></div></div>
-  <div id="mine-reveal"></div></div>`;
+  </div>`;
 }
 const revealHtml = M => `<div class="toast">✨ 비석이 빛난다! ✨</div>${M.meaning.map(m => `<div class="quote"><b style="font-size:22px">${esc(m[0])}</b><br>${esc(m[1])}</div>`).join('')}<p class="muted">이 비문은 서양과 화친(교류)하자는 것은 곧 나라를 파는 일이라는 뜻이에요.</p><button class="btn" data-act="minedone">질문 풀기 ▶</button>`;
 function rockPos(n) {
@@ -781,13 +790,17 @@ async function mine3dStart() {
   /* 노비 캐릭터 */
   const box = (w, h, d, mat) => new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat), lm = c => new THREE.MeshLambertMaterial({ color: c });
   const faceT = tex(8, (g) => { g.fillStyle = '#e8b88a'; g.fillRect(0, 0, 8, 8); g.fillStyle = '#4a3320'; g.fillRect(0, 0, 8, 2); g.fillStyle = '#222'; g.fillRect(1, 4, 2, 1); g.fillRect(5, 4, 2, 1); g.fillStyle = '#b05a4a'; g.fillRect(3, 6, 2, 1); });
-  const skin = lm(0xe8b88a), hair = lm(0x4a3320), rag = lm(0x8a7455), pants = lm(0x5a4a3a);
+  const skin = lm(0xe8b88a), hair = lm(0x2e2118), cloth = lm(0xcfc3a3), band = lm(0xf2ead2), rope = lm(0x7a5a2e);
+  const jeogT = tex(8, (g) => { g.fillStyle = '#cfc3a3'; g.fillRect(0, 0, 8, 8); g.fillStyle = '#a89a76'; g.fillRect(1, 1, 2, 2); g.fillRect(5, 4, 2, 2); g.fillStyle = '#8a6a3a'; g.fillRect(3, 2, 1, 1); g.fillRect(6, 1, 1, 1); g.fillStyle = '#7a5a2e'; g.fillRect(0, 5, 8, 1); g.fillStyle = '#e4dcc0'; g.fillRect(3, 0, 2, 4); });
+  const jeog = new THREE.MeshLambertMaterial({ map: jeogT });
   const pl = new THREE.Group(), head = box(.62, .62, .62, [skin, skin, hair, skin, new THREE.MeshLambertMaterial({ map: faceT }), hair]); head.position.y = 1.75;
-  const body = box(.7, .95, .4, rag); body.position.y = 1.0;
-  const mkLimb = (x, y, w, h, mat) => { const g = new THREE.Group(); g.position.set(x, y, 0); const m = box(w, h, w, mat); m.position.y = -h / 2; g.add(m); return g; };
-  const armL = mkLimb(-.5, 1.45, .28, .85, rag), armR = mkLimb(.5, 1.45, .28, .85, rag), legL = mkLimb(-.18, .55, .32, .55, pants), legR = mkLimb(.18, .55, .32, .55, pants);
+  const hb = box(.66, .1, .66, band); hb.position.y = 1.93; const tk = box(.22, .26, .22, hair); tk.position.y = 2.2; const tk2 = box(.1, .12, .1, hair); tk2.position.y = 2.39;
+  const body = box(.7, .95, .4, jeog); body.position.y = 1.0;
+  const sash = box(.74, .1, .44, rope); sash.position.y = .78; const bundle = box(.5, .5, .26, lm(0xb59b66)); bundle.position.set(0, 1.15, -.33);
+  const mkLimb = (x, y, w, h, mat, low) => { const g = new THREE.Group(); g.position.set(x, y, 0); const m = box(w, h, w, mat); m.position.y = -h / 2; g.add(m); if (low) { const f = box(w + .01, low, w + .01, skin); f.position.y = -h + low / 2; g.add(f); } return g; };
+  const armL = mkLimb(-.5, 1.45, .28, .85, cloth, .28), armR = mkLimb(.5, 1.45, .28, .85, cloth, .28), legL = mkLimb(-.18, .55, .32, .55, cloth, .3), legR = mkLimb(.18, .55, .32, .55, cloth, .3);
   const pick = new THREE.Group(); const ph = box(.08, .8, .08, lm(0x7a5230)); ph.position.set(0, -.8, .2); ph.rotation.x = Math.PI / 2; const pt = box(.5, .1, .12, lm(0x9aa0a0)); pt.position.set(0, -.8, .55); pick.add(ph, pt); armR.add(pick);
-  pl.add(head, body, armL, armR, legL, legR); scene.add(pl);
+  pl.add(head, hb, tk, tk2, body, sash, bundle, armL, armR, legL, legR); scene.add(pl);
   const P = new THREE.Vector3(0, 0, 8), camP = new THREE.Vector3(0, 8, 17.5); let face = Math.PI, prog = 0, walkT = 0, target = -1, finished = false, bubTimer = 0;
   me.warp = (x, z) => P.set(x, 0, z); me.P = P; me.rocks = RP; me.T = T;
   const bub = document.getElementById('mbub'), bar = document.getElementById('mbar'), barI = bar.firstElementChild;
@@ -889,6 +902,93 @@ document.addEventListener('keydown', e => { if (!S || S.step !== 'mine') return;
 document.addEventListener('keyup', e => { const k = e.key.length === 1 ? e.key.toLowerCase() : e.key; delete MINE_KEYS[k]; });
 const dirSet = (e, on) => { const b = e.target.closest && e.target.closest('[data-dir]'); if (on && !b) return; if (!on) { MINE_DIR = { x: 0, y: 0 }; return; } const d = b.dataset.dir; MINE_DIR = { x: d === 'l' ? -1 : d === 'r' ? 1 : 0, y: d === 'u' ? -1 : d === 'd' ? 1 : 0 }; e.preventDefault(); };
 document.addEventListener('pointerdown', e => { dirSet(e, true); if (e.target.closest && e.target.closest('#mhold')) MINE_HOLD = true; }); document.addEventListener('pointerup', e => { dirSet(e, false); MINE_HOLD = false; }); document.addEventListener('pointercancel', e => { dirSet(e, false); MINE_HOLD = false; });
+
+/* ---------- 사료 캐기 (히스토리 언락식): 사료 글자 블록을 바닥에 깔고, 그 위를 걸어 다니며 캔다 = 표면적 읽기 ---------- */
+let DG = null, DG_KEYS = {};
+function digBuild(c) {
+  const W = 880, cv = document.createElement('canvas').getContext('2d'); cv.font = '700 17px Pretendard,"Malgun Gothic",sans-serif';
+  const blocks = [], heads = []; let x = 30, y = 24, first = true;
+  const place = (t, q) => { const w = Math.ceil(cv.measureText(t).width) + 26; if (x + w > W - 30 && x > 30) { x = 30; y += 56; } blocks.push({ x, y, w, h: 44, t, q, st: 0 }); x += w + 8; };
+  c.dig.text.split('\n').forEach(line => {
+    if (!/^(제\d+조|-|[^\s].*\S)/.test(line)) return;
+    const isHead = !/[\[]/.test(line) && !/^(제\d+조|- )/.test(line) && line.length < 28 && !/[.다]$/.test(line);
+    if (isHead) { if (!first) y += 56; x = 30; heads.push({ t: line, y }); y += 30; first = false; return; }
+    x = 30; if (!first) y += 0; first = false;
+    const re = /\[([^|\]]+)\|(\d)\]/g; let last = 0, m; const pieces = [];
+    while ((m = re.exec(line))) { if (m.index > last) pieces.push([line.slice(last, m.index), -1]); pieces.push([m[1], +m[2]]); last = re.lastIndex; }
+    if (last < line.length) pieces.push([line.slice(last), -1]);
+    pieces.forEach(([t, q]) => { if (q >= 0) place(t.trim(), q); else { let cur = ''; t.trim().split(/\s+/).filter(Boolean).forEach(w => { if (cur && (cur + ' ' + w).length > 10) { place(cur, -1); cur = w; } else cur = cur ? cur + ' ' + w : w; }); if (cur) place(cur, -1); } });
+    y += 56;
+  });
+  return { W, worldH: y + 40, blocks, heads, px: 60, py: 24 + 22, face: 1, stun: 0, found: c.dig.quests.map(() => false), miss: 0, msg: '', msgT: 0, flash: [], target: null, done: false, anim: 0, last: 0, raf: 0 };
+}
+function vDig(c) {
+  if (!DG) DG = digBuild(c);
+  const m = miningWho(S.cell), n = c.dig.quests.length;
+  setTimeout(digStart, 0);
+  return `<div class="card sp"><div class="split rev m3"><div class="pane mside"><h3>⛏️ 사료를 캐서 읽어요</h3>
+  <div style="margin-bottom:6px">지금 캐는 사람: ${who(m)}</div>
+  <ul class="dq" id="dq">${c.dig.quests.map((q, i) => `<li data-q="${i}"><span class="ck">⬜</span> ${esc(q.q)} <small class="muted">(${esc(q.hint)})</small></li>`).join('')}</ul>
+  <p class="muted">방향키(WASD)나 버튼으로 사료 글자 위를 걸어가 <b>스페이스</b>로 캐요. 답이 되는 구절을 캐면 카드가 나오고, 아니면 돌멩이가 나와 잠깐 멈춰요. (<b id="dgcnt">0</b>/${n})</p>
+  <div class="ctrl" id="dgctrl"><div class="dpad"><button class="dp u" data-dir="u">▲</button><button class="dp l" data-dir="l">◀</button><button class="dp d" data-dir="d">▼</button><button class="dp r" data-dir="r">▶</button></div>
+  <button class="btn mdig" data-act="ddig">⛏️ 캐기</button></div></div>
+  <div class="pane"><div class="stage3d dg" id="dgstage"><canvas id="dgc"></canvas></div><div id="dgmsg" class="toast" style="min-height:22px">글자 블록 위로 걸어가 보세요.</div></div></div>
+  <div id="dgdone"></div></div>`;
+}
+function digStart() {
+  const cv = document.getElementById('dgc'); if (!cv || !DG || DG.raf) return;
+  DG.last = performance.now(); DG.raf = requestAnimationFrame(digLoop);
+  cv.addEventListener('pointerdown', e => { if (!DG || DG.done) return; const r = cv.getBoundingClientRect(), sc = r.width / (r.width < 600 ? 520 : DG.W); DG.target = [(e.clientX - r.left) / sc + (DG.camX || 0), (e.clientY - r.top) / sc + (DG.cam || 0)]; });
+}
+function digMsg(t, cls) { const el = document.getElementById('dgmsg'); if (el) el.innerHTML = t; }
+function digBlockAt() {
+  const D = DG; let best = null, bd = 1e9;
+  D.blocks.forEach(b => { const dx = Math.max(b.x - D.px, 0, D.px - (b.x + b.w)), dy = Math.max(b.y - D.py, 0, D.py - (b.y + b.h)), d = Math.hypot(dx, dy); if (d < bd) { bd = d; best = b; } });
+  return bd <= 14 ? best : null;
+}
+function digAct() {
+  const D = DG; if (!D || D.done || D.stun > 0 || S.step !== 'dig') return; const b = digBlockAt(); if (!b || b.st) return;
+  const c = CELLS[S.cell]; SFX.mine();
+  if (b.q >= 0 && !D.found[b.q]) {
+    b.st = 2; D.found[b.q] = true; SFX.found(); D.flash.push({ x: b.x + b.w / 2, y: b.y, t: 0 });
+    const li = document.querySelector(`#dq li[data-q="${b.q}"]`); if (li) { li.classList.add('ok'); li.querySelector('.ck').textContent = '✅'; }
+    const have = D.found.filter(Boolean).length, cnt = document.getElementById('dgcnt'); if (cnt) cnt.textContent = have;
+    digMsg(`✨ <b>카드 획득!</b> “${esc(b.t)}”`);
+    if (have === D.found.length) { D.done = true; setTimeout(() => { const el = document.getElementById('dgdone'); if (el) el.innerHTML = `<div class="toast">🎉 사료를 모두 캤어요!</div>${c.dig.quests.map((q, i) => `<div class="quote"><b>${esc(q.q)}</b><br>${esc((D.blocks.find(x => x.q === i) || {}).t || '')}</div>`).join('')}<button class="btn" data-act="digdone">${c.dig.next === 'trial' ? '⚖️ 재판 시작!' : '질문 풀기 ▶'}</button>`; }, window.__FAST ? 0 : 500); }
+  } else { b.st = 1; D.stun = window.__FAST ? 0.01 : 1.0; D.miss++; SFX.rock(); digMsg('🪨 <b>돌멩이!</b> 이 글자는 질문의 답이 아니에요. 다시 읽어 보세요.'); }
+}
+function digLoop(ts) {
+  const D = DG, cv = document.getElementById('dgc'); if (!D || !cv || !S || S.step !== 'dig') { if (D) D.raf = 0; return; }
+  const dt = Math.min(.05, (ts - D.last) / 1000 || .016); D.last = ts; D.anim += dt;
+  let ux = (DG_KEYS.ArrowRight || DG_KEYS.d ? 1 : 0) - (DG_KEYS.ArrowLeft || DG_KEYS.a ? 1 : 0) + MINE_DIR.x, uy = (DG_KEYS.ArrowDown || DG_KEYS.s ? 1 : 0) - (DG_KEYS.ArrowUp || DG_KEYS.w ? 1 : 0) + MINE_DIR.y;
+  if (ux || uy) D.target = null;
+  else if (D.target) { const dx = D.target[0] - D.px, dy = D.target[1] - D.py, d = Math.hypot(dx, dy); if (d < 6) D.target = null; else { ux = dx / d; uy = dy / d; } }
+  if (D.stun > 0) { D.stun -= dt; ux = uy = 0; }
+  const l = Math.hypot(ux, uy) || 1; if (ux || uy) { D.px = clamp(D.px + ux / l * 230 * dt, 16, D.W - 16); D.py = clamp(D.py + uy / l * 230 * dt, 16, D.worldH - 16); if (ux) D.face = ux > 0 ? 1 : -1; }
+  // 그리기
+  const dpr = window.devicePixelRatio || 1, cw = cv.clientWidth, ch = cv.clientHeight; if (cv.width !== Math.round(cw * dpr) || cv.height !== Math.round(ch * dpr)) { cv.width = Math.round(cw * dpr); cv.height = Math.round(ch * dpr); }
+  const g = cv.getContext('2d'), vw = cw < 600 ? 520 : D.W, sc = cv.width / vw, vh = cv.height / sc; D.cam = clamp(D.py - vh / 2, 0, Math.max(0, D.worldH - vh)); D.camX = clamp(D.px - vw / 2, 0, D.W - vw);
+  g.setTransform(sc, 0, 0, sc, -D.camX * sc, -D.cam * sc); g.clearRect(D.camX, D.cam, vw, vh);
+  g.fillStyle = '#d9c79d'; g.fillRect(0, D.cam, D.W, vh); g.fillStyle = '#ccb98c'; for (let y = Math.floor(D.cam / 28) * 28; y < D.cam + vh; y += 28) for (let x = (y / 28 % 2) * 24; x < D.W; x += 48) g.fillRect(x, y, 44, 24);
+  g.textBaseline = 'middle'; g.textAlign = 'left';
+  D.heads.forEach(h => { g.font = '800 16px Pretendard,"Malgun Gothic",sans-serif'; g.fillStyle = '#6b5a3a'; g.fillText('📜 ' + h.t, 30, h.y + 12); });
+  const cur = digBlockAt();
+  D.blocks.forEach(b => {
+    if (b.y > D.cam + vh || b.y + b.h < D.cam) return;
+    if (b.st === 0) { g.fillStyle = '#d4a23a'; g.fillRect(b.x, b.y, b.w, b.h); g.fillStyle = 'rgba(255,255,255,.35)'; g.fillRect(b.x, b.y, b.w, 4); g.fillStyle = 'rgba(0,0,0,.18)'; g.fillRect(b.x, b.y + b.h - 6, b.w, 6); g.strokeStyle = b === cur ? '#b23a2e' : '#2b2833'; g.lineWidth = b === cur ? 4 : 2; g.strokeRect(b.x, b.y, b.w, b.h); g.font = '700 17px Pretendard,"Malgun Gothic",sans-serif'; g.fillStyle = '#2b2833'; g.fillText(b.t, b.x + 13, b.y + b.h / 2 + 1); }
+    else if (b.st === 1) { g.fillStyle = '#6f757a'; g.fillRect(b.x, b.y, b.w, b.h); g.fillStyle = '#8a9096'; for (let i = 0; i < b.w; i += 18) g.fillRect(b.x + i + 3, b.y + 8 + (i % 3) * 8, 10, 10); g.strokeStyle = '#2b2833'; g.lineWidth = 2; g.strokeRect(b.x, b.y, b.w, b.h); g.font = '20px sans-serif'; g.textAlign = 'center'; g.fillText('🪨', b.x + b.w / 2, b.y + b.h / 2 + 1); g.textAlign = 'left'; }
+    else { g.fillStyle = '#3b3326'; g.fillRect(b.x, b.y, b.w, b.h); g.strokeStyle = '#f5c542'; g.lineWidth = 3; g.strokeRect(b.x, b.y, b.w, b.h); g.font = '700 16px Pretendard,"Malgun Gothic",sans-serif'; g.fillStyle = '#ffe58a'; g.fillText('✨ ' + b.t, b.x + 10, b.y + b.h / 2 + 1); }
+  });
+  D.flash.forEach(f => { f.t += dt; const a = Math.max(0, 1 - f.t); g.globalAlpha = a; g.font = '800 24px Pretendard,sans-serif'; g.fillStyle = '#b23a2e'; g.textAlign = 'center'; g.fillText('+카드', f.x, f.y - 10 - f.t * 40); g.globalAlpha = 1; g.textAlign = 'left'; }); D.flash = D.flash.filter(f => f.t < 1);
+  const m = miningWho(S.cell), bob = ux || uy ? Math.abs(Math.sin(D.anim * 14)) * 4 : 0;
+  g.fillStyle = 'rgba(0,0,0,.25)'; g.beginPath(); g.ellipse(D.px, D.py + 4, 15, 6, 0, 0, 7); g.fill();
+  g.save(); g.translate(D.px, D.py - 16 - bob); if (D.face < 0) g.scale(-1, 1); g.font = '34px sans-serif'; g.textAlign = 'center'; g.fillText(ROLES[m.key].em, 0, 0); g.font = '24px sans-serif'; g.fillText('⛏️', 18, 6); g.restore();
+  if (D.stun > 0) { g.font = '800 18px Pretendard,sans-serif'; g.textAlign = 'center'; g.fillStyle = '#b23a2e'; g.fillText('😵 잠깐 멈춤', D.px, D.py - 56); g.textAlign = 'left'; }
+  const btn = document.querySelector('[data-act="ddig"]'); if (btn) btn.disabled = D.done || D.stun > 0 || !cur || !!cur.st;
+  D.raf = requestAnimationFrame(digLoop);
+}
+document.addEventListener('keydown', e => { if (!S || S.step !== 'dig') return; const k = e.key.length === 1 ? e.key.toLowerCase() : e.key; if (/^Arrow/.test(k) || 'wasd'.includes(k)) { DG_KEYS[k] = true; e.preventDefault(); } else if (k === ' ' || k === 'Enter') { digAct(); e.preventDefault(); } });
+document.addEventListener('keyup', e => { const k = e.key.length === 1 ? e.key.toLowerCase() : e.key; delete DG_KEYS[k]; });
 /* ---------- 3칸: 갑신정변 · 3일 천하의 질주 ---------- */
 let RG = null;
 const RUN = { W: 360, H: 520, LX: [70, 180, 290], PY: 420, V: 210, DUR_A: 24, DUR_B: 14, GAP0: 120 };
@@ -1103,7 +1203,7 @@ function vTeacher() {
   const cards = docs.map(d => {
     const fin = !!d.finishedAtMs, scored = typeof d.sentenceScore === 'number', a = d.auto || {};
     const rank = rk.findIndex(r => r.id === d.id) + 1, val = TV[d.id] != null ? TV[d.id] : (scored ? d.sentenceScore : '');
-    const prog = fin ? '문장 제출 완료' : d.phase === 'board' ? `${d.cell + 1}/${CELLS.length}칸 · ${({ situation: '상황', mine: '채굴', runintro: '배경', run: '달리기', runend: '정리', trial: '재판', verdict: '판결', stance: '입장', stancesum: '입장 정리', source: '사료', q: '질문', dice: '주사위' })[d.step] || d.step}` : ({ cards: '카드 뽑는 중', roles: '신분 고르는 중', team: '준비 중', sentence: '문장 쓰는 중' })[d.phase] || d.phase;
+    const prog = fin ? '문장 제출 완료' : d.phase === 'board' ? `${d.cell + 1}/${CELLS.length}칸 · ${({ situation: '상황', mine: '채굴', dig: '사료 캐기', runintro: '배경', run: '달리기', runend: '정리', trial: '재판', verdict: '판결', stance: '입장', stancesum: '입장 정리', source: '사료', q: '질문', dice: '주사위' })[d.step] || d.step}` : ({ cards: '카드 뽑는 중', roles: '신분 고르는 중', team: '준비 중', sentence: '문장 쓰는 중' })[d.phase] || d.phase;
     const logs = (d.log || []).map(l => l.k === 'stance' ? `<li>[${l.cell + 1}칸 입장] ${esc(l.who)}: ${esc(l.opt)} — ${esc(l.a)}</li>` : `<li>[${l.cell + 1}칸 ${esc(l.level || '')}] ${esc(l.who)}: ${esc(l.a)}</li>`).join('');
     return `<div class="tcard ${fin && !scored ? 'pend' : ''}"><div><b>${d.team}모둠</b> <span class="tag">${esc(prog)}</span> ${d.finishedAtMs ? `<span class="tag">⏱ ${mmss(a.sec)}</span>` : `<span class="tag">⏱ <span data-timer data-st="${d.startedAtMs || 0}" data-db="${d.diceBonus || 0}"></span></span>`}
     <span class="tag">오답 ${d.wrong || 0}</span> ${fin ? `<span class="tag">자동 ${a.total ?? '-'}/70</span>` : ''} ${scored ? `<span class="tag red">총 ${r1((a.total || 0) + d.sentenceScore)}점 · ${rank}위</span>` : ''}</div>
@@ -1237,7 +1337,10 @@ $app.addEventListener('click', async e => {
     S.log.push({ cell: S.cell, k: 'stance', key: m.key, who: m.label, opt: c.stance.opts[window.__opt], a: txt }); afterText(txt.length);
     window.__opt = null; S.mi++; if (S.mi >= S.members.length) go('stancesum'); else persist(); return render();
   }
-  if (a === 'tosource') { go('source'); return render(); }
+  if (a === 'tosource') { DG = null; go(CELLS[S.cell].dig ? 'dig' : 'source'); return render(); }
+  if (a === 'todig') { DG = null; go('dig'); return render(); }
+  if (a === 'ddig') { digAct(); return; }
+  if (a === 'digdone') { const c = CELLS[S.cell]; DG = null; if (c.dig.next === 'trial') { S.qi = 0; S.tw = 0; go('trial'); } else { S.qi = 0; go('q'); } return render(); }
   if (a === 'toq') { S.qi = 0; go('q'); return render(); }
   if (a === 'mc') {
     const o = S.tmp.opts[i]; if (o.ok) { S.tmp.solved = true; S.mcTotal++; } else { S.tmp.bad.push(i); S.wrong++; } persist(); return render();
@@ -1266,7 +1369,7 @@ function vTeam() {
 }
 /* 열린 주소에 ?teacher 가 있으면 교사용 화면 */
 if (/[?&]teacher/.test(location.search)) { MODE = 'teacher'; }
-window.__tl = { get S() { return S; }, set S(v) { S = v; }, render, askerFor };
+window.__tl = { get S() { return S; }, set S(v) { S = v; }, render, askerFor, get DG() { return DG; } };
 render();
 </script>
 </body>
