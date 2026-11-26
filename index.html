@@ -5,46 +5,47 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>TIMELAP · 시대를 건너는 모험</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gowun+Dodum&display=swap');
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 @font-face{font-family:'GyeonggiBatang';src:url('https://cdn.jsdelivr.net/npm/@noonnu/gyeonggi-batang@0.1.0/fonts/gyeonggibatang-normal.woff') format('woff');font-display:swap}
 @font-face{font-family:'GangwonEduAll';src:url('https://cdn.jsdelivr.net/npm/@noonnu/gangwon-edu-otf-bold-a@0.1.0/fonts/gangwoneduotfbolda-normal.woff') format('woff');font-display:swap}
 @font-face{font-family:'GangwonEduSaeeum';src:url('https://cdn.jsdelivr.net/npm/@noonnu/gangwon-edu-saeeum-otf-medium-a@0.1.0/fonts/gangwonedusaeeumotfmediuma-normal.woff') format('woff');font-display:swap}
-:root{--f-body:'Pretendard','Noto Sans KR','Malgun Gothic',system-ui,sans-serif;--f-serif:'GyeonggiBatang','Noto Serif KR',serif;--f-ui:'GangwonEduAll','Pretendard',sans-serif;--f-voice:'GangwonEduSaeeum','Pretendard',sans-serif;--f-title:'GangwonEduAll','Pretendard',sans-serif}
+:root{--f-body:'Gowun Dodum','Pretendard','Malgun Gothic',sans-serif;--f-serif:'Do Hyeon','Gowun Dodum','Malgun Gothic',sans-serif;--f-ui:'Do Hyeon','Gowun Dodum',sans-serif;--f-voice:'Gowun Dodum','Pretendard','Malgun Gothic',sans-serif;--f-title:'Do Hyeon','Gowun Dodum',sans-serif}
 
 :root{--sky-top:#dcebf4;--sky-bottom:#f6ecd6;--m-far:#a9c2c4;--m-near:#7d9a9a;--card:#fbf5e6;--line:#d9c9a3;--ink:#3b3224;--mut:#7d705a;--red:#b8402f;--ok:#2f7d5b;--no:#b8402f;--gold:#d9a441}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0}
-body{background:radial-gradient(ellipse 90% 60% at 50% 0%,var(--sky-top),var(--sky-bottom)) fixed;color:var(--ink);font-family:var(--f-voice);line-height:1.55;min-height:100vh}
+body{background:radial-gradient(ellipse 90% 60% at 50% 0%,var(--sky-top),var(--sky-bottom)) fixed;color:var(--ink);font-family:var(--f-voice);line-height:1.55;min-height:100vh;font-size:18px}
 .ridge{position:fixed;left:0;width:100%;bottom:0;height:30vh;min-height:150px;pointer-events:none;z-index:0}
 .far{fill:var(--m-far);opacity:.55}.near{fill:var(--m-near);opacity:.7}
 #app{position:relative;z-index:1;max-width:560px;margin:0 auto;padding:14px 14px 140px}
 h1,h2,h3{font-family:var(--f-serif);font-weight:400;margin:0 0 8px}
 .card{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:16px;margin:12px 0;box-shadow:0 4px 0 rgba(125,112,90,.25)}
-.btn{font-family:var(--f-ui)!important;font-weight:400!important;display:block;width:100%;border:0;border-radius:12px;padding:14px;font-size:17px;font-weight:900;background:var(--red);color:#fff;box-shadow:0 4px 0 #7d2a1f;cursor:pointer;margin-top:12px;font-family:inherit}
+.btn{font-family:var(--f-ui)!important;font-weight:400!important;display:block;width:100%;border:0;border-radius:12px;padding:14px;font-size:19px;font-weight:900;background:var(--red);color:#fff;box-shadow:0 4px 0 #7d2a1f;cursor:pointer;margin-top:12px;font-family:inherit}
 .btn:active{transform:translateY(3px);box-shadow:0 1px 0 #7d2a1f}
 .btn:disabled{background:#c9bda3;color:#fff;box-shadow:0 4px 0 #a99d84;cursor:not-allowed}
-.btn.ghost{background:transparent;color:var(--mut);box-shadow:none;border:2px solid var(--line);font-size:14px;padding:9px}
-.btn.sm{display:inline-block;width:auto;padding:8px 14px;font-size:14px;margin:4px 4px 0 0}
-.muted{color:var(--mut);font-size:14px}
-.tag{font-family:var(--f-ui);font-weight:400!important;display:inline-block;background:#efe3c4;border-radius:999px;padding:3px 11px;font-size:12.5px;font-weight:800;color:#6b5a38}
+.btn.ghost{background:transparent;color:var(--mut);box-shadow:none;border:2px solid var(--line);font-size:16px;padding:9px}
+.btn.sm{display:inline-block;width:auto;padding:8px 14px;font-size:16px;margin:4px 4px 0 0}
+.muted{color:var(--mut);font-size:16px}
+.tag{font-family:var(--f-ui);font-weight:400!important;display:inline-block;background:#efe3c4;border-radius:999px;padding:3px 11px;font-size:14px;font-weight:800;color:#6b5a38}
 .tag.red{background:var(--red);color:#fff}
-label{display:block;font-weight:800;margin:12px 0 4px;font-size:14px}
-input,select,textarea{width:100%;padding:12px;border-radius:10px;border:2px solid var(--line);background:#fffdf7;color:var(--ink);font-size:16px;font-family:inherit}
+label{display:block;font-weight:800;margin:12px 0 4px;font-size:16px}
+input,select,textarea{width:100%;padding:12px;border-radius:10px;border:2px solid var(--line);background:#fffdf7;color:var(--ink);font-size:18px;font-family:inherit}
 textarea{min-height:92px;resize:vertical}
 .row{display:flex;gap:8px}.row>*{flex:1}
 .title{text-align:center;padding:24px 0 4px}
-.logo{font-family:var(--f-serif);font-size:42px;font-weight:900;letter-spacing:3px;color:var(--red)}
-.opt{font-family:var(--f-ui)!important;font-weight:400!important;display:block;width:100%;text-align:left;border:2px solid var(--line);background:#fffdf7;color:var(--ink);border-radius:12px;padding:12px 14px;margin:8px 0;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit}
+.logo{font-family:var(--f-serif);font-size:46px;font-weight:400;letter-spacing:3px;color:var(--red)}
+.opt{font-family:var(--f-body)!important;font-weight:700!important;display:block;width:100%;text-align:left;border:2px solid var(--line);background:#fffdf7;color:var(--ink);border-radius:12px;padding:12px 14px;margin:8px 0;font-size:18px;font-weight:700;cursor:pointer;font-family:inherit}
 .opt.sel{border-color:var(--red);background:#fbe7de}.opt.ok{border-color:var(--ok);background:#e3f3ea}.opt.no{border-color:var(--no);background:#f8e1dc;opacity:.7}
-.quote{border-left:5px solid var(--red);background:#fffdf7;border-radius:8px;padding:10px 14px;margin:10px 0;font-family:var(--f-serif);font-size:16px}
+.quote{border-left:5px solid var(--red);background:#fffdf7;border-radius:8px;padding:10px 14px;margin:10px 0;font-family:var(--f-body);font-size:19px}
 .quote small{display:block;color:var(--mut);font-family:var(--f-body);margin-top:6px}
-.stake{font-family:var(--f-voice);font-size:17px;background:#efe3c4;border-radius:12px;padding:10px 12px;margin:8px 0;font-weight:700}
+.stake{font-family:var(--f-voice);font-size:19px;background:#efe3c4;border-radius:12px;padding:10px 12px;margin:8px 0;font-weight:700}
 .fb{border-radius:12px;padding:10px 12px;margin-top:10px}.fb.ok{background:#e3f3ea;border:2px solid var(--ok)}.fb.no{background:#f8e1dc;border:2px solid var(--no)}
 .track{display:flex;align-items:center;justify-content:space-between;margin:8px 2px 4px}
-.node{width:38px;height:38px;border-radius:50%;background:#efe3c4;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;position:relative;flex:none}
+.node{width:38px;height:38px;border-radius:50%;background:#efe3c4;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;position:relative;flex:none}
 .node.done{background:var(--ok);color:#fff;border-color:var(--ok)}.node.cur{background:var(--red);color:#fff;border-color:var(--red);transform:scale(1.15)}
 .seg{flex:1;height:4px;background:var(--line);margin:0 2px}.seg.done{background:var(--ok)}
-.yrs{display:flex;justify-content:space-between;font-size:11px;color:var(--mut);margin:0 0 6px}
+.yrs{display:flex;justify-content:space-between;font-size:14px;color:var(--mut);margin:0 0 6px}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
 .pcard{aspect-ratio:3/4;border-radius:12px;border:3px solid var(--gold);background:repeating-linear-gradient(45deg,#c9a14a,#c9a14a 8px,#d9b765 8px,#d9b765 16px);display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:900;color:#fff;cursor:pointer;font-family:var(--f-serif)}
 .pcard.up{background:#fffdf7;color:var(--red);cursor:default;animation:flip .5s}
@@ -54,14 +55,14 @@ textarea{min-height:92px;resize:vertical}
 .die{font-size:90px;text-align:center;margin:8px 0;font-family:var(--f-serif);color:var(--red)}
 .die.roll{animation:spin .25s linear infinite}
 .vid{display:block;width:100%;max-width:340px;aspect-ratio:9/16;max-height:60vh;margin:10px auto;border:0;border-radius:12px;background:#000}
-.who{display:inline-flex;align-items:center;gap:6px;background:#fffdf7;border:2px solid var(--line);border-radius:999px;padding:3px 12px;font-weight:800;font-size:14px}
-.list{margin:8px 0;padding:0;list-style:none}.list li{padding:6px 0;border-bottom:1px dashed var(--line);font-size:14px}
-.stat{display:flex;gap:8px;margin:8px 0}.stat div{flex:1;background:#fffdf7;border:2px solid var(--line);border-radius:12px;padding:8px;text-align:center}.stat b{display:block;font-size:20px;color:var(--red)}.stat span{font-size:12px;color:var(--mut)}
-.toast{background:#fff3cf;border:2px solid var(--gold);border-radius:10px;padding:8px 12px;margin:8px 0;font-weight:700;font-size:14px}
-table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:6px;text-align:left;vertical-align:top}
+.who{display:inline-flex;align-items:center;gap:6px;background:#fffdf7;border:2px solid var(--line);border-radius:999px;padding:3px 12px;font-weight:800;font-size:16px}
+.list{margin:8px 0;padding:0;list-style:none}.list li{padding:6px 0;border-bottom:1px dashed var(--line);font-size:16px}
+.stat{display:flex;gap:8px;margin:8px 0}.stat div{flex:1;background:#fffdf7;border:2px solid var(--line);border-radius:12px;padding:8px;text-align:center}.stat b{display:block;font-size:20px;color:var(--red)}.stat span{font-size:14px;color:var(--mut)}
+.toast{background:#fff3cf;border:2px solid var(--gold);border-radius:10px;padding:8px 12px;margin:8px 0;font-weight:700;font-size:16px}
+table{width:100%;border-collapse:collapse;font-size:16px}th,td{border-bottom:1px solid var(--line);padding:6px;text-align:left;vertical-align:top}
 .tcard{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:12px;margin:10px 0}
 .tcard.pend{border-color:var(--red)}
-.sent{background:#fffdf7;border-radius:10px;padding:10px 12px;margin:8px 0;font-family:var(--f-serif);font-size:17px}
+.sent{background:#fffdf7;border-radius:10px;padding:10px 12px;margin:8px 0;font-family:var(--f-body);font-size:20px}
 .sc{width:84px!important;display:inline-block}
 .wide{max-width:960px!important}
 .dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#bbb;margin-right:6px}.dot.ok{background:var(--ok)}.dot.fail{background:var(--no)}
@@ -88,42 +89,42 @@ table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px
 .hero .pick{font-size:.6em;margin-left:-4px;display:inline-block;transform-origin:20% 80%}.hero.swing .pick{animation:swing .22s 3}
 @keyframes swing{50%{transform:rotate(-55deg)}}
 .flier{position:absolute;transform:translate(-50%,-50%);font-size:34px;font-family:var(--f-serif);color:#b8402f;text-shadow:0 0 12px #f5c542,0 0 4px #fff;transition:left .7s ease-in,top .7s ease-in,transform .7s;z-index:9;pointer-events:none}
-.flier.puff{font-size:14px;color:#fff;font-family:var(--f-ui);animation:puff .9s forwards}@keyframes puff{to{opacity:0;margin-top:-20px}}
+.flier.puff{font-size:16px;color:#fff;font-family:var(--f-ui);animation:puff .9s forwards}@keyframes puff{to{opacity:0;margin-top:-20px}}
 .ctrl{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-top:6px;touch-action:none}.dpad{display:grid;grid-template-columns:repeat(3,52px);grid-template-rows:repeat(2,52px);gap:4px}.dp{border:0;border-radius:12px;background:#fffdf7;border:2px solid var(--line);font-size:20px;color:var(--ink);touch-action:none;user-select:none}.dp.u{grid-column:2;grid-row:1}.dp.l{grid-column:1;grid-row:2}.dp.d{grid-column:2;grid-row:2}.dp.r{grid-column:3;grid-row:2}.mdig{margin-top:0!important;flex:1;height:108px}.btn:disabled{opacity:.45;box-shadow:none}
-.stage3d{position:relative;width:100%;aspect-ratio:4/5;border-radius:14px;overflow:hidden;background:#bfe3f5;border:3px solid #8fae7c;touch-action:none;user-select:none}.stage3d canvas{width:100%;height:100%;display:block;image-rendering:auto}.stage3d .loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:800;color:#5a7a5a}.mbub{position:absolute;left:8px;right:8px;bottom:34px;background:#fffdf7ee;border:2px solid var(--line);border-radius:12px;padding:8px 10px;font-family:var(--f-voice);font-size:15px;display:none;z-index:6}.mbar{position:absolute;left:25%;right:25%;bottom:14px;height:12px;background:#0007;border-radius:7px;display:none;z-index:6;overflow:hidden}.mbar i{display:block;height:100%;width:0;background:#f5c542}
-.court{background:#fbf5e6}.bench{font-family:var(--f-serif);font-size:18px;margin-bottom:6px}.hpbar{display:flex;justify-content:space-between;gap:8px;font-size:13px;margin:4px 0 8px;flex-wrap:wrap}.jconf{display:inline-block;width:70px;height:9px;background:#e4d6b3;border-radius:6px;vertical-align:middle;overflow:hidden}.jconf b{display:block;height:100%;background:#b8402f;transition:width .6s}
-.duel{display:flex;gap:10px;align-items:flex-start;margin:8px 0}.npc{font-size:40px;text-align:center;line-height:1}.npc small{display:block;font-size:11px;color:var(--mut);font-family:var(--f-body)}.claim{flex:1;background:#fff;border:2px solid #b8402f;border-radius:14px;padding:10px 12px;font-family:var(--f-voice);font-size:17px;position:relative}
-.evgrid{display:grid;grid-template-columns:1fr;gap:6px;margin:8px 0}.ev{text-align:left;background:#fffdf7;border:2px solid var(--line);border-left:5px solid var(--gold);border-radius:8px;padding:8px 10px;font-family:var(--f-serif);font-size:14px;color:var(--ink);cursor:default}button.ev{cursor:pointer;width:100%}.ev.sel{border-color:#b8402f;background:#fff0e8}.ev.ok{border-color:var(--ok);background:#e8f6ee}
+.stage3d{position:relative;width:100%;aspect-ratio:4/5;border-radius:14px;overflow:hidden;background:#bfe3f5;border:3px solid #8fae7c;touch-action:none;user-select:none}.stage3d canvas{width:100%;height:100%;display:block;image-rendering:auto}.stage3d .loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:800;color:#5a7a5a}.mbub{position:absolute;left:8px;right:8px;bottom:34px;background:#fffdf7ee;border:2px solid var(--line);border-radius:12px;padding:8px 10px;font-family:var(--f-voice);font-size:17px;display:none;z-index:6}.mbar{position:absolute;left:25%;right:25%;bottom:14px;height:12px;background:#0007;border-radius:7px;display:none;z-index:6;overflow:hidden}.mbar i{display:block;height:100%;width:0;background:#f5c542}
+.court{background:#fbf5e6}.bench{font-family:var(--f-body);font-size:20px;margin-bottom:6px}.hpbar{display:flex;justify-content:space-between;gap:8px;font-size:15px;margin:4px 0 8px;flex-wrap:wrap}.jconf{display:inline-block;width:70px;height:9px;background:#e4d6b3;border-radius:6px;vertical-align:middle;overflow:hidden}.jconf b{display:block;height:100%;background:#b8402f;transition:width .6s}
+.duel{display:flex;gap:10px;align-items:flex-start;margin:8px 0}.npc{font-size:40px;text-align:center;line-height:1}.npc small{display:block;font-size:14px;color:var(--mut);font-family:var(--f-body)}.claim{flex:1;background:#fff;border:2px solid #b8402f;border-radius:14px;padding:10px 12px;font-family:var(--f-voice);font-size:19px;position:relative}
+.evgrid{display:grid;grid-template-columns:1fr;gap:6px;margin:8px 0}.ev{text-align:left;background:#fffdf7;border:2px solid var(--line);border-left:5px solid var(--gold);border-radius:8px;padding:8px 10px;font-family:var(--f-body);font-size:18px;color:var(--ink);cursor:default}button.ev{cursor:pointer;width:100%}.ev.sel{border-color:#b8402f;background:#fff0e8}.ev.ok{border-color:var(--ok);background:#e8f6ee}
 .stamp{display:inline-block;font-family:var(--f-ui);font-size:30px;color:#b8402f;border:4px solid #b8402f;border-radius:10px;padding:2px 14px;transform:rotate(-6deg);margin:8px 0;animation:stampin .5s}@keyframes stampin{0%{transform:scale(3) rotate(-6deg);opacity:0}100%{transform:scale(1) rotate(-6deg);opacity:1}}
 .runwrap{position:relative;max-width:420px;margin:0 auto}.runwrap canvas{width:100%;display:block;border-radius:14px;border:3px solid #2d2f4f;touch-action:none;background:#1a2140}.rungo,.runretry{position:absolute;left:12%;right:12%;bottom:24px;margin:0!important;width:auto}
-.lanes{display:flex;gap:10px;margin-top:10px;max-width:420px;margin-left:auto;margin-right:auto}.lanebtn{flex:1;height:64px;border:2px solid var(--line);border-radius:14px;background:#fffdf7;font-family:var(--f-ui);font-size:18px;color:var(--ink);touch-action:none;user-select:none}.lanebtn:active{background:#f3e6c0}
+.lanes{display:flex;gap:10px;margin-top:10px;max-width:420px;margin-left:auto;margin-right:auto}.lanebtn{flex:1;height:64px;border:2px solid var(--line);border-radius:14px;background:#fffdf7;font-family:var(--f-ui);font-size:20px;color:var(--ink);touch-action:none;user-select:none}.lanebtn:active{background:#f3e6c0}
 #snd{position:fixed;bottom:12px;right:12px;z-index:60;width:40px;height:40px;border-radius:50%;border:2px solid var(--line);background:#fffdf7;font-size:20px;cursor:pointer;box-shadow:0 2px 0 rgba(0,0,0,.15)}
-#nbtn{position:fixed;bottom:12px;right:60px;z-index:60;width:40px;height:40px;border-radius:50%;border:2px solid var(--line);background:#fffdf7;font-size:20px;cursor:pointer;box-shadow:0 2px 0 rgba(0,0,0,.15)}#nmenu{position:fixed;bottom:60px;right:12px;z-index:61;display:none;background:#fffdf7;border:2px solid var(--line);border-radius:14px;padding:10px;max-width:80vw;max-height:60vh;overflow:auto;box-shadow:0 4px 12px rgba(0,0,0,.2)}.nv{display:block;width:100%;text-align:left;margin:4px 0;padding:8px 10px;border:2px solid var(--line);border-radius:10px;background:#fff;font-size:14px;cursor:pointer}.nv.sel{border-color:var(--red);background:#fbe7de}
+#nbtn{position:fixed;bottom:12px;right:60px;z-index:60;width:40px;height:40px;border-radius:50%;border:2px solid var(--line);background:#fffdf7;font-size:20px;cursor:pointer;box-shadow:0 2px 0 rgba(0,0,0,.15)}#nmenu{position:fixed;bottom:60px;right:12px;z-index:61;display:none;background:#fffdf7;border:2px solid var(--line);border-radius:14px;padding:10px;max-width:80vw;max-height:60vh;overflow:auto;box-shadow:0 4px 12px rgba(0,0,0,.2)}.nv{display:block;width:100%;text-align:left;margin:4px 0;padding:8px 10px;border:2px solid var(--line);border-radius:10px;background:#fff;font-size:16px;cursor:pointer}.nv.sel{border-color:var(--red);background:#fbe7de}
 #pop{position:fixed;inset:0;z-index:70;display:none;align-items:center;justify-content:center;background:rgba(30,20,10,.45)}
 #pop .pbox{background:#fffdf7;border:4px solid #3b3224;border-radius:22px;padding:22px 26px;text-align:center;max-width:86vw;animation:popin .28s cubic-bezier(.2,1.6,.4,1)}
-#pop .pem{font-size:64px;line-height:1}#pop .ptx{font-family:var(--f-title);font-size:24px;font-weight:800;margin-top:8px}#pop .psub{font-size:15px;margin-top:6px;color:#6a5d45}
+#pop .pem{font-size:64px;line-height:1}#pop .ptx{font-family:var(--f-title);font-size:24px;font-weight:800;margin-top:8px}#pop .psub{font-size:17px;margin-top:6px;color:#6a5d45}
 #pop.obj .pbox{background:#fff0ea;border-color:#c0392b;transform:rotate(-3deg)}#pop.obj .ptx{font-size:46px;color:#c0392b;letter-spacing:2px;text-shadow:3px 3px 0 #f5c542}
 @keyframes popin{0%{transform:scale(.3) rotate(-8deg);opacity:0}100%{transform:scale(1)}}
 .claim{font-size:23px!important}
-.dlg{display:flex;gap:10px;align-items:flex-start;margin:8px 0}.dlg.new{animation:popin .3s}.dlg .sp{font-size:34px;text-align:center;min-width:54px;line-height:1}.dlg .sp small{display:block;font-size:11px;color:var(--mut)}.dlg .bub{font-family:var(--f-voice);flex:1;background:#fff;border:2px solid var(--line);border-radius:14px;padding:9px 12px;font-size:17px}.dlg.jp .bub{border-color:#b8402f}
-.guide{font-family:var(--f-ui);background:#fff6d8;border:3px dashed #c08a1e;border-radius:14px;padding:12px 14px;margin:10px 0;font-size:16px;line-height:1.6}
+.dlg{display:flex;gap:10px;align-items:flex-start;margin:8px 0}.dlg.new{animation:popin .3s}.dlg .sp{font-size:34px;text-align:center;min-width:54px;line-height:1}.dlg .sp small{display:block;font-size:14px;color:var(--mut)}.dlg .bub{font-family:var(--f-voice);flex:1;background:#fff;border:2px solid var(--line);border-radius:14px;padding:9px 12px;font-size:19px}.dlg.jp .bub{border-color:#b8402f}
+.guide{font-family:var(--f-body);background:#fff6d8;border:3px dashed #c08a1e;border-radius:14px;padding:12px 14px;margin:10px 0;font-size:18px;line-height:1.6}
 /* ===== v22 · 깔끔한 노트(Notion) 톤: 색은 그대로, 정보는 덜어내고 반응은 또렷하게 ===== */
 :root{--paper:#fffdf8;--line2:#ebe0c6;--soft:#f6efdc;--shadow:0 1px 2px rgba(70,52,20,.07),0 6px 18px rgba(70,52,20,.05)}
-body{background:linear-gradient(#e6f0f4,#f7efdc 58%) fixed;font-size:16px;line-height:1.65}
+body{background:linear-gradient(#e6f0f4,#f7efdc 58%) fixed;font-size:18px;line-height:1.65}
 .ridge{opacity:.55}
 #app{max-width:520px;padding:52px 16px 120px}
 #app.wide{max-width:960px}
 .card{background:var(--paper);border:1px solid var(--line2);border-radius:16px;padding:20px 18px;margin:14px 0;box-shadow:var(--shadow)}
-h2{font-size:22px;line-height:1.35}h3{font-size:18px}
-.title{padding:18px 0 2px}.title .sub{color:var(--mut);font-size:14px;margin:4px 0 0}
+h2{font-size:22px;line-height:1.35}h3{font-size:20px}
+.title{padding:18px 0 2px}.title .sub{color:var(--mut);font-size:16px;margin:4px 0 0}
 .logo{font-size:38px;letter-spacing:4px}
-.btn{border-radius:12px;padding:15px;font-size:17px;box-shadow:none;margin-top:14px;transition:transform .08s,filter .15s}
+.btn{border-radius:12px;padding:15px;font-size:19px;box-shadow:none;margin-top:14px;transition:transform .08s,filter .15s}
 .btn:hover{filter:brightness(1.07)}.btn:active{transform:scale(.98);box-shadow:none}
 .btn:disabled,.btn:disabled:hover{opacity:1;background:#ddd3bd;color:#fff;filter:none;transform:none;box-shadow:none}
-.btn.ghost{background:transparent;color:var(--mut);border:1px solid var(--line2);box-shadow:none;font-size:14px;padding:11px}
-.btn.link{background:none;border:0;color:var(--mut);font-size:13px;text-decoration:underline;padding:6px;margin-top:2px}
+.btn.ghost{background:transparent;color:var(--mut);border:1px solid var(--line2);box-shadow:none;font-size:16px;padding:11px}
+.btn.link{background:none;border:0;color:var(--mut);font-size:15px;text-decoration:underline;padding:6px;margin-top:2px}
 .btn.sm{box-shadow:none;border-radius:10px}
-.opt{border:1px solid var(--line2);background:var(--paper);border-radius:12px;padding:13px 14px;margin:8px 0;font-size:16px;transition:background .12s,border-color .12s,transform .08s}
+.opt{border:1px solid var(--line2);background:var(--paper);border-radius:12px;padding:13px 14px;margin:8px 0;font-size:18px;transition:background .12s,border-color .12s,transform .08s}
 .opt:hover{background:var(--soft)}.opt:active{transform:scale(.99)}
 .opt.sel{border-color:var(--red);background:#fbeee8;box-shadow:inset 3px 0 0 var(--red)}
 .opt.ok{border-color:var(--ok);background:#e8f5ee;animation:okp .35s}
@@ -132,22 +133,22 @@ h2{font-size:22px;line-height:1.35}h3{font-size:18px}
 @keyframes shk{0%,100%{transform:none}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
 input,select,textarea{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:12px}
 input:focus,select:focus,textarea:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 3px rgba(184,64,47,.13)}
-label{font-size:13px;color:var(--mut);margin:14px 0 5px}
-.track{margin:0 0 4px}.node{width:26px;height:26px;font-size:12px;border-width:1px}
+label{font-size:15px;color:var(--mut);margin:14px 0 5px}
+.track{margin:0 0 4px}.node{width:26px;height:26px;font-size:14px;border-width:1px}
 .node.cur{transform:scale(1.18);box-shadow:0 0 0 4px rgba(184,64,47,.16)}.seg{height:3px;border-radius:2px}.yrs{display:none}
-.tag{background:var(--soft);font-size:12px;padding:3px 10px}
-.who{border:1px solid var(--line2);background:var(--paper);font-size:13px;padding:3px 11px}
+.tag{background:var(--soft);font-size:14px;padding:3px 10px}
+.who{border:1px solid var(--line2);background:var(--paper);font-size:15px;padding:3px 11px}
 .quote,.stake{background:var(--soft);border-radius:8px}
 .toast{border-radius:10px}
 .fb{border-radius:12px}
-.cnt{font-size:13px;color:var(--mut);text-align:right;margin-top:6px;min-height:20px}.cnt.ok{color:var(--ok);font-weight:700}
-#snd,#nbtn{top:10px;bottom:auto;width:34px;height:34px;font-size:16px;opacity:.75;background:rgba(255,253,248,.9);border:1px solid var(--line2);box-shadow:none}
+.cnt{font-size:15px;color:var(--mut);text-align:right;margin-top:6px;min-height:20px}.cnt.ok{color:var(--ok);font-weight:700}
+#snd,#nbtn{top:10px;bottom:auto;width:34px;height:34px;font-size:18px;opacity:.75;background:rgba(255,253,248,.9);border:1px solid var(--line2);box-shadow:none}
 #snd{right:10px}
-.ask{font-family:var(--f-title);font-size:20px;line-height:1.5;margin:16px 0 10px}#nbtn{right:52px}#nmenu{top:52px;bottom:auto;right:10px}
+.ask{font-family:var(--f-body);font-weight:700;font-size:20px;line-height:1.5;margin:16px 0 10px}#nbtn{right:52px}#nmenu{top:52px;bottom:auto;right:10px}
 /* 노트북(가로 화면): 두 단으로 나눠 한눈에 */
 .split{display:flex;flex-direction:column}.split.rev>.pane:first-child{order:2}.split.rev>.pane:last-child{order:1}
 @media (min-width:900px){
-  body{font-size:17px}
+  body{font-size:19px}
   #app{max-width:1120px;padding:56px 28px 80px}
   .track{max-width:640px;margin-left:auto;margin-right:auto}
   .card{max-width:760px;margin-left:auto;margin-right:auto;padding:26px 30px}
@@ -176,15 +177,23 @@ label{font-size:13px;color:var(--mut);margin:14px 0 5px}
   #app:has(.m3){max-width:1400px;padding-top:40px}
   .card.sp:has(.m3){max-width:none;padding:18px 22px}
   .m3 .mside .ctrl{order:0;flex-direction:column;align-items:flex-start;gap:14px;margin-top:16px}
-  .m3 .mdig{flex:none;width:100%;height:64px;font-size:17px}
+  .m3 .mdig{flex:none;width:100%;height:64px;font-size:19px}
   .m3 .dp{width:52px;height:52px}
   .m3 .stage3d{width:100%;aspect-ratio:auto;height:max(420px,calc(100vh - 190px));margin:0}
 }
 @media (min-width:1600px) and (min-height:900px){ .m3 .stage3d{height:calc(100vh / 1.4 - 190px)} #app:has(.m3){max-width:1400px} }
-.namerow{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin:10px 0}.namebtn{margin:0!important;text-align:center!important;font-size:18px!important}
+.namerow{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin:10px 0}.namebtn{margin:0!important;text-align:center!important;font-size:20px!important}
 @media (min-width:900px){.cards{grid-template-columns:repeat(auto-fill,minmax(110px,150px));justify-content:start}.pcard{font-size:34px}}
-.dq{list-style:none;padding:0;margin:0 0 8px}.dq li{background:#fffdf7;border:2px solid var(--line);border-radius:10px;padding:6px 10px;margin:4px 0;font-size:14px}.dq li.ok{background:#fff3cf;border-color:var(--gold)}.stage3d.dg{aspect-ratio:16/10}@media (min-width:900px){.m3 .stage3d.dg{aspect-ratio:auto;height:max(420px,calc(100vh - 230px))}}@media (min-width:1600px) and (min-height:900px){.m3 .stage3d.dg{height:calc(100vh / 1.4 - 230px)}}
-select{height:48px;line-height:1.2;padding:0 12px;font-family:var(--f-body);font-size:16px;overflow:visible}
+.dq{list-style:none;padding:0;margin:0 0 8px}.dq li{background:#fffdf7;border:2px solid var(--line);border-radius:10px;padding:6px 10px;margin:4px 0;font-size:16px}.dq li.ok{background:#fff3cf;border-color:var(--gold)}.stage3d.dg{aspect-ratio:16/10}@media (min-width:900px){.m3 .stage3d.dg{aspect-ratio:auto;height:max(420px,calc(100vh - 230px))}}@media (min-width:1600px) and (min-height:900px){.m3 .stage3d.dg{height:calc(100vh / 1.4 - 230px)}}
+select{height:48px;line-height:1.2;padding:0 12px;font-family:var(--f-body);font-size:18px;overflow:visible}
+.goal{background:#fff6d8;border:2px solid #e3b24a;border-radius:12px;padding:10px 14px;margin:10px 0;font-size:19px;line-height:1.5}.goal .gt{display:block;font-family:var(--f-ui);color:#a8661a;font-size:16px;margin-bottom:2px}.intro{padding-left:22px;margin:8px 0}.intro li{margin:10px 0;font-size:19px}.intro b{font-family:var(--f-ui);font-weight:400;color:var(--red);margin-right:4px}
+
+.dgb{position:sticky;top:0;z-index:5;background:#fff6d8;border:2px solid #e3b24a;border-radius:12px;padding:8px 12px;margin-bottom:8px}.dgb .dgq small{display:block;color:#a8661a;font-family:var(--f-ui)}.dgb .dgq b{display:block;font-family:var(--f-ui);font-weight:400;font-size:22px;line-height:1.35}.dgb .dgs,.dgb .dgg{font-size:14px;color:var(--mut)}.dgb.all{background:#e6f4d9;border-color:#8fae7c}.dgb.flash{animation:dgflash .6s}@keyframes dgflash{0%{background:#ffe58a;transform:scale(1.02)}100%{transform:none}}
+@media (min-width:900px){.m3 .stage3d.dg{height:max(360px,calc(100vh - 340px))}}@media (min-width:1600px) and (min-height:900px){.m3 .stage3d.dg{height:calc(100vh / 1.4 - 340px)}}
+.road{background:#efe3c4;border-radius:12px;padding:10px 14px;margin:10px 0;font-size:18px}
+.ricesvg{width:100%;max-width:min(560px,max(300px,calc((100vh - 360px) * 1.44)));background:#d9c79d;border:3px solid #8a5a36;border-radius:14px;touch-action:none;display:block;margin:6px auto;user-select:none}.gr.sel ellipse,.gr.sel circle,.gr.sel path{stroke:#2a6fdb;stroke-width:1.8}
+.jars{display:flex;gap:8px;max-width:560px;margin:6px auto}.jarb{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;background:#fffdf7;border:2px solid var(--line);border-radius:12px;padding:8px 4px;font-family:var(--f-ui);font-size:17px;color:var(--ink);cursor:pointer}.jarb small{color:var(--mut);font-size:15px}.jarb.shake{animation:shk .4s}@keyframes shk{20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+.jar13{display:grid;grid-template-columns:repeat(13,1fr);gap:3px;margin:8px 0}.j13{aspect-ratio:1/2;border:2px solid #8a5a36;border-radius:4px 4px 8px 8px;background:#fffdf7;display:flex;align-items:flex-end;overflow:hidden}.j13 i{display:block;width:100%;background:#f1e6c0}
 </style>
 </head>
 <body>
@@ -231,7 +240,7 @@ const SCORE = {
   speed: 30, fastSec: 20 * 60, slowSec: 45 * 60,  // 20분 이내 만점 → 45분 이상 0점 (주사위 보너스 시간 차감 후)
   acc: 25,                                         // 객관식 오답이 없으면 만점
   sinc: 15, fullLen: 40,                           // 서술 답변 평균 40자 이상이면 만점
-  minLen: 8, minSentence: 20,                      // 서술 답변·문장 최소 글자 수
+  minLen: 8, minSentence: 40,                      // 서술 답변·문장 최소 글자 수
   diceSec: 1                                       // 주사위 눈 1당 단축 시간(초)
 };
 
@@ -261,104 +270,92 @@ const DEFAULT_QS = [
 ];
 const LESSON = {
   no: 1, title: '개항과 근대 국가 수립 노력', years: '1871 ~ 1895',
-  sentencePrompt: '오늘 만난 다섯 장면을 이어서, 척화비부터 갑오개혁까지 조선이 어떻게 흘러갔는지 한 문장으로 써 보세요. (우리 모둠 신분들의 입장도 한 번 떠올려 보세요!)',
-  sentenceKw: ['척화비', '강화도 조약', '갑신정변', '동학 농민 운동', '갑오개혁'],
-  sentenceTest: '(테스트) 지금까지 만난 장면(척화비, 강화도 조약, 갑신정변)을 이어서, 조선이 어떻게 흘러갔는지 한 문장으로 써 보세요. (우리 모둠 신분들의 입장도 한 번 떠올려 보세요!)',
-  sentenceKwTest: ['척화비', '강화도 조약', '갑신정변'],
+  sentencePrompt: '오늘 만난 네 장면을 이어서, 척화비부터 갑신정변까지 조선이 어떻게 흘러갔는지 세 문장으로 써 보세요.',
+  sentenceKw: ['척화비', '강화도 조약', '임오군란', '갑신정변'],
+  sentenceTest: '오늘 만난 네 장면을 이어서, 척화비부터 갑신정변까지 조선이 어떻게 흘러갔는지 세 문장으로 써 보세요.',
+  sentenceKwTest: ['척화비', '강화도 조약', '임오군란', '갑신정변'],
+  road: [
+    '자, 모험 시작! 닫힌 문 앞에서 출발해 볼까?',
+    '문을 닫겠다고 비석까지 세웠는데… 그 문이 과연 끝까지 버틸 수 있을까?',
+    '문은 열렸는데, 나라 안은 점점 시끄러워져… 월급도 못 받은 군인들이 결국 들고일어났어!',
+    '군인들의 난은 청군에게 진압됐지만, 청의 간섭은 오히려 심해졌어… 이 나라를 어떻게 바꿔야 하지? 마음 급한 사람들이 움직이기 시작했어!',
+    '개혁이 사흘 만에 끝나 버렸다니… 오늘 본 네 장면을 한 문장으로 정리해 보자!'
+  ],
   cells: [
-    { id: 'c1', mine: { total: 24, slots: ['非','戰','則','和','主','和','賣','國'], meaning: [['非戰則和','싸우지 않으면 화친하는 것이다'], ['主和賣國','화친을 주장하는 것은 나라를 파는 것이다']] }, title: '닫힌 문', year: '1871', video: 'https://www.youtube.com/shorts/lnre2QJ94nA',
+    { id: 'c1', game: 'mine', mine: { total: 24, slots: ['非','戰','則','和','主','和','賣','國'], meaning: [['非戰則和','싸우지 않으면 화친하는 것이다'], ['主和賣國','화친을 주장하는 것은 나라를 파는 것이다']] }, title: '닫힌 문', year: '1871', video: 'https://www.youtube.com/shorts/lnre2QJ94nA',
       situation: '1871년, 프랑스와 미국 군함이 강화도를 공격했다가 물러갔다. 흥선대원군은 서양과 교류하지 않겠다는 뜻을 새긴 비석을 세우고...\n우리 모둠은 이 비석을 어떻게 볼까?',
-      stance: { q: '서양과의 교류를 거부하는 척화비, 이에 대한 내 신분의 입장은?', opts: ['찬성: 외국의 것이 무분별하게 들어오면 우리의 것이 망가질 것이다... 문을 닫자!', '반대: 변하는 세상에 발맞추어야한다. 문을 열자!', '판단 보류: 내 삶에 뭐가 달라지는지 따져 본다'] },
-      stake: {
-        prince: "비석에 '화친은 나라를 파는 일'이라 새겼다 하오. 소자는 마음이 무겁구려. 정말 문을 닫으면 나라를 지킬 수 있겠소?",
-        yangban: "옳거니! 서양 오랑캐와는 말도 섞지 말아야 하느니라. 나 때는 말이야, 명나라와 같은 군주국 말고는 다 오랑캐였거늘!",
-        merchant: "사장님~ 문을 닫으면 장사 길도 닫힙니다! 비석 세울 돈으로 시장을 넓히면 얼마나 남는 장사입니까, 진짜 아깝습니다!",
-        farmer: "돌에다 글씨를 새겼다는디, 그게 우리 농사에 뭔 도움이 된대유? 걱정이 태산이구먼유.",
-        slave: "헐, 돌에 글씨를 새겼대요! 근데 저는 글을 몰라서 뭐라고 썼는지도 몰라요~ 에이, 우리가 알 게 뭐예요? 근데 좀 궁금하긴 하네?!" },
+      goBtn: '⛏️ 문화재 복구하러 가기',
       src: [
         { who: '[그림 19] 청주 척화비 (흥선 대원군이 1871년 전국에 세운 비석 중 하나)', img: 'cheokhwabi.webp', text: '洋夷侵犯 非戰則和 主和賣國\n(서양 오랑캐가 침범하는데 싸우지 않으면 화친하자는 것이고, 화친을 주장하는 것은 나라를 파는 것이다)' }],
+      dig: { secs: [{ title: '척화비', year: '1871', src: '흥선대원군이 1871년 전국에 세운 비석 중 하나',
+        gloss: [['양이', '서양 오랑캐'], ['화친', '서로 사이좋게 지냄'], ['매국', '나라를 팖']],
+        items: [
+          { text: '[서양 오랑캐|yang]가 침입할 때 싸우지 않으면 화친하자는 것이고, [화친을 주장하면 매국하는 것이 된다|hwachin].', qs: [{ k: 'yang', q: '서양인들을 뭐라고 부르고 있나요?' }, { k: 'hwachin', q: '서양인들과 친하게 지내는 것은 곧 무엇이라고 말하고 있나요?' }] },
+          { text: '[우리 만대의 자손에게|ja] 경계한다.', qs: [{ k: 'ja', q: '흥선대원군은 이 비석을 누구에게 남기고 싶었을까요?' }] }] }] },
       qs: [
-        { level: '표면적 질문', q: '이전의 상황을 고려했을 때, 서양 오랑캐는 어떤 국가를 말하는 것인가요? (2개 선택)', pick: 2, o: ['미국', '프랑스', '영국', '중국'], ex: '미국과 프랑스의 군함이 조선을 침략했었어요.' },
-        { level: '의미 파악 질문', q: '흥선대원군은 통상 수교에 거부하는 생각을 왜 돌에 새겼을까요?' },
+        { level: '표면적 질문', q: '쇼츠를 통해 알아본 상황을 고려했을 때, 서양 오랑캐는 어떤 국가를 말하는 것인가요? (2개 선택)', pick: 2, o: ['미국', '프랑스', '영국', '중국'], ex: '미국과 프랑스의 군함이 조선을 침략했었어요.' },
+        { level: '의미 파악 질문', q: '흥선대원군은 통상 수교를 거부하는 생각을 왜 돌에 새겼을까요?' },
         { level: '의미 분석 질문', q: '흥선대원군이 척화비를 세운 것은 당시 조선 사회에 어떤 영향을 미쳤을까요? (자신의 신분에 맞춰서 생각해봅시다.)' }] },
-    { id: 'c2', title: '문이 열리다', year: '1876', video: 'https://www.youtube.com/shorts/lboa_YELtlE',
+    { id: 'c2', game: 'trial', title: '문이 열리다', year: '1876', video: 'https://www.youtube.com/shorts/lboa_YELtlE',
       situation: '1876년, 강화도 앞바다. 일본 군함이 선빵 필승 + 피해자 코스프레를 시전한다. 일본과 교역하면 서양의 문물이 들어올텐데...',
-      stance: { q: '항구를 여는 개항(문호 개방)에 대한 나의 입장은?', opts: ['찬성: 서양 문물이 들어오는 것은 나라의 성장!', '반대: 서양·일본과 교류하면 우리나라 질서가 흐트러질 것!', '중립: 내게 이로운지 따져 본다'] },
-      stake: {
-        prince: "소자는 심히 걱정이오. 왜국 군함이 강화도 앞바다에 떡하니 버티고 있다 하니, 이 나라의 앞날이 어찌 될꼬?",
-        yangban: "내가 말이야, 평생 성리학을 공부했는데 말이야~ 서양 오랑캐와 어울린다니, 명나라와 같은 어버이를 두고 그런 배신은 없느니라! 요즘 어린 것들은 말이야~ 떼잉~",
-        merchant: "아니~ 항구가 열린다잖습니까! 새 시장, 새 손님, 이거 안 잡으면 두고두고 후회하십니다. 지금이 타이밍이다 이거에요! 흐 흐 흐.",
-        farmer: "아이고, 안그래도 모지란 쌀을 가져다 팔면, 쌀독은 누가 채워 준대유? 걱정이 태산이구먼유.",
-        slave: "헐, 대박! 바다 건너 군함이 왔대요! 나라가 바뀌면 내 팔자도 바뀌나? 에이~ 설마요~ 근데 혹시?!" },
+      goBtn: '⚖️ 재판 시작!',
       src: [
-        { who: '강화도 조약 (1876)의 주요 조항', text: '제1조 조선은 자주적인 나라로 일본과 평등한 권리를 가진다\n제5조 조선은 부산 이외에 두 항구를 개항하여 통상을 해야 한다\n제7조 조선은 연안 항해의 안전을 위해 일본 항해자로 하여금 해안 측량을 허용한다\n제10조 개항장에서 일어난 양국인 사이의 범죄 사건은 속인주의에 입각하여 자국의 법에 의하여 처리한다' },
+        { who: '강화도 조약 (1876)의 주요 조항', text: '제1조 조선은 자주의 나라로 일본과 평등한 권리를 가진다\n제5조 조선은 부산 이외에 두 항구를 20개월 이내에 개항하여 통상을 해야 한다\n제7조 조선은 연안 항해의 안전을 위해 일본 항해자로 하여금 해안 측량을 허용한다\n제10조 개항장에서 일어난 양국인 사이의 범죄 사건은 속인주의에 입각하여 자국의 법에 의하여 처리한다' },
         { who: '위정척사파 최익현의 주장', text: '저들이 일본인이라고는 하나 실은 서양 도적입니다. 저들과 교류가 이루어지면 사악한 학문이 온 나라 안에 퍼지게 될 것입니다.' },
         { who: '개화파 김옥균의 주장', text: '널리 서양 각국과 친하게 지내며, 안으로 정치를 개혁하여 어리석은 백성을 문명의 도(서양의 문물과 제도)로 교육해야 합니다.' }],
-      dig: { next: 'trial', quests: [{ q: '일본은 조선을 어떤 나라라고 적었을까?', hint: '제1조' }, { q: '최익현은 일본과 교류하면 어떻게 된다고 했을까?', hint: '최익현' }, { q: '김옥균은 어떻게 하자고 했을까?', hint: '김옥균' }],
-        text: '강화도 조약 (1876)\n제1조 조선은 [자주적인 나라|0]로 일본과 평등한 권리를 가진다\n제5조 조선은 부산 이외에 두 항구를 개항하여 통상을 해야 한다\n제7조 조선은 연안 항해의 안전을 위해 일본 항해자로 하여금 해안 측량을 허용한다\n제10조 개항장에서 일어난 양국인 사이의 범죄 사건은 속인주의에 입각하여 자국의 법에 의하여 처리한다\n위정척사파 최익현의 주장\n저들이 일본인이라고는 하나 실은 서양 도적입니다. 저들과 교류가 이루어지면 [사악한 학문이 온 나라 안에 퍼지게|1] 될 것입니다.\n개화파 김옥균의 주장\n널리 [서양 각국과 친하게 지내며|2], 안으로 정치를 개혁하여 어리석은 백성을 문명의 도(서양의 문물과 제도)로 교육해야 합니다.' },
-      qs: [],
+      dig: { secs: [
+        { title: '강화도 조약 주요 조항', year: '1876', src: '', gloss: [['자주', '남에게 기대지 않고 스스로 함'], ['개항', '항구를 열어 다른 나라와 통상하게 함'], ['속인주의', '사람이 속한 나라의 법을 따르게 하는 원칙']],
+          items: [
+            { label: '제1조', text: '조선은 [자주의 나라|jaju]로 일본과 평등한 권리를 가진다', qs: [{ k: 'jaju', q: '강화도 조약 제1조에서 일본은 조선을 어떤 나라로 표현하고 있나요?' }] },
+            { label: '제5조', text: '조선은 부산 이외에 [두 항구를|hang] 20개월 이내에 개항하여 통상을 해야 한다', qs: [{ k: 'hang', q: '조선은 부산 말고 몇 개의 항구를 더 열어야 했나요?' }] },
+            { label: '제7조', text: '조선은 연안 항해의 안전을 위해 일본 항해자로 하여금 [해안 측량을 허용한다|cheuk]', qs: [{ k: 'cheuk', q: '조선은 일본 항해자에게 무엇을 허용했나요?' }] },
+            { label: '제10조', text: '개항장에서 일어난 양국인 사이의 범죄 사건은 속인주의에 입각하여 [자국의 법에 의하여 처리한다|beop]', qs: [{ k: 'beop', q: '개항장에서 일어난 범죄는 어느 나라의 법으로 처리하나요?' }] }] },
+        { title: '위정척사파 최익현의 주장', year: '1876', src: '', gloss: [],
+          items: [{ label: '최익현', text: '저들이 일본인이라고는 하나 실은 서양 도적입니다. 저들과 교류가 이루어지면 [사악한 학문이 온 나라 안에 퍼지게|sagak] 될 것입니다.', qs: [{ k: 'sagak', q: '최익현은 일본과 교류하면 무엇이 온 나라에 퍼지게 된다고 말했나요?' }] }] },
+        { title: '개화파 김옥균의 주장', year: '1876', src: '', gloss: [],
+          items: [{ label: '김옥균', text: '널리 서양 각국과 친하게 지내며, 안으로 정치를 개혁하여 어리석은 백성을 [문명의 도|mun](서양의 문물과 제도)로 교육해야 합니다.', qs: [{ k: 'mun', q: '김옥균은 서양의 문물을 무엇이라고 표현하고 있나요? (힌트: 무엇을 통해 백성을 교육하자고 하고 있나요?)' }] }] }] },
       trial: {
         evidence: {
-          a1: { who: '강화도 조약 제1조', text: '조선은 자주적인 나라로 일본과 평등한 권리를 가진다' },
-          a5: { who: '강화도 조약 제5조', text: '조선은 부산 이외에 두 항구를 개항하여 통상을 해야 한다' },
+          a1: { who: '강화도 조약 제1조', text: '조선은 자주의 나라로 일본과 평등한 권리를 가진다' },
+          a5: { who: '강화도 조약 제5조', text: '조선은 부산 이외에 두 항구를 20개월 이내에 개항하여 통상을 해야 한다' },
           a7: { who: '강화도 조약 제7조', text: '조선은 연안 항해의 안전을 위해 일본 항해자로 하여금 해안 측량을 허용한다' },
-          a10: { who: '강화도 조약 제10조', text: '개항장에서 일어난 양국인 사이의 범죄 사건은 속인주의에 입각하여 자국의 법에 의하여 처리한다' },
-          cw: { who: '위정척사파 최익현의 주장', text: '저들이 일본인이라고는 하나 실은 서양 도적입니다. 저들과 교류가 이루어지면 사악한 학문이 온 나라 안에 퍼지게 될 것입니다.' },
-          kg: { who: '개화파 김옥균의 주장', text: '널리 서양 각국과 친하게 지내며, 안으로 정치를 개혁하여 어리석은 백성을 문명의 도(서양의 문물과 제도)로 교육해야 합니다.' } },
+          a10: { who: '강화도 조약 제10조', text: '개항장에서 일어난 양국인 사이의 범죄 사건은 속인주의에 입각하여 자국의 법에 의하여 처리한다' } },
         rounds: [
-          { type: 'match', claim: '먼저 증인 신문을 시작하겠소! 조선 사람들도 이 조약을 환영했을 것이오!', q: '두 증인(최익현, 김옥균)은 각각 강화도 조약에 대해 어떤 입장일까요? 알맞게 연결해 보세요.', show: ['cw', 'kg'], pairs: [['최익현', '부정적'], ['김옥균', '긍정적']], choices: ['긍정적', '부정적'], ex: '최익현은 교류 자체를 반대했고, 김옥균은 서양과 친하게 지내야 한다고 했어요. 조선 안에서도 의견이 갈렸어요.' },
-          { type: 'short', claim: '제1조를 보시오! 우리 일본은 조선을 어엿한 나라로 인정해 주었소!', q: '강화도 조약 제1조에서 일본은 조선을 어떤 나라로 표현하고 있나요?', show: ['a1'], key: ['자주'], hint: '힌트: 글자 세 개, "○○적인 나라"예요.', ex: '제1조는 조선을 "자주적인 나라"라고 표현했어요.' },
-          { type: 'text', claim: '조선을 자주국이라 한 건 순전히 호의요! 다른 속셈은 전혀 없소!', q: "왜 일본은 조선을 '자주적인 나라'라고 했을까요? 그 이유를 조선의 당시 외교관계와 관련해서 생각해봅시다.", show: ['a1'], min: 15, judge: '판사: 흠… 일본의 속셈이 궁금해지는군요. 계속 하시오.' },
-          { type: 'evidence', claim: '이 조약은 두 나라가 평등하오! 불공정한 조항은 단 하나도 없소!', q: '일본 대표의 주장을 무너뜨릴 증거 2개를 제시하세요! (2개 선택)', pick: 2, ans: ['a7', 'a10'], pool: ['a1', 'a5', 'a7', 'a10'], ex: '제7조(해안 측량 허용)와 제10조(일본인은 일본 법으로 재판)는 조선의 주권을 침해하는 불평등한 조항이에요.' },
-          { type: 'text', claim: '으윽… 그, 그래도 조선이 얻은 것도 있지 않소?!', q: '이 조약은 조선에게 공정한가요? 공정한 부분과 그렇지 않은 부분을 실제 조항을 골라 설명해봅시다.', show: ['a1', 'a5', 'a7', 'a10'], min: 20, judge: '판사: 훌륭한 변론이오!' }
-        ] } },
-    { id: 'c3', run: true, title: '3일 만의 새 정부', year: '1884', video: '',
-      situation: '1884년 12월, 서울. 청의 간섭이 심해지자 급진 개화파가 일본 공사의 지원을 약속받고 우정총국에서 거사를 일으킨다(갑신정변). 일본군 150명이 개화파와 함께 달리기 시작했다… 과연 끝까지 함께일까?',
-      stance: { q: '갑신정변에 대한 우리 신분의 입장은?', opts: ['지지: 신분과 제도를 근본부터 바꿔야 한다', '반대: 외세를 끌어들인 무리한 정변이다', '판단 보류: 아직 잘 모르겠다'] },
-      stake: {
-        prince: "궁궐이 한밤중에 난리가 났구려! 개화파가 소자를 앞세워 새 조정을 꾸린다 하니, 이를 어찌하면 좋소?",
-        yangban: "문벌을 폐지한다니, 이런 고얀 놈들! 우리 집안이 몇 대째 내려온 줄 아느냐! 예로부터 위아래가 있는 법이거늘!",
-        merchant: "청 상인, 일본 상인 틈에서 요즘 장사가 영 안 됩니다, 사장님. 정변으로 판이 바뀌면 우리한테도 기회가 올까요? 일단 정세부터 파악!",
-        farmer: "서울서 뭔 일이 났다는디, 사흘 뒤에야 알았구먼유. 우리 농사에 뭔 상관이래유?",
-        slave: "'인민 평등'이래요! 헐, 그럼 나도 사람? 에이~ 설마 우리까지 껴 주겠어요? 근데 일단 솔깃!" },
-      src: [{ who: '갑신정변 때 발표된 개혁 정강 (김옥균, 『갑신일록』)', text: '- 문벌을 폐지하여 인민 평등의 권리를 제정하고, 능력에 따라 관리를 등용할 것\n- 지조법을 개혁하여 관리의 부정을 막고 국가 재정을 넉넉히 할 것\n- 국가의 모든 재정은 호조에서 관할하게 하고, 그 밖의 재무 관청은 폐지할 것\n- 대신과 참찬은 의정부에서 회의하고 정치적 명령을 의결하고 집행할 것' }],
+          { type: 'short', claim: '제1조를 보시오! 우리 일본은 조선을 어엿한 나라로 인정해 주었소!', q: '강화도 조약 제1조에서 일본은 조선을 어떤 나라로 표현하고 있나요?', show: ['a1'], key: ['자주'], hint: '힌트: 두 글자예요. "○○의 나라".', ex: '제1조는 조선을 "자주의 나라"라고 표현했어요.' },
+          { type: 'evidence', claim: '이 조약은 두 나라가 평등하오! 조선에게 불리한 조항은 단 하나도 없소!', q: '일본 대표의 주장을 무너뜨릴 증거 2개를 제시하세요! (2개 선택)', pick: 2, ans: ['a7', 'a10'], pool: ['a1', 'a5', 'a7', 'a10'], ex: '조선의 해안을 일본이 측량하게 하고, 일본인의 범죄를 일본 법으로 처리하는 조항은 조선에 불리해 보여요.' }
+        ] },
       qs: [
-        { level: '표면적 질문', q: '우리가 모은 정강에 포함되지 않은 것은 무엇일까요?', o: ['노비 제도를 폐지한다', '문벌을 폐지하고 인민 평등의 권리를 제정한다', '지조법을 개혁하여 관리의 부정을 막는다', '국가의 모든 재정을 호조에서 관할한다'], ex: '노비 제도 폐지는 갑신정변 정강이 아니라 10년 뒤 갑오개혁 때 이루어졌어요.' },
-        { level: '의미 파악 질문', q: '개화파는 왜 일본군의 도움을 받아 정변을 일으켰을까요? 당시 청의 간섭과 관련해서 생각해봅시다.' },
-        { level: '의미 분석 질문', q: '일본군이 약속과 달리 막판에 철수한 일은 정변이 사흘 만에 끝난 것과 어떤 관련이 있을까요? (자신의 신분에 맞춰서 생각해봅시다.)' }] },
-    
-    { id: 'c4', title: '농민이 일어서다', year: '1894 봄', video: '',
-      situation: '1894년, 전라도. 탐관오리의 수탈과 외국 상인의 경제 침탈에 시달리던 농민들이 동학과 함께 봉기해 전주성을 점령한다(동학 농민 운동). 농민군은 정부와 화약을 맺고 폐정 개혁안을 내놓는다. 우리 모둠은 어느 편에 설까?',
-      stance: { q: '농민군의 봉기에 대한 우리 신분의 입장은?', opts: ['동참한다: 수탈을 더는 참을 수 없다', '반대한다: 질서를 어지럽히는 일이다', '숨죽이고 지켜본다'] },
-      stake: {
-        prince: "전라도에서 백성들이 들고일어났다는 장계가 올라왔소. 백성이 그리 고통스러웠단 말이오? 마음이 무겁구려.",
-        yangban: "상것들이 관아를 점령하다니, 세상이 어찌 되려고 이러느냐! 내가 젊은 시절엔 감히 꿈도 못 꿀 일이니라.",
-        merchant: "농민군이냐 관군이냐, 길목마다 전쟁이니 물건 나를 길이 막혔습니다, 사장님. 이 사태 끝나면 물건값 폭등각입니다!",
-        farmer: "탐관오리 등쌀에 허리가 휘었는디, 동학 접주님이 오셨구먼유. 같이 일어나자 하시는디 어쩐대유?",
-        slave: "'사람이 곧 하늘'이래요! 헐, 노비도 하늘이라고요? 이거 실화예요? 나도 따라가 볼까?!" },
-      src: [{ who: '동학 농민군이 제시한 폐정 개혁안 (정교, 『대한계년사』)', text: '- 탐관오리의 못된 버릇을 징계하고 쫓아낼 것\n- 각종 항목의 결세액은 돈으로 걷되, 부담을 균등하게 나누고 마구 거두지 말 것\n- 각 읍에서 아전들에게 일을 맡길 때 뇌물을 바치지 못하게 하고, 쓸 만한 사람을 골라 일을 맡길 것\n- 간신이 권력을 농간하여 국사가 잘못되니 관직 매매를 처벌할 것' }],
-      dig: { next: 'q', quests: [{ q: '농민군은 못된 관리들을 어떻게 하라고 했을까?', hint: '탐관오리' }, { q: '세금은 어떻게 걷자고 했을까?', hint: '결세액' }, { q: '관직에 대해서는 무엇을 요구했을까?', hint: '관직' }],
-        text: '동학 농민군이 제시한 폐정 개혁안\n- [탐관오리의 못된 버릇을 징계하고 쫓아낼 것|0]\n- 각종 항목의 결세액은 돈으로 걷되, [부담을 균등하게 나누고|1] 마구 거두지 말 것\n- 각 읍에서 아전들에게 일을 맡길 때 뇌물을 바치지 못하게 하고, 쓸 만한 사람을 골라 일을 맡길 것\n- 간신이 권력을 농간하여 국사가 잘못되니 [관직 매매를 처벌할 것|2]' },
+        { level: '표면적 질문', q: '최익현과 김옥균은 각각 강화도 조약에 대해 어떤 입장일까요? 알맞게 연결해 보세요.', pairs: [['최익현', '부정적'], ['김옥균', '긍정적']], choices: ['긍정적', '부정적'], ex: '최익현은 교류 자체를 반대했고, 김옥균은 서양과 친하게 지내야 한다고 했어요. 조선 안에서도 의견이 갈렸어요.' },
+        { level: '의미 파악 질문', q: "왜 일본은 조선을 '자주적인 나라'라고 했을까요? 당시 조선이 맺고 있던 외교 관계를 고려하여 답해봅시다." },
+        { level: '의미 분석 질문', q: '이 조약은 조선에게 공정한가요? 공정한 부분과 그렇지 않은 부분을 실제 조항을 골라 각각 이유와 함께 설명해봅시다.', min: 30 }] },
+    { id: 'c3', game: 'rice', title: '구식 군인이 일어서다', year: '1882', video: 'https://www.youtube.com/shorts/fvDmV-LwjGk',
+      situation: '1882년, 서울. 군인들의 월급을 둘러싼 불만으로 반란이 일어나 정권이 흔들린다(임오군란). 청군이 개입해 군란을 진압하고 흥선대원군을 청으로 데려간다.\n우리 모둠은 이 군란을 어떻게 볼까?',
+      goBtn: '🌾 쌀자루 정리하러 가기',
+      src: [{ who: '임오군란 직전 서울 군대의 상황', text: '임오년, 서울 군영의 군사들이 큰 소란을 피웠다.\n갑술년(1874) 이후 대궐에서 쓰이는 돈에 끝이 없었다.\n재정과 공납의 창고도 고갈되어 서울의 관리들에게 월급이 지급되지 않았으며, 5군영의 병사도 종종 군량을 받지 못하여 급기야 5군영을 2군영으로 줄이고 노약자는 내쫓았다.\n도태되어 기댈 곳이 없던 이들은 완력으로 난을 일으키려고 하였다.' }],
+      dig: { secs: [{ title: '임오군란 직전 서울 군대의 상황', year: '1882', src: '',
+        gloss: [['군영', '군대가 머무르는 곳(또는 군대 조직)'], ['5군영', '조선 후기 서울을 지키던 다섯 개의 군대 조직'], ['공납', '지방에서 나라에 바치던 특산물'], ['도태', '쓸모없다고 여겨져 밀려남']],
+        items: [
+          { text: '임오년, [서울 군영의 군사들이|gunsa] 큰 소란을 피웠다.', qs: [{ k: 'gunsa', q: '누가 소란을 피웠나요?' }] },
+          { text: '갑술년(1874) 이후 [대궐|daegwol]에서 쓰이는 돈에 끝이 없었다.', qs: [{ k: 'daegwol', q: '나라의 돈을 어디에서 쓰고 있나요?' }] },
+          { text: '재정과 공납의 창고도 고갈되어 서울의 관리들에게 월급이 지급되지 않았으며, 5군영의 병사도 종종 [군량|gunryang]을 받지 못하여 급기야 5군영을 [2군영으로 줄이고|gun2] 노약자는 내쫓았다.', qs: [{ k: 'gunryang', q: '5군영의 병사들이 무엇을 받지 못했나요?' }, { k: 'gun2', q: '5군영은 어떻게 축소되었나요?' }] },
+          { text: '도태되어 기댈 곳이 없던 이들은 [완력으로 난을 일으키려고|nan] 하였다.', qs: [{ k: 'nan', q: '군인들은 어떻게 하기로 했나요?' }] }] }] },
       qs: [
-        { level: '표면적 질문', q: '다음 중 동학 농민군의 폐정 개혁안에 들어 있지 않은 것은 무엇일까요?', o: ['과거제를 폐지한다', '탐관오리를 징계하고 쫓아낸다', '관직을 사고파는 것을 처벌한다', '세금을 균등하게 걷고 마구 거두지 않는다'], ex: '과거제 폐지는 농민군의 요구가 아니라 갑오개혁 때 이루어졌어요.' },
-        { level: '의미 파악 질문', q: '농민군은 왜 탐관오리를 쫓아내고 세금을 균등하게 걷으라고 요구했을까요? 당시 농민의 처지와 관련해서 생각해봅시다.' },
-        { level: '의미 분석 질문', q: '농민군의 개혁안이 받아들여진다면 우리 신분에는 어떤 이익과 손해가 생길까요? (자신의 신분에 맞춰서 생각해봅시다.)' }] },
-    { id: 'c5', title: '위로부터의 개혁', year: '1894 여름~', video: '',
-      situation: "1894년 여름, 일본의 간섭 속에서 정부는 군국기무처를 중심으로 개혁을 추진한다(갑오개혁). 신분제와 노비제, 과거제가 폐지되고, 고종은 종묘에서 '홍범 14조'를 선포하며 개혁의 방향을 밝힌다. 우리 모둠은 이 개혁을 어떻게 볼까?",
-      stance: { q: '갑오개혁에 대한 우리 신분의 입장은?', opts: ['환영한다: 낡은 제도를 바꿔야 한다', '반대한다: 일본의 간섭 아래의 개혁이다', '내 처지에 맞춰 지켜본다'] },
-      stake: {
-        prince: "개혁을 하라는데 일본 공사의 입김이 서린 듯하오. 개혁이 반가우나, 왕실의 권한이 줄어드니 마음이 복잡하구려.",
-        yangban: "과거제를 없앤다니, 내가 평생 공부한 건 뭐가 되느냐! 신분도 없앤다니, 이게 나라냐! 예로부터 질서가 있었거늘!",
-        merchant: "신분제도 없애고 세상이 바뀐답니다, 사장님. 규제가 풀리면 장사할 기회도 확 넓어질 수 있겠죠? 일단 두고 보시죠!",
-        farmer: "신분제를 없앴다는디, 그래도 우리는 여전히 농사를 지어야 허지 않것슈? 그래서 뭐가 달라지는 건지 모르겠구먼유.",
-        slave: "노비 제도가 법으로 없어졌대요! 헐, 대박 사건! 근데... 사람들 생각은 그대로면 어쩌죠? 에이~ 일단 좋아하고 보자!" },
-      src: [{ who: '홍범 14조 (갑오개혁 때 고종이 종묘에서 선포한 개혁 강령)', text: '제1조 청나라에 의존하는 생각을 끊어 버리고 자주독립하는 기초를 확립한다\n제6조 인민이 내는 세금은 모두 법으로 정한 비율에 따르고 함부로 명목을 더하여 징수할 수 없다\n제8조 왕실 비용을 솔선하여 절감함으로써 각 아문과 지방관의 모범이 되게 한다\n제14조 사람을 쓰되 신분에 관계없이 널리 구함으로써 인재 등용의 길을 넓힌다' }],
-      dig: { next: 'q', quests: [{ q: '제1조: 청나라와의 관계는 어떻게 하라고 했을까?', hint: '제1조' }, { q: '제6조: 세금은 어떻게 걷으라고 했을까?', hint: '제6조' }, { q: '제14조: 인재는 어떻게 뽑으라고 했을까?', hint: '제14조' }],
-        text: '홍범 14조 (1894)\n제1조 [청나라에 의존하는 생각을 끊어 버리고|0] 자주독립하는 기초를 확립한다\n제6조 인민이 내는 세금은 모두 [법으로 정한 비율에 따르고|1] 함부로 명목을 더하여 징수할 수 없다\n제8조 왕실 비용을 솔선하여 절감함으로써 각 아문과 지방관의 모범이 되게 한다\n제14조 사람을 쓰되 [신분에 관계없이 널리 구함으로써|2] 인재 등용의 길을 넓힌다' },
+        { level: '의미 파악 질문', q: '구식군인들은 자신들이 급료를 받지 못한 이유가 무엇이라고 생각했을까요?' },
+        { level: '의미 분석 질문', q: '군량과 관련된 문제로 생긴 반란이 왜 일본 공사관 공격까지 이어졌을까요?' }] },
+    { id: 'c4', game: 'run', run: true, title: '3일 만의 새 정부', year: '1884', video: 'https://www.youtube.com/shorts/AYzDqZYQ1s0',
+      situation: '1884년 겨울, 서울. 청의 간섭이 심해지자 급진 개화파가 일본의 도움을 기대하고 정변을 일으켜 새 정부를 세운다(갑신정변). 하지만 청군이 개입하면서 사흘 만에 막을 내린다.\n우리 모둠은 이 정변을 어떻게 볼까?',
+      goBtn: '🏃 거사 현장으로 달려가기',
+      src: [{ who: '갑신정변 때 발표된 개혁 정강 (김옥균, 『갑신일록』)', text: '- 흥선대원군을 속히 조선으로 돌아오도록 하고 조공하는 허례는 의논하여 폐지함\n- 신분제도를 폐지하여 인민 평등권을 제정하고, 등용할 때 개인의 능력을 보도록 할 것\n- 전국적으로 토지에 세금을 걷는 법을 개혁하여 관리들의 부정부패를 막고 백성의 곤란을 구제하며 더불어 국가 재정을 넉넉하게 할 것\n- 관료들은 모두 의정소에서 회의하여 정치적 일을 결정한 뒤에 왕에게 말씀드려 정치 명령을 반포하도록 할 것' }],
+      dig: { secs: [{ title: '갑신정변 때 발표된 개혁 정강', year: '1884', src: '김옥균, 『갑신일록』',
+        gloss: [['문벌', '대대로 높은 지위를 이어 온 집안'], ['지조법', '토지에 매기는 세금에 관한 법'], ['호조', '나라의 재정을 맡던 관청']],
+        items: [
+          { text: '흥선대원군을 속히 조선으로 돌아오도록 하고 [조공하는 허례|jogong]는 의논하여 폐지함', qs: [{ k: 'jogong', q: '무엇을 폐지한다고 하였나요?' }] },
+          { text: '신분제도를 폐지하여 [인민 평등권을 제정하고|pyeong], 등용할 때 개인의 능력을 보도록 할 것', qs: [{ k: 'pyeong', q: '신분제도를 어떻게 한다고 하였나요?' }] },
+          { text: '전국적으로 [토지에 세금을 걷는 법을 개혁|jijo]하여 관리들의 부정부패를 막고 백성의 곤란을 구제하며 더불어 국가 재정을 넉넉하게 할 것', qs: [{ k: 'jijo', q: '관리, 백성, 국가 재정에 대한 개선은 무엇을 통해 시도하고 있나요?' }] },
+          { text: '관료들은 모두 [의정소에서 회의|uijeong]하여 정치적 일을 결정한 뒤에 왕에게 말씀드려 정치 명령을 반포하도록 할 것', qs: [{ k: 'uijeong', q: '왕이 명령을 반포할 때 무엇을 거쳐야 하나요?' }] }] }] },
       qs: [
-        { level: '표면적 질문', q: '홍범 14조 제1조의 내용으로 알맞은 것은 무엇일까요?', o: ['청나라에 의존하는 생각을 끊고 자주독립의 기초를 확립한다', '일본의 도움을 받아 군대를 키운다', '왕실 비용을 늘려 왕의 위엄을 높인다', '신분에 따라 관리를 등용한다'], ex: '제1조는 청에 의존하는 생각을 끊고 자주독립의 기초를 세우겠다는 내용이에요.' },
-        { level: '의미 파악 질문', q: '제14조는 신분에 관계없이 인재를 널리 구한다고 했어요. 이것은 기존의 신분 질서와 어떻게 다른가요?' },
-        { level: '의미 분석 질문', q: '갑오개혁은 일본의 간섭 속에서 추진되었어요. 신분제 폐지처럼 좋아 보이는 개혁도 마냥 환영하기 어려운 이유는 무엇일까요? (자신의 신분에 맞춰서 생각해봅시다.)' }] }
+        { level: '의미 파악 질문', q: '모든 정강을 살펴보았을 때, 갑신정변은 조선이 외교적으로 어떤 입장이 되길 바랐나요?' },
+        { level: '의미 분석 질문', q: '모든 정강을 살펴보았을 때, 갑신정변은 조선이 정치적으로 어떤 나라가 되길 바랐나요? (이전의 조선 중앙행정을 고려하여 답하세요.)' }] }
   ]
 };
 
@@ -460,7 +457,7 @@ function stepSound() {
 function narrMenu() {
   const m = document.getElementById('nmenu'); if (!m) return; if (m.style.display === 'block') { m.style.display = 'none'; return; }
   const l = KOV(), cn = narrVoice();
-  m.innerHTML = '<b>🎙️ 안내 목소리 고르기</b><div class="muted" style="font-size:12px;margin:2px 0 6px">"OO 차례입니다" 안내를 읽어 줘요</div>' + (l.length ? l.map(v => `<button class="nv ${cn && cn.name === v.name ? 'sel' : ''}" data-n="${esc(v.name)}">${esc(v.name)}</button>`).join('') : '<div class="muted">이 기기에는 한국어 음성이 없어요.</div>');
+  m.innerHTML = '<b>🎙️ 안내 목소리 고르기</b><div class="muted" style="font-size:14px;margin:2px 0 6px">"OO 차례입니다" 안내를 읽어 줘요</div>' + (l.length ? l.map(v => `<button class="nv ${cn && cn.name === v.name ? 'sel' : ''}" data-n="${esc(v.name)}">${esc(v.name)}</button>`).join('') : '<div class="muted">이 기기에는 한국어 음성이 없어요.</div>');
   m.style.display = 'block';
 }
 (function () {
@@ -555,7 +552,7 @@ function vStart() {
   <div id="w-size" style="${GROUP_SIZES[CLASSES[0]] ? 'display:none' : ''}"><label>인원</label><select id="f-size"><option value="4">4명</option><option value="5" selected>5명</option><option value="6">6명</option></select></div></div>
   <div id="f-err" class="toast" style="display:none"></div>
   <button class="btn" data-act="start">입장 ▶</button></div>
-  <p class="muted" style="text-align:center;font-size:13px">모둠에 기기 1대 · 기록은 선생님께 전달돼요</p>
+  <p class="muted" style="text-align:center;font-size:15px">모둠에 기기 1대 · 기록은 선생님께 전달돼요</p>
   <div style="text-align:center"><button class="btn link" data-act="tlogin">교사용 화면</button></div>`;
 }
 function vResume() {
@@ -565,7 +562,17 @@ function vResume() {
 }
 
 /* ---------------- 신분 정하기: 카드 뽑기 ---------------- */
+function vIntro() {
+  return `<div class="title"><div class="logo">TIMELAP</div></div><div class="card"><h2>📖 오늘 수업</h2><p>${LESSON.no}차시 「${esc(LESSON.title)}」</p>
+  <ol class="intro"><li><b>카드 뽑기</b> 카드를 뽑아 모둠원의 신분(왕자·양반·상인·농민·노비)이 정해져요.</li>
+  <li><b>${CELLS.length}칸 모험</b> 연표를 따라 ${CELLS.length}개의 장면을 차례로 지나요. 칸마다 영상 보기 → 게임 → 사료 캐기 → 퀴즈 → 주사위 순서예요.</li>
+  <li><b>한 문장</b> 마지막에 오늘 본 장면을 이어 한 문장으로 정리해요.</li>
+  <li><b>순위</b> 걸린 시간, 정확도, 마지막 한 문장으로 모둠 순위가 정해져요.</li></ol>
+  <p class="muted">화면 맨 위의 🎯 <b>지금 할 일</b>을 보면 무엇을 해야 하는지 알 수 있어요.</p>
+  <button class="btn" data-act="introok">카드 뽑으러 가기 ▶</button></div>`;
+}
 function vCards() {
+  if (!S.introSeen) return vIntro();
   const n = S.size, drawn = S.flipped.length, done = drawn >= n;
   const best = Math.max(...S.deck);
   const cards = S.deck.map((num, i) => { const up = S.flipped.includes(i); return `<div class="pcard ${up ? 'up' : ''} ${done && num === best ? 'best' : ''}" data-act="flip" data-i="${i}">${up ? num : '?'}</div>`; }).join('');
@@ -618,14 +625,37 @@ function track() {
 }
 const who = m => `<span class="who">${ROLES[m.key].em} ${m.name ? esc(m.name) + ' · ' : ''}${m.label}${m.name ? '' : ` <small class="muted">(카드 ${m.card})</small>`}</span>`;
 
+const STEP_GOAL = {
+  situation: ['상황 보기', '영상을 보고 상황을 읽어요. 다 읽으면 아래 버튼을 눌러요.'],
+  mine: ['사료 캐기', '광부가 스페이스를 꾹 눌러 비석의 글자를 모두 캐요.'],
+  dig: ['사료 캐기', '사료 블록 위를 걸어 다니며, 위쪽 의뢰의 답이 되는 구절을 캐요.'],
+  rice: ['쌀자루 정리', '알갱이를 네모로 묶어 알맞은 병에 담아요.'],
+  stance: ['입장 말하기', '모둠원이 차례로 자기 신분의 입장을 고르고, 이유를 한 줄로 써요.'],
+  stancesum: ['입장 모아 보기', '우리 모둠의 입장을 확인해요. 다음은 사료예요.'],
+  source: ['사료 읽기', '사료를 천천히 읽어요. 다음 화면의 질문에 필요해요.'],
+  q: ['질문 풀기', '맡은 사람이 사료를 보고 모둠과 함께 답해요.'],
+  trial: ['재판', '일본 대표의 주장에 사료를 증거로 맞서요.'],
+  verdict: ['판결', '재판 결과를 확인해요.'],
+  runintro: ['배경 보기', '대화를 읽고 사건의 배경을 알아봐요.'],
+  run: ['달리기', '길을 따라 달리며 장애물을 피해요.'],
+  runend: ['정리', '달리기를 마친 결과를 확인해요.'],
+  dice: ['주사위', '주사위를 굴려 걸리는 시간을 줄여요.']
+};
+const Q_GOAL = { '표면적 질문': '사료에서 답을 찾아 골라요.', '의미 파악 질문': '사료를 근거로 이유를 모둠이 의논해 써요.', '의미 분석 질문': '내 신분의 입장에서 생각해 써요.' };
+function goalBanner(c) {
+  const g = STEP_GOAL[S.step]; if (!g) return '';
+  let tx = g[1]; if (S.step === 'q' && c.qs && c.qs[S.qi]) tx = Q_GOAL[c.qs[S.qi].level] || tx;
+  return `<div class="goal"><span class="gt">🎯 지금 할 일 · ${g[0]}</span>${esc(tx)}</div>`;
+}
 function vBoard() {
   const c = CELLS[S.cell], N = S.members.length;
-  const head = `${track()}<div class="muted" style="text-align:center">${S.cell + 1}/${CELLS.length}칸 · ${esc(c.title)}</div>`;
+  const head = `${track()}<div class="muted" style="text-align:center">${S.cell + 1}/${CELLS.length}칸 · ${esc(c.title)}</div>${goalBanner(c)}`;
   if (S.step === 'situation') {
-    const vh = videoHtml(c.video), go = c.run ? '<button class="btn" data-act="torun">🏃 거사 현장으로 달려가기</button>' : c.trial && c.dig ? '<button class="btn" data-act="todig">⛏️ 사료 캐러 가기</button>' : c.trial ? '<button class="btn" data-act="totrial">⚖️ 재판 시작!</button>' : c.mine ? '<button class="btn" data-act="tomine">⛏️ 척화비 돌 캐러 가기</button>' : '<button class="btn" data-act="tostance">각자 입장 정하기 ▶</button>';
-    return `${head}<div class="card ${vh ? 'sp' : ''}"><div class="${vh ? 'split' : ''}"><div class="pane"><span class="tag">${esc(c.year)}</span><h2 style="margin-top:8px">${esc(c.title)}</h2>${vh}</div><div class="pane"><p>${nl(c.situation)}</p>${go}</div></div></div>`;
+    const vh = videoHtml(c.video), go = `<button class="btn" data-act="${({ mine: 'tomine', rice: 'torice', trial: 'totrial', run: 'torun' })[c.game]}">${esc(c.goBtn)}</button>`;
+    return `${head}<div class="card ${vh ? 'sp' : ''}"><div class="${vh ? 'split' : ''}"><div class="pane"><span class="tag">${esc(c.year)}</span><h2 style="margin-top:8px">${esc(c.title)}</h2>${vh}</div><div class="pane"><p>${nl(c.situation)}</p>${S.cell === 0 ? `<div class="road">🎲 ${esc(LESSON.road[0])}</div>` : ''}${go}</div></div></div>`;
   }
   if (S.step === 'mine') return `${head}${vMine(c)}`;
+  if (S.step === 'rice') return `${head}${vRice(c)}`;
   if (S.step === 'dig') return `${head}${vDig(c)}`;
   if (S.step === 'runintro') return `${head}${vRunIntro(c)}`;
   if (S.step === 'run') return `${head}${vRun(c)}`;
@@ -673,7 +703,7 @@ function vBoard() {
   if (S.step === 'dice') {
     const roller = S.members[S.cell % N], ev = S.dice[S.cell];
     const last = S.cell === CELLS.length - 1;
-    return `${head}<div class="card" style="text-align:center"><h3>🎲 운명의 주사위</h3><p>이번 주사위는 ${who(roller)} 이(가) 굴려요.<br><span class="muted">눈 1당 ${SCORE.diceSec}초 단축!</span></p>
+    return `${head}<div class="card" style="text-align:center"><h3>🎲 운명의 주사위</h3><div class="road">${esc(LESSON.road[S.cell + 1] || '')}</div><p>이번 주사위는 ${who(roller)} 이(가) 굴려요.<br><span class="muted">눈 1당 ${SCORE.diceSec}초 단축!</span></p>
     <div id="die" class="die">${ev ? '🎲 ' + ev : '🎲'}</div>
     ${ev ? `<div class="toast">눈 ${ev} → ${ev * SCORE.diceSec}초 단축!</div><button class="btn" data-act="nextcell">${last ? '최종 문장 쓰러 가기 ✍️' : '다음 칸으로 ▶'}</button>` : '<button class="btn" data-act="roll">주사위 굴리기</button>'}</div>`;
   }
@@ -903,59 +933,83 @@ document.addEventListener('keyup', e => { const k = e.key.length === 1 ? e.key.t
 const dirSet = (e, on) => { const b = e.target.closest && e.target.closest('[data-dir]'); if (on && !b) return; if (!on) { MINE_DIR = { x: 0, y: 0 }; return; } const d = b.dataset.dir; MINE_DIR = { x: d === 'l' ? -1 : d === 'r' ? 1 : 0, y: d === 'u' ? -1 : d === 'd' ? 1 : 0 }; e.preventDefault(); };
 document.addEventListener('pointerdown', e => { dirSet(e, true); if (e.target.closest && e.target.closest('#mhold')) MINE_HOLD = true; }); document.addEventListener('pointerup', e => { dirSet(e, false); MINE_HOLD = false; }); document.addEventListener('pointercancel', e => { dirSet(e, false); MINE_HOLD = false; });
 
-/* ---------- 사료 캐기 (히스토리 언락식): 사료 글자 블록을 바닥에 깔고, 그 위를 걸어 다니며 캔다 = 표면적 읽기 ---------- */
+/* ---------- 사료 캐기 (히스토리 언락식): 사료를 낱말 블록으로 바닥에 깔고, 그 위를 걸어 다니며 의뢰(질문)의 답 구절을 캔다 ---------- */
 let DG = null, DG_KEYS = {};
+function digTok(text) {
+  const out = [], re = /(\s*)(?:\[([^|\]]+)\|(\w+)\]|([^\s\[]+))/g; let m;
+  while ((m = re.exec(text))) { const glue = !m[1] && out.length > 0; if (m[2]) m[2].split(/\s+/).forEach((w, i) => out.push({ t: w, k: m[3], glue: i === 0 && glue })); else out.push({ t: m[4], k: null, glue }); }
+  return out;
+}
 function digBuild(c) {
-  const W = 880, cv = document.createElement('canvas').getContext('2d'); cv.font = '700 17px Pretendard,"Malgun Gothic",sans-serif';
-  const blocks = [], heads = []; let x = 30, y = 24, first = true;
-  const place = (t, q) => { const w = Math.ceil(cv.measureText(t).width) + 26; if (x + w > W - 30 && x > 30) { x = 30; y += 56; } blocks.push({ x, y, w, h: 44, t, q, st: 0 }); x += w + 8; };
-  c.dig.text.split('\n').forEach(line => {
-    if (!/^(제\d+조|-|[^\s].*\S)/.test(line)) return;
-    const isHead = !/[\[]/.test(line) && !/^(제\d+조|- )/.test(line) && line.length < 28 && !/[.다]$/.test(line);
-    if (isHead) { if (!first) y += 56; x = 30; heads.push({ t: line, y }); y += 30; first = false; return; }
-    x = 30; if (!first) y += 0; first = false;
-    const re = /\[([^|\]]+)\|(\d)\]/g; let last = 0, m; const pieces = [];
-    while ((m = re.exec(line))) { if (m.index > last) pieces.push([line.slice(last, m.index), -1]); pieces.push([m[1], +m[2]]); last = re.lastIndex; }
-    if (last < line.length) pieces.push([line.slice(last), -1]);
-    pieces.forEach(([t, q]) => { if (q >= 0) place(t.trim(), q); else { let cur = ''; t.trim().split(/\s+/).filter(Boolean).forEach(w => { if (cur && (cur + ' ' + w).length > 10) { place(cur, -1); cur = w; } else cur = cur ? cur + ' ' + w : w; }); if (cur) place(cur, -1); } });
-    y += 56;
+  const W = 880, g = document.createElement('canvas').getContext('2d'); g.font = '700 19px "Gowun Dodum","Malgun Gothic",sans-serif';
+  const blocks = [], heads = [], items = [], quests = [], left = 30, right = W - 30, rowH = 56; let y = 20, n = 0;
+  c.dig.secs.forEach((sec, si) => {
+    heads.push({ t: '📜 ' + sec.title + (sec.year ? ' · ' + sec.year : ''), y }); y += 36;
+    sec.items.forEach(it => {
+      const gi = items.length, label = it.label || ((++n) + '번'), lw = Math.ceil(g.measureText(label).width) + 24;
+      blocks.push({ x: left, y, w: lw, h: 44, t: label, label: true, gi, st: 0 });
+      const keys = {}; (it.qs || []).forEach(q => { keys[q.k] = quests.length; quests.push({ gi, k: q.k, q: q.q, si }); });
+      items.push({ gi, si, keys });
+      const x0 = left + lw + 14; let x = x0, first = true;
+      digTok(it.text).forEach(tk => { const w = Math.ceil(g.measureText(tk.t).width) + 20; let nx = first ? x : x + (tk.glue ? 2 : 8); if (nx + w > right) { nx = x0; y += rowH; } blocks.push({ x: nx, y, w, h: 44, t: tk.t, k: tk.k, gi, st: 0 }); x = nx + w; first = false; });
+      y += rowH + 26;
+    });
+    y += 10;
   });
-  return { W, worldH: y + 40, blocks, heads, px: 60, py: 24 + 22, face: 1, stun: 0, found: c.dig.quests.map(() => false), miss: 0, msg: '', msgT: 0, flash: [], target: null, done: false, anim: 0, last: 0, raf: 0 };
+  return { W, worldH: y + 40, blocks, heads, items, quests, found: quests.map(() => false), cur: 0, score: 0, t0: 0, px: 60, py: 20 + 36 + 22 + 56, face: 1, stun: 0, miss: 0, flash: [], target: null, done: false, anim: 0, last: 0, raf: 0, greyT: 0 };
 }
 function vDig(c) {
   if (!DG) DG = digBuild(c);
-  const m = miningWho(S.cell), n = c.dig.quests.length;
-  setTimeout(digStart, 0);
+  const m = miningWho(S.cell);
+  setTimeout(() => { digStart(); digBanner(); }, 0);
   return `<div class="card sp"><div class="split rev m3"><div class="pane mside"><h3>⛏️ 사료를 캐서 읽어요</h3>
   <div style="margin-bottom:6px">지금 캐는 사람: ${who(m)}</div>
-  <ul class="dq" id="dq">${c.dig.quests.map((q, i) => `<li data-q="${i}"><span class="ck">⬜</span> ${esc(q.q)} <small class="muted">(${esc(q.hint)})</small></li>`).join('')}</ul>
-  <p class="muted">방향키(WASD)나 버튼으로 사료 글자 위를 걸어가 <b>스페이스</b>로 캐요. 답이 되는 구절을 캐면 카드가 나오고, 아니면 돌멩이가 나와 잠깐 멈춰요. (<b id="dgcnt">0</b>/${n})</p>
+  <p class="muted">방향키(WASD)나 버튼으로 사료 블록 위를 걸어가 <b>스페이스</b>로 캐요. 위쪽 <b>의뢰</b>의 답이 되는 구절을 캐면 황금 블록이 되고, 아니면 금이 가서 다시 캘 수 없어요.</p>
+  <div class="muted">점수 <b id="dgscore">0</b></div>
   <div class="ctrl" id="dgctrl"><div class="dpad"><button class="dp u" data-dir="u">▲</button><button class="dp l" data-dir="l">◀</button><button class="dp d" data-dir="d">▼</button><button class="dp r" data-dir="r">▶</button></div>
   <button class="btn mdig" data-act="ddig">⛏️ 캐기</button></div></div>
-  <div class="pane"><div class="stage3d dg" id="dgstage"><canvas id="dgc"></canvas></div><div id="dgmsg" class="toast" style="min-height:22px">글자 블록 위로 걸어가 보세요.</div></div></div>
+  <div class="pane"><div id="dgban" class="dgb"></div><div class="stage3d dg" id="dgstage"><canvas id="dgc"></canvas></div><div id="dgmsg" class="toast" style="min-height:22px">블록 위로 걸어가 보세요.</div></div></div>
   <div id="dgdone"></div></div>`;
+}
+function digBanner(flash) {
+  const D = DG, el = document.getElementById('dgban'); if (!el || !D) return;
+  const c = CELLS[S.cell], N = D.quests.length, have = D.found.filter(Boolean).length, q = D.quests[D.cur], sec = c.dig.secs[(q || D.quests[N - 1]).si];
+  el.className = 'dgb' + (q ? '' : ' all');
+  el.innerHTML = `<div class="dgq"><small>의뢰 ${Math.min(have + 1, N)} / ${N}</small><b>${q ? `${have + 1}번 의뢰 · ${esc(q.q)}` : '의뢰 완료! 사료를 모두 캤어요.'}</b></div><div class="dgs">📜 ${esc(sec.title)} · ${esc(sec.year)}${sec.src ? ' · 출처: ' + esc(sec.src) : ''}</div>${sec.gloss && sec.gloss.length ? `<div class="dgg">낱말 풀이 · ${sec.gloss.map(x => `<b>${esc(x[0])}</b> ${esc(x[1])}`).join(' / ')}</div>` : ''}`;
+  if (flash) { void el.offsetWidth; el.classList.add('flash'); }
+  const sc = document.getElementById('dgscore'); if (sc) sc.textContent = D.score;
 }
 function digStart() {
   const cv = document.getElementById('dgc'); if (!cv || !DG || DG.raf) return;
-  DG.last = performance.now(); DG.raf = requestAnimationFrame(digLoop);
+  DG.last = performance.now(); DG.t0 = DG.last; DG.raf = requestAnimationFrame(digLoop);
   cv.addEventListener('pointerdown', e => { if (!DG || DG.done) return; const r = cv.getBoundingClientRect(), sc = r.width / (r.width < 600 ? 520 : DG.W); DG.target = [(e.clientX - r.left) / sc + (DG.camX || 0), (e.clientY - r.top) / sc + (DG.cam || 0)]; });
 }
-function digMsg(t, cls) { const el = document.getElementById('dgmsg'); if (el) el.innerHTML = t; }
+function digMsg(t) { const el = document.getElementById('dgmsg'); if (el) el.innerHTML = t; }
 function digBlockAt() {
-  const D = DG; let best = null, bd = 1e9;
-  D.blocks.forEach(b => { const dx = Math.max(b.x - D.px, 0, D.px - (b.x + b.w)), dy = Math.max(b.y - D.py, 0, D.py - (b.y + b.h)), d = Math.hypot(dx, dy); if (d < bd) { bd = d; best = b; } });
-  return bd <= 14 ? best : null;
+  const D = DG; let best = null;
+  D.blocks.forEach(b => { if (D.px >= b.x && D.px <= b.x + b.w && D.py - 6 >= b.y && D.py - 6 <= b.y + b.h) best = b; });
+  return best;
 }
 function digAct() {
-  const D = DG; if (!D || D.done || D.stun > 0 || S.step !== 'dig') return; const b = digBlockAt(); if (!b || b.st) return;
-  const c = CELLS[S.cell]; SFX.mine();
-  if (b.q >= 0 && !D.found[b.q]) {
-    b.st = 2; D.found[b.q] = true; SFX.found(); D.flash.push({ x: b.x + b.w / 2, y: b.y, t: 0 });
-    const li = document.querySelector(`#dq li[data-q="${b.q}"]`); if (li) { li.classList.add('ok'); li.querySelector('.ck').textContent = '✅'; }
-    const have = D.found.filter(Boolean).length, cnt = document.getElementById('dgcnt'); if (cnt) cnt.textContent = have;
-    digMsg(`✨ <b>카드 획득!</b> “${esc(b.t)}”`);
-    if (have === D.found.length) { D.done = true; setTimeout(() => { const el = document.getElementById('dgdone'); if (el) el.innerHTML = `<div class="toast">🎉 사료를 모두 캤어요!</div>${c.dig.quests.map((q, i) => `<div class="quote"><b>${esc(q.q)}</b><br>${esc((D.blocks.find(x => x.q === i) || {}).t || '')}</div>`).join('')}<button class="btn" data-act="digdone">${c.dig.next === 'trial' ? '⚖️ 재판 시작!' : '질문 풀기 ▶'}</button>`; }, window.__FAST ? 0 : 500); }
-  } else { b.st = 1; D.stun = window.__FAST ? 0.01 : 1.0; D.miss++; SFX.rock(); digMsg('🪨 <b>돌멩이!</b> 이 글자는 질문의 답이 아니에요. 다시 읽어 보세요.'); }
+  const D = DG; if (!D || D.done || D.stun > 0 || S.step !== 'dig') return; const b = digBlockAt(); if (!b || b.st || b.label) return;
+  const q = D.quests[D.cur]; SFX.mine();
+  if (b.gi !== q.gi) { if (performance.now() - D.greyT > 1200) { D.greyT = performance.now(); digMsg('회색 블록은 지금 의뢰가 아니에요. 위쪽 의뢰를 확인하세요.'); } return; }
+  if (b.k) {
+    const qi = D.items[b.gi].keys[b.k];
+    if (qi !== D.cur) { if (!D.found[qi]) digMsg('그 구절은 <b>다음 의뢰</b>의 답이에요. 지금 의뢰를 먼저 풀어요!'); return; }
+    D.blocks.forEach(x => { if (x.gi === b.gi && x.k === b.k) x.st = 2; });
+    D.found[qi] = true; SFX.found(); D.flash.push({ x: b.x + b.w / 2, y: b.y, t: 0 });
+    const sec = (performance.now() - D.t0) / 1000, bonus = sec < 15 ? 50 : sec < 30 ? 30 : sec < 60 ? 10 : 0; D.score += 100 + bonus; D.t0 = performance.now();
+    S.mcTotal++; persist(); D.cur = D.found.findIndex(v => !v);
+    digMsg(`✨ <b>의뢰 해결! +${100 + bonus}점</b>${bonus >= 50 ? ' 번개 채굴!' : bonus ? ' 빠름!' : ''}`);
+    if (D.cur < 0) {
+      D.done = true; digBanner(true);
+      setTimeout(() => { const el = document.getElementById('dgdone'); if (el) el.innerHTML = `<div class="toast">🎉 의뢰를 모두 해결했어요!</div>${D.quests.map(x => `<div class="quote"><b>${esc(x.q)}</b><br>${esc(D.blocks.filter(y => y.gi === x.gi && y.k === x.k).map(y => y.t).join(' '))}</div>`).join('')}<button class="btn" data-act="digdone">퀴즈 풀기 ▶</button>`; }, window.__FAST ? 0 : 500);
+    } else digBanner(true);
+  } else {
+    b.st = 1; D.stun = window.__FAST ? 0.01 : 0.9; D.miss++; D.score -= 20; S.wrong++; persist(); SFX.rock(); digBanner();
+    digMsg('🪨 <b>헛스윙! −20점</b> 이 블록은 의뢰의 답이 아니에요.');
+  }
 }
 function digLoop(ts) {
   const D = DG, cv = document.getElementById('dgc'); if (!D || !cv || !S || S.step !== 'dig') { if (D) D.raf = 0; return; }
@@ -965,34 +1019,94 @@ function digLoop(ts) {
   else if (D.target) { const dx = D.target[0] - D.px, dy = D.target[1] - D.py, d = Math.hypot(dx, dy); if (d < 6) D.target = null; else { ux = dx / d; uy = dy / d; } }
   if (D.stun > 0) { D.stun -= dt; ux = uy = 0; }
   const l = Math.hypot(ux, uy) || 1; if (ux || uy) { D.px = clamp(D.px + ux / l * 230 * dt, 16, D.W - 16); D.py = clamp(D.py + uy / l * 230 * dt, 16, D.worldH - 16); if (ux) D.face = ux > 0 ? 1 : -1; }
-  // 그리기
   const dpr = window.devicePixelRatio || 1, cw = cv.clientWidth, ch = cv.clientHeight; if (cv.width !== Math.round(cw * dpr) || cv.height !== Math.round(ch * dpr)) { cv.width = Math.round(cw * dpr); cv.height = Math.round(ch * dpr); }
   const g = cv.getContext('2d'), vw = cw < 600 ? 520 : D.W, sc = cv.width / vw, vh = cv.height / sc; D.cam = clamp(D.py - vh / 2, 0, Math.max(0, D.worldH - vh)); D.camX = clamp(D.px - vw / 2, 0, D.W - vw);
   g.setTransform(sc, 0, 0, sc, -D.camX * sc, -D.cam * sc); g.clearRect(D.camX, D.cam, vw, vh);
   g.fillStyle = '#d9c79d'; g.fillRect(0, D.cam, D.W, vh); g.fillStyle = '#ccb98c'; for (let y = Math.floor(D.cam / 28) * 28; y < D.cam + vh; y += 28) for (let x = (y / 28 % 2) * 24; x < D.W; x += 48) g.fillRect(x, y, 44, 24);
   g.textBaseline = 'middle'; g.textAlign = 'left';
-  D.heads.forEach(h => { g.font = '800 16px Pretendard,"Malgun Gothic",sans-serif'; g.fillStyle = '#6b5a3a'; g.fillText('📜 ' + h.t, 30, h.y + 12); });
-  const cur = digBlockAt();
+  D.heads.forEach(h => { g.font = '800 17px "Gowun Dodum","Malgun Gothic",sans-serif'; g.fillStyle = '#6b5a3a'; g.fillText(h.t, 30, h.y + 12); });
+  const cur = digBlockAt(), cq = D.quests[D.cur], curGi = cq ? cq.gi : -1;
   D.blocks.forEach(b => {
     if (b.y > D.cam + vh || b.y + b.h < D.cam) return;
-    if (b.st === 0) { g.fillStyle = '#d4a23a'; g.fillRect(b.x, b.y, b.w, b.h); g.fillStyle = 'rgba(255,255,255,.35)'; g.fillRect(b.x, b.y, b.w, 4); g.fillStyle = 'rgba(0,0,0,.18)'; g.fillRect(b.x, b.y + b.h - 6, b.w, 6); g.strokeStyle = b === cur ? '#b23a2e' : '#2b2833'; g.lineWidth = b === cur ? 4 : 2; g.strokeRect(b.x, b.y, b.w, b.h); g.font = '700 17px Pretendard,"Malgun Gothic",sans-serif'; g.fillStyle = '#2b2833'; g.fillText(b.t, b.x + 13, b.y + b.h / 2 + 1); }
-    else if (b.st === 1) { g.fillStyle = '#6f757a'; g.fillRect(b.x, b.y, b.w, b.h); g.fillStyle = '#8a9096'; for (let i = 0; i < b.w; i += 18) g.fillRect(b.x + i + 3, b.y + 8 + (i % 3) * 8, 10, 10); g.strokeStyle = '#2b2833'; g.lineWidth = 2; g.strokeRect(b.x, b.y, b.w, b.h); g.font = '20px sans-serif'; g.textAlign = 'center'; g.fillText('🪨', b.x + b.w / 2, b.y + b.h / 2 + 1); g.textAlign = 'left'; }
-    else { g.fillStyle = '#3b3326'; g.fillRect(b.x, b.y, b.w, b.h); g.strokeStyle = '#f5c542'; g.lineWidth = 3; g.strokeRect(b.x, b.y, b.w, b.h); g.font = '700 16px Pretendard,"Malgun Gothic",sans-serif'; g.fillStyle = '#ffe58a'; g.fillText('✨ ' + b.t, b.x + 10, b.y + b.h / 2 + 1); }
+    const off = b.gi !== curGi;
+    if (b.label) { g.fillStyle = off ? '#a39c90' : '#b23a2e'; g.fillRect(b.x, b.y + 2, b.w, b.h - 4); g.font = '800 18px "Do Hyeon","Gowun Dodum",sans-serif'; g.fillStyle = '#fff8ea'; g.textAlign = 'center'; g.fillText(b.t, b.x + b.w / 2, b.y + b.h / 2 + 1); g.textAlign = 'left'; return; }
+    g.font = '700 19px "Gowun Dodum","Malgun Gothic",sans-serif'; let tc = '#2b2833';
+    if (b.st === 2) { g.fillStyle = '#d4a23a'; g.fillRect(b.x, b.y, b.w, b.h); g.fillStyle = 'rgba(0,0,0,.15)'; g.fillRect(b.x, b.y + b.h - 5, b.w, 5); g.strokeStyle = '#2b2833'; g.lineWidth = 2; g.strokeRect(b.x, b.y, b.w, b.h); }
+    else if (b.st === 1) { g.fillStyle = '#b7ad9d'; g.fillRect(b.x, b.y, b.w, b.h); g.strokeStyle = '#7d7466'; g.lineWidth = 2; g.beginPath(); g.moveTo(b.x + 6, b.y + 8); g.lineTo(b.x + b.w / 2, b.y + b.h / 2); g.lineTo(b.x + b.w - 8, b.y + b.h - 6); g.stroke(); g.strokeRect(b.x, b.y, b.w, b.h); tc = 'rgba(43,40,51,.45)'; }
+    else if (off) { g.fillStyle = '#d6d0c4'; g.fillRect(b.x, b.y, b.w, b.h); tc = '#9a9387'; }
+    else { g.fillStyle = '#e8d6a8'; g.fillRect(b.x, b.y, b.w, b.h); g.fillStyle = 'rgba(255,255,255,.4)'; g.fillRect(b.x, b.y, b.w, 3); g.fillStyle = 'rgba(94,59,34,.18)'; g.fillRect(b.x, b.y + b.h - 4, b.w, 4); g.strokeStyle = '#2b2833'; g.lineWidth = 2; g.strokeRect(b.x, b.y, b.w, b.h); }
+    g.fillStyle = tc; g.fillText(b.t, b.x + 10, b.y + b.h / 2 + 1);
+    if (b === cur && !b.st && !off) { g.strokeStyle = '#b23a2e'; g.lineWidth = 3; g.setLineDash([6, 4]); g.strokeRect(b.x - 2, b.y - 2, b.w + 4, b.h + 4); g.setLineDash([]); }
   });
-  D.flash.forEach(f => { f.t += dt; const a = Math.max(0, 1 - f.t); g.globalAlpha = a; g.font = '800 24px Pretendard,sans-serif'; g.fillStyle = '#b23a2e'; g.textAlign = 'center'; g.fillText('+카드', f.x, f.y - 10 - f.t * 40); g.globalAlpha = 1; g.textAlign = 'left'; }); D.flash = D.flash.filter(f => f.t < 1);
+  D.flash.forEach(f => { f.t += dt; const a = Math.max(0, 1 - f.t); g.globalAlpha = a; g.font = '24px "Do Hyeon",sans-serif'; g.fillStyle = '#b23a2e'; g.textAlign = 'center'; g.fillText('+100', f.x, f.y - 10 - f.t * 40); g.globalAlpha = 1; g.textAlign = 'left'; }); D.flash = D.flash.filter(f => f.t < 1);
   const m = miningWho(S.cell), bob = ux || uy ? Math.abs(Math.sin(D.anim * 14)) * 4 : 0;
   g.fillStyle = 'rgba(0,0,0,.25)'; g.beginPath(); g.ellipse(D.px, D.py + 4, 15, 6, 0, 0, 7); g.fill();
   g.save(); g.translate(D.px, D.py - 16 - bob); if (D.face < 0) g.scale(-1, 1); g.font = '34px sans-serif'; g.textAlign = 'center'; g.fillText(ROLES[m.key].em, 0, 0); g.font = '24px sans-serif'; g.fillText('⛏️', 18, 6); g.restore();
-  if (D.stun > 0) { g.font = '800 18px Pretendard,sans-serif'; g.textAlign = 'center'; g.fillStyle = '#b23a2e'; g.fillText('😵 잠깐 멈춤', D.px, D.py - 56); g.textAlign = 'left'; }
-  const btn = document.querySelector('[data-act="ddig"]'); if (btn) btn.disabled = D.done || D.stun > 0 || !cur || !!cur.st;
+  if (D.stun > 0) { g.font = '20px "Do Hyeon",sans-serif'; g.textAlign = 'center'; g.fillStyle = '#b23a2e'; g.fillText('😵 잠깐 멈춤', D.px, D.py - 56); g.textAlign = 'left'; }
+  const btn = document.querySelector('[data-act="ddig"]'); if (btn) btn.disabled = D.done || D.stun > 0 || !cur || !!cur.st || !!cur.label;
   D.raf = requestAnimationFrame(digLoop);
 }
 document.addEventListener('keydown', e => { if (!S || S.step !== 'dig') return; const k = e.key.length === 1 ? e.key.toLowerCase() : e.key; if (/^Arrow/.test(k) || 'wasd'.includes(k)) { DG_KEYS[k] = true; e.preventDefault(); } else if (k === ' ' || k === 'Enter') { digAct(); e.preventDefault(); } });
 document.addEventListener('keyup', e => { const k = e.key.length === 1 ? e.key.toLowerCase() : e.key; delete DG_KEYS[k]; });
+
+/* ---------- 3칸 ② 쌀자루 정리하기: 알갱이를 네모로 묶어 병에 담고, 급료의 진실을 마주한다 ---------- */
+let RICE = null;
+const RICE_T = { rice: ['쌀', '#f7f1de', '#cdbf99'], bran: ['겨', '#a7743a', '#6e4a22'], sand: ['모래', '#bdb4a2', '#7d7466'] };
+const RICE_L1 = [['🪖', '나', '오늘은 선혜청에서 급료를 받는 날이군. 쌀자루를 받아 와야겠소.'], ['👧', '아이', '아버지, 오늘은 쌀밥 먹을 수 있어요?'], ['👩', '아내', '그래요, 여보. 아이들이 아침부터 기다렸어요. 다녀와요.']];
+const RICE_L2 = [['🪖', '나', '다 골라냈다! …이제 집에 가져다 줘야지.'], ['👩', '아내', '…여보, 이게 다예요?'], ['👧', '아이', '…쌀밥은요?']];
+function riceNew() {
+  const cells = shuffle(Array.from({ length: 12 * 8 }, (_, i) => i)).slice(0, 90), types = shuffle([...Array(44).fill('rice'), ...Array(24).fill('bran'), ...Array(22).fill('sand')]);
+  return { scene: 'intro', i: 0, sel: [], left: { rice: 44, bran: 24, sand: 22 }, msg: '', grains: cells.map((c, n) => ({ n, t: types[n], x: 20 + (c % 12) * 27 + Math.random() * 8, y: 18 + Math.floor(c / 12) * 27 + Math.random() * 8, r: Math.random() * 180, alive: true })) };
+}
+const riceShape = (t, a) => t === 'rice' ? `<ellipse cx="0" cy="0" rx="6.5" ry="2.8" fill="${RICE_T.rice[1]}" stroke="${RICE_T.rice[2]}" stroke-width=".8"/>` : t === 'bran' ? `<path d="M-5 -2 L-1 -4 L5 -1 L3 3 L-3 3 Z" fill="${RICE_T.bran[1]}" stroke="${RICE_T.bran[2]}" stroke-width=".8"/>` : `<circle r="2.6" fill="${RICE_T.sand[1]}" stroke="${RICE_T.sand[2]}" stroke-width=".8"/>`;
+function vRice() { if (!RICE) RICE = riceNew(); setTimeout(riceDraw, 0); return `<div class="card"><h3>🌾 쌀자루 정리하기</h3><div id="ricehost"></div></div>`; }
+function riceDlg(lines, i) { return lines.slice(0, i + 1).map((l, n) => `<div class="dlg ${n === i ? 'new' : ''}"><div class="sp">${l[0]}<small>${esc(l[1])}</small></div><div class="bub">${esc(l[2])}</div></div>`).join(''); }
+function riceDraw() {
+  const h = document.getElementById('ricehost'); if (!h || !RICE) return; const R = RICE;
+  if (R.scene === 'intro' || R.scene === 'home') {
+    const L = R.scene === 'intro' ? RICE_L1 : RICE_L2, last = R.i >= L.length - 1;
+    h.innerHTML = `${riceDlg(L, R.i)}<button class="btn" data-act="rice_next">${last ? (R.scene === 'intro' ? '쌀자루 열어 보기 ▶' : '…') : '다음 ▶'}</button>`;
+  } else if (R.scene === 'sort') {
+    const rem = R.left.rice + R.left.bran + R.left.sand;
+    h.innerHTML = `<p class="muted">자루를 열어 보니 쌀에 겨와 모래가 섞여 있어요. <b>드래그해서 네모로 묶고</b>, 알맞은 병을 눌러 담아요.<br>남은 알갱이 <b id="ricerem">${rem}</b>개</p>
+    <svg id="ricesvg" class="ricesvg" viewBox="0 0 360 250">${R.grains.map(g => `<g class="gr" data-n="${g.n}" transform="translate(${g.x.toFixed(1)} ${g.y.toFixed(1)}) rotate(${g.r.toFixed(0)})" ${g.alive ? '' : 'style="display:none"'}>${riceShape(g.t)}</g>`).join('')}<rect id="ricemq" x="0" y="0" width="0" height="0" fill="rgba(42,111,219,.15)" stroke="#2a6fdb" stroke-width="1.5" stroke-dasharray="4 3"/></svg>
+    <div class="jars">${['rice', 'bran', 'sand'].map(t => `<button class="jarb" data-act="rice_jar" data-t="${t}"><svg viewBox="-12 -8 24 16" width="44" height="26">${riceShape(t)}</svg><b>${RICE_T[t][0]} 병</b><small id="jc-${t}">${(t === 'rice' ? 44 : t === 'bran' ? 24 : 22) - R.left[t]}</small></button>`).join('')}</div><div id="ricemsg" class="toast" style="min-height:22px">${esc(R.msg || '알갱이를 네모로 묶어 보세요.')}</div>`;
+    riceBind();
+  } else {
+    h.innerHTML = `<div class="toast">…13개월 만에 받은 급료</div><div class="jar13">${Array.from({ length: 13 }, (_, i) => `<div class="j13"><i style="height:${i === 0 ? 50 : 0}%"></i></div>`).join('')}</div>
+    <p style="font-size:20px;margin:10px 0"><b>13개월 만에 받은 월급이, 한 달 치에, 그것도 절반?</b></p><p>이 억울함이 군인들을 거리로 불러냈다.</p><button class="btn" data-act="ricedone">⛏️ 사료 캐러 가기 ▶</button>`;
+  }
+}
+function riceBind() {
+  const svg = document.getElementById('ricesvg'), mq = document.getElementById('ricemq'); if (!svg) return; let st = null;
+  const pt = e => { const r = svg.getBoundingClientRect(); return [(e.clientX - r.left) / r.width * 360, (e.clientY - r.top) / r.height * 250]; };
+  svg.addEventListener('pointerdown', e => { st = pt(e); svg.setPointerCapture(e.pointerId); mq.setAttribute('width', 0); mq.setAttribute('height', 0); });
+  svg.addEventListener('pointermove', e => { if (!st) return; const p = pt(e), x = Math.min(st[0], p[0]), y = Math.min(st[1], p[1]); mq.setAttribute('x', x); mq.setAttribute('y', y); mq.setAttribute('width', Math.abs(p[0] - st[0])); mq.setAttribute('height', Math.abs(p[1] - st[1])); });
+  const end = e => {
+    if (!st) return; const x = +mq.getAttribute('x'), y = +mq.getAttribute('y'), w = +mq.getAttribute('width'), hh = +mq.getAttribute('height'); st = null; mq.setAttribute('width', 0); mq.setAttribute('height', 0);
+    RICE.sel = RICE.grains.filter(g => g.alive && g.x >= x && g.x <= x + w && g.y >= y && g.y <= y + hh).map(g => g.n);
+    svg.querySelectorAll('.gr').forEach(el => el.classList.toggle('sel', RICE.sel.includes(+el.dataset.n)));
+    const m = document.getElementById('ricemsg'); if (m) m.textContent = RICE.sel.length ? `${RICE.sel.length}개를 묶었어요. 알맞은 병을 눌러요.` : '알갱이를 네모로 묶어 보세요.';
+  };
+  svg.addEventListener('pointerup', end); svg.addEventListener('pointercancel', end);
+}
+function riceJar(t) {
+  const R = RICE; if (!R || R.scene !== 'sort') return; const m = document.getElementById('ricemsg');
+  if (!R.sel.length) { if (m) m.textContent = '먼저 알갱이를 네모로 묶어 주세요.'; return; }
+  const ok = R.grains.filter(g => R.sel.includes(g.n) && g.t === t), bad = R.sel.length - ok.length;
+  ok.forEach(g => { g.alive = false; R.left[t]--; });
+  const svg = document.getElementById('ricesvg'); svg.querySelectorAll('.gr').forEach(el => { const g = R.grains[+el.dataset.n]; if (!g.alive) el.style.display = 'none'; el.classList.remove('sel'); });
+  R.sel = []; sfx(bad ? 'no' : 'ok');
+  const rem = R.left.rice + R.left.bran + R.left.sand; document.getElementById('ricerem').textContent = rem;
+  ['rice', 'bran', 'sand'].forEach(k => { const el = document.getElementById('jc-' + k); if (el) el.textContent = (k === 'rice' ? 44 : k === 'bran' ? 24 : 22) - R.left[k]; });
+  const b = document.querySelector(`[data-act="rice_jar"][data-t="${t}"]`); if (bad && b) { b.classList.remove('shake'); void b.offsetWidth; b.classList.add('shake'); }
+  R.msg = bad ? `묶은 것 중 ${bad}개는 다른 종류였어요. 남겨 두었어요.` : `${RICE_T[t][0]} ${ok.length}개를 담았어요!`; if (m) m.textContent = R.msg;
+  if (!rem) setTimeout(() => { R.scene = 'home'; R.i = 0; riceDraw(); }, 700);
+}
 /* ---------- 3칸: 갑신정변 · 3일 천하의 질주 ---------- */
 let RG = null;
 const RUN = { W: 360, H: 520, LX: [70, 180, 290], PY: 420, V: 210, DUR_A: 24, DUR_B: 14, GAP0: 120 };
-const RUN_SCR = ['문벌 폐지 · 인민 평등', '지조법 개혁 · 재정 확충', '재정은 호조에서 관할', '의정부에서 정치 의결'];
+const RUN_SCR = ['조공 허례 폐지', '인민 평등권 제정', '토지세법 개혁', '의정소에서 회의'];
 const RUN_CUT = ['🎩 일본 공사: 청군이 1,500명이라니… 우리 병력(150명)으론 불리하오!', '💂 일본군: 약속은 약속이고, 우리는 철수하겠소. 안녕~!', '😱 개화파: 뭐, 뭐라고요?! 배신이다!! 일단 제물포로 튀어!'];
 const RUN_DAY = [[0, '12월 4일 · 우정총국에서 거사! 일본군 150명이 함께 달려요'], [8, '12월 5일 · 신정부 수립! 정강(📜)을 모아라'], [16, '12월 6일 · 청군 1,500명 출동!']];
 function runPlanA() {
@@ -1159,9 +1273,9 @@ function vTrial(c) {
 }
 function vVerdict(c) {
   const hp = Math.max(0, 3 - (S.tw || 0));
-  return `<div class="card court" style="text-align:center"><div class="bench">⚖️ 판결</div><div class="npc" style="font-size:54px">🧑‍⚖️</div>
-  <h2>강화도 조약은 조선에 불리한 불평등 조약이다!</h2><p>조선은 '자주국'이라는 이름을 얻었지만, 해안 측량권과 영사 재판권을 내주었어요. 일본의 속셈은 청의 영향력을 줄이고 조선에 진출하는 것이었어요.</p>
-  <p class="muted">조선 신뢰도 ${'❤️'.repeat(hp)}${'🖤'.repeat(3 - hp)}</p><button class="btn" data-act="tr_done">🎲 주사위 굴리러 가기 ▶</button></div>`;
+  return `<div class="card court" style="text-align:center"><div class="bench">⚖️ 휴정</div><div class="npc" style="font-size:54px">🧑‍⚖️</div>
+  <h2>재판은 잠시 휴정!</h2><p>양쪽 주장이 팽팽하군요. 이제 사료를 직접 캐서 꼼꼼히 읽고, 이 조약이 어떤 조약인지 스스로 판단해 봐요.</p>
+  <p class="muted">조선 신뢰도 ${'❤️'.repeat(hp)}${'🖤'.repeat(3 - hp)}</p><button class="btn" data-act="tr_done">⛏️ 사료 캐러 가기 ▶</button></div>`;
 }
 function srcHtml(c) { return c.src.map(x => `<div class="quote">${x.img ? `<img class="srcimg" src="${esc(x.img)}" alt="${esc(x.who)}" onerror="this.outerHTML='<div class=&quot;muted&quot;>🖼️ (사진 준비 중)</div>'">` : ''}${x.text ? nl(x.text) : ''}<small>${esc(x.who)}</small></div>`).join(''); }
 
@@ -1203,7 +1317,7 @@ function vTeacher() {
   const cards = docs.map(d => {
     const fin = !!d.finishedAtMs, scored = typeof d.sentenceScore === 'number', a = d.auto || {};
     const rank = rk.findIndex(r => r.id === d.id) + 1, val = TV[d.id] != null ? TV[d.id] : (scored ? d.sentenceScore : '');
-    const prog = fin ? '문장 제출 완료' : d.phase === 'board' ? `${d.cell + 1}/${CELLS.length}칸 · ${({ situation: '상황', mine: '채굴', dig: '사료 캐기', runintro: '배경', run: '달리기', runend: '정리', trial: '재판', verdict: '판결', stance: '입장', stancesum: '입장 정리', source: '사료', q: '질문', dice: '주사위' })[d.step] || d.step}` : ({ cards: '카드 뽑는 중', roles: '신분 고르는 중', team: '준비 중', sentence: '문장 쓰는 중' })[d.phase] || d.phase;
+    const prog = fin ? '문장 제출 완료' : d.phase === 'board' ? `${d.cell + 1}/${CELLS.length}칸 · ${({ situation: '상황', mine: '채굴', rice: '쌀자루', dig: '사료 캐기', runintro: '배경', run: '달리기', runend: '정리', trial: '재판', verdict: '판결', stance: '입장', stancesum: '입장 정리', source: '사료', q: '질문', dice: '주사위' })[d.step] || d.step}` : ({ cards: '카드 뽑는 중', roles: '신분 고르는 중', team: '준비 중', sentence: '문장 쓰는 중' })[d.phase] || d.phase;
     const logs = (d.log || []).map(l => l.k === 'stance' ? `<li>[${l.cell + 1}칸 입장] ${esc(l.who)}: ${esc(l.opt)} — ${esc(l.a)}</li>` : `<li>[${l.cell + 1}칸 ${esc(l.level || '')}] ${esc(l.who)}: ${esc(l.a)}</li>`).join('');
     return `<div class="tcard ${fin && !scored ? 'pend' : ''}"><div><b>${d.team}모둠</b> <span class="tag">${esc(prog)}</span> ${d.finishedAtMs ? `<span class="tag">⏱ ${mmss(a.sec)}</span>` : `<span class="tag">⏱ <span data-timer data-st="${d.startedAtMs || 0}" data-db="${d.diceBonus || 0}"></span></span>`}
     <span class="tag">오답 ${d.wrong || 0}</span> ${fin ? `<span class="tag">자동 ${a.total ?? '-'}/70</span>` : ''} ${scored ? `<span class="tag red">총 ${r1((a.total || 0) + d.sentenceScore)}점 · ${rank}위</span>` : ''}</div>
@@ -1294,6 +1408,7 @@ $app.addEventListener('click', async e => {
   if (a === 'flip') { if (S.flipped.includes(i) || S.flipped.length >= S.size) return; if (S.roster && !S.curName) return; if (S.curName) { S.cardName = S.cardName || {}; S.cardName[i] = S.curName; S.curName = null; } S.flipped.push(i); persist(); return render(); }
   if (a === 'toroles') { S.phase = 'roles'; persist(); return render(); }
   if (a === 'role') { pickRole(+el.dataset.idx); persist(); return render(); }
+  if (a === 'introok') { S.introSeen = true; persist(); return render(); }
   if (a === 'startgame') { S.phase = 'board'; S.startedAtMs = Date.now(); S.step = 'situation'; persist(true); return render(); }
   /* 보드 */
   if (a === 'torun') { if (RG) RG.stop = true; S.ri = 0; go('runintro'); return render(); }
@@ -1301,7 +1416,7 @@ $app.addEventListener('click', async e => {
   if (a === 'ri_go') { go('run'); return render(); }
   if (a === 'run_go') { if (RG) RG.go(); return; }
   if (a === 'run_retry') { if (RG) RG.retry(); return; }
-  if (a === 'run_done') { S.qi = 0; go('q'); return render(); }
+  if (a === 'run_done') { DG = null; go('dig'); return render(); }
   if (a === 'totrial') { S.qi = 0; S.tw = 0; go('trial'); return render(); }
   if (a === 'tr_pm') { S.tmp.pick[+el.dataset.r] = +el.dataset.k; S.tmp.msg = ''; persist(); return render(); }
   if (a === 'tr_ev') { const T = S.tmp, id = el.dataset.id, R = CELLS[S.cell].trial.rounds[S.qi], k = T.sel.indexOf(id); if (k >= 0) T.sel.splice(k, 1); else if (T.sel.length < R.pick) T.sel.push(id); T.msg = ''; persist(); return render(); }
@@ -1324,12 +1439,16 @@ $app.addEventListener('click', async e => {
     S.tmp.solved = true; S.tmp.judge = R.judge || ''; persist(); return render();
   }
   if (a === 'tr_next') { S.qi++; if (S.qi >= CELLS[S.cell].trial.rounds.length) go('verdict'); else { S.tmp = null; persist(); } return render(); }
-  if (a === 'tr_done') { go('dice'); return render(); }
+  if (a === 'tr_done') { DG = null; go('dig'); return render(); }
   if (a === 'tomine') { if (G3) G3.stop = true; MINE_KEYS = {}; MINE_POS = [50, 67]; MINE_TARGET = null; MINE_AUTO = -1; mineBusy = false; go('mine'); return render(); }
   if (a === 'dig') { const k = +el.dataset.i; if (mineBusy) return; if (nearRock() === k) return mineAct(k); const rx = ROCKS[k][0], ry = ROCKS[k][1]; MINE_AUTO = k; MINE_TARGET = [rx < 50 ? Math.min(rx + 9, 92) : Math.max(rx - 9, 8), Math.min(ry + 4, 92)]; return; }
   if (a === 'mdig') { const n = nearRock(); if (n >= 0) mineAct(n); return; }
   if (a === 'walk') { const r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width * 100, y = (e.clientY - r.top) / r.height * 100; if (isFinite(x) && isFinite(y) && !inMon(x, y)) { MINE_AUTO = -1; MINE_TARGET = [clamp(x, 4, 96), clamp(y, 8, 94)]; } return; }
-  if (a === 'minedone') { S.qi = 0; go('q'); return render(); }
+  if (a === 'minedone') { DG = null; go('dig'); return render(); }
+  if (a === 'torice') { RICE = null; go('rice'); return render(); }
+  if (a === 'rice_next') { const R = RICE, L = R.scene === 'intro' ? RICE_L1 : RICE_L2; if (R.i < L.length - 1) R.i++; else if (R.scene === 'intro') R.scene = 'sort'; else R.scene = 'reveal'; riceDraw(); return; }
+  if (a === 'rice_jar') { riceJar(el.dataset.t); return; }
+  if (a === 'ricedone') { DG = null; go('dig'); return render(); }
   if (a === 'tostance') { S.mi = 0; window.__opt = null; go('stance'); return render(); }
   if (a === 'opt') { window.__opt = i; document.querySelectorAll('.opt').forEach(b => b.classList.remove('sel')); el.classList.add('sel'); checkStanceReady(); return; }
   if (a === 'stancesub') {
@@ -1340,7 +1459,7 @@ $app.addEventListener('click', async e => {
   if (a === 'tosource') { DG = null; go(CELLS[S.cell].dig ? 'dig' : 'source'); return render(); }
   if (a === 'todig') { DG = null; go('dig'); return render(); }
   if (a === 'ddig') { digAct(); return; }
-  if (a === 'digdone') { const c = CELLS[S.cell]; DG = null; if (c.dig.next === 'trial') { S.qi = 0; S.tw = 0; go('trial'); } else { S.qi = 0; go('q'); } return render(); }
+  if (a === 'digdone') { DG = null; S.qi = 0; go('q'); return render(); }
   if (a === 'toq') { S.qi = 0; go('q'); return render(); }
   if (a === 'mc') {
     const o = S.tmp.opts[i]; if (o.ok) { S.tmp.solved = true; S.mcTotal++; } else { S.tmp.bad.push(i); S.wrong++; } persist(); return render();
